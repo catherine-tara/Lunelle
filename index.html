@@ -4,29 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lunelle — My Beauty Diary</title>
+
 <style>
 :root{
   --pink:#f6c9dc;
   --pink-dark:#d98faf;
   --pink-soft:#fff0f6;
   --blue:#cfe4f7;
-  --blue-dark:#82acd0;
   --purple:#ded3f4;
-  --purple-dark:#a996cf;
   --lavender:#f4f0fb;
-  --cream:#fffafc;
+  --cream:#fffafd;
   --white:#fff;
   --text:#51464f;
   --muted:#9b8e99;
   --border:#eadde5;
-  --green:#cfe9dc;
-  --green-dark:#78a990;
-  --yellow:#f7e7bd;
-  --red:#efb6c2;
+  --green:#dcefe5;
+  --green-dark:#6f987f;
+  --yellow:#fff0ca;
+  --red:#fde8ec;
+  --red-dark:#b96c7d;
   --shadow:0 14px 35px rgba(150,120,145,.10);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 html,body{
   margin:0;
@@ -36,14 +38,24 @@ html,body{
   color:var(--text);
 }
 
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.app{min-height:100vh}
-.mobile-topbar{display:none}
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
 
-/* =========================
+button{
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+}
+
+/* =========================================================
    SIDEBAR
-========================= */
+========================================================= */
 
 .sidebar{
   position:fixed;
@@ -52,14 +64,16 @@ button{cursor:pointer}
   bottom:0;
   width:255px;
   padding:30px 18px 20px;
-  background:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.86);
   backdrop-filter:blur(18px);
   border-right:1px solid rgba(234,221,229,.9);
   z-index:100;
   overflow-y:auto;
 }
 
-.sidebar-brand{padding:4px 10px 25px}
+.sidebar-brand{
+  padding:4px 10px 25px;
+}
 
 .logo{
   width:46px;
@@ -86,7 +100,9 @@ button{cursor:pointer}
   color:var(--muted);
 }
 
-.nav-section{margin:18px 0}
+.nav-section{
+  margin:18px 0;
+}
 
 .nav-label{
   font-size:8px;
@@ -112,7 +128,9 @@ button{cursor:pointer}
   transition:.2s;
 }
 
-.nav-btn:hover{background:var(--pink-soft)}
+.nav-btn:hover{
+  background:var(--pink-soft);
+}
 
 .nav-btn.active{
   background:linear-gradient(90deg,#fff0f6,#f6f1fc);
@@ -133,9 +151,21 @@ button{cursor:pointer}
   text-align:center;
 }
 
-/* =========================
+/* =========================================================
+   MOBILE
+========================================================= */
+
+.mobile-topbar{
+  display:none;
+}
+
+.sidebar-overlay{
+  display:none;
+}
+
+/* =========================================================
    MAIN
-========================= */
+========================================================= */
 
 .main{
   margin-left:255px;
@@ -197,9 +227,37 @@ h1{
   border-color:#f1ccd3;
 }
 
-/* =========================
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel{
+  background:rgba(255,255,255,.84);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+
+.panel-title{
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:900;
+  color:#806b78;
+  margin-bottom:16px;
+}
+
+.empty-state{
+  text-align:center;
+  padding:45px 20px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================================================
    DASHBOARD
-========================= */
+========================================================= */
 
 .stats{
   display:grid;
@@ -235,29 +293,9 @@ h1{
   margin-top:3px;
 }
 
-.panel{
-  background:rgba(255,255,255,.84);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  box-shadow:var(--shadow);
-  margin-bottom:18px;
-}
-
-.panel-title{
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:900;
-  color:#806b78;
-  margin-bottom:16px;
-}
-
-.empty-state{
-  text-align:center;
-  padding:45px 20px;
-  color:var(--muted);
-  font-size:12px;
-}
+/* =========================================================
+   PRODUCTS
+========================================================= */
 
 .product-grid{
   display:grid;
@@ -372,9 +410,9 @@ h1{
   color:#7a6672;
 }
 
-/* =========================
-   FORM
-========================= */
+/* =========================================================
+   FORMS
+========================================================= */
 
 .form-grid{
   display:grid;
@@ -396,12 +434,19 @@ h1{
   margin-bottom:7px;
 }
 
+.optional{
+  font-size:8px;
+  color:#aaa0a7;
+  text-transform:none;
+  letter-spacing:0;
+  font-weight:500;
+}
+
 input[type=text],
 input[type=date],
 input[type=number],
 select,
-textarea,
-.search-input{
+textarea{
   width:100%;
   border:1px solid var(--border);
   background:#fffdfd;
@@ -424,12 +469,28 @@ textarea:focus{
   box-shadow:0 0 0 3px rgba(246,201,220,.18);
 }
 
-.optional{
-  font-size:8px;
-  color:#aaa0a7;
-  text-transform:none;
-  letter-spacing:0;
-  font-weight:500;
+.inline-field{
+  display:flex;
+  gap:7px;
+}
+
+.inline-field > *{
+  min-width:0;
+}
+
+.inline-field input,
+.inline-field .search-wrap{
+  flex:1;
+}
+
+.inline-add{
+  width:40px;
+  flex:0 0 40px;
+  border:1px solid var(--border);
+  background:#fff0f6;
+  color:#a45f7d;
+  border-radius:10px;
+  font-size:16px;
 }
 
 .search-wrap{
@@ -463,27 +524,9 @@ textarea:focus{
   cursor:pointer;
 }
 
-.suggest-item:hover{
+.suggest-item:hover,
+.suggest-item.highlighted{
   background:var(--pink-soft);
-}
-
-.inline-field{
-  display:flex;
-  gap:7px;
-}
-
-.inline-field .search-wrap{
-  flex:1;
-}
-
-.inline-add{
-  width:40px;
-  flex:0 0 40px;
-  border:1px solid var(--border);
-  background:#fff0f6;
-  color:#a45f7d;
-  border-radius:10px;
-  font-size:16px;
 }
 
 .radio-row{
@@ -513,13 +556,39 @@ textarea:focus{
   font-weight:800;
 }
 
+.checkbox-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:7px;
+}
+
+.check-option input{
+  display:none;
+}
+
+.check-option label{
+  display:block;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:9px 10px;
+  background:white;
+  font-size:10px;
+  cursor:pointer;
+}
+
+.check-option input:checked+label{
+  background:#f3effa;
+  border-color:#cdbce5;
+  color:#79669a;
+  font-weight:700;
+}
+
 .shade-section{
   display:none;
   padding:15px;
   background:#fbf7fb;
   border:1px solid #eee3eb;
   border-radius:14px;
-  margin-top:2px;
 }
 
 .shade-section.show{
@@ -558,37 +627,6 @@ textarea:focus{
   display:block;
 }
 
-.checkbox-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:7px;
-}
-
-.check-option{
-  position:relative;
-}
-
-.check-option input{
-  display:none;
-}
-
-.check-option label{
-  display:block;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:9px 10px;
-  background:white;
-  font-size:10px;
-  cursor:pointer;
-}
-
-.check-option input:checked+label{
-  background:#f3effa;
-  border-color:#cdbce5;
-  color:#79669a;
-  font-weight:700;
-}
-
 .form-actions{
   display:flex;
   justify-content:flex-end;
@@ -596,9 +634,9 @@ textarea:focus{
   margin-top:20px;
 }
 
-/* =========================
+/* =========================================================
    PROFILE
-========================= */
+========================================================= */
 
 .profile-layout{
   display:grid;
@@ -639,8 +677,7 @@ textarea:focus{
   font-weight:700;
 }
 
-.condition-tags,
-.shade-list{
+.condition-tags{
   display:flex;
   gap:6px;
   flex-wrap:wrap;
@@ -675,9 +712,9 @@ textarea:focus{
   margin-top:3px;
 }
 
-/* =========================
+/* =========================================================
    SETTINGS
-========================= */
+========================================================= */
 
 .settings-tabs{
   display:flex;
@@ -722,6 +759,7 @@ textarea:focus{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:12px;
   border:1px solid var(--border);
   border-radius:11px;
   padding:10px 12px;
@@ -738,9 +776,9 @@ textarea:focus{
   font-size:9px;
 }
 
-/* =========================
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .modal-overlay{
   display:none;
@@ -827,9 +865,9 @@ textarea:focus{
   margin-top:18px;
 }
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
 .toast{
   position:fixed;
@@ -852,9 +890,9 @@ textarea:focus{
   transform:translateY(0);
 }
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:768px){
 
@@ -895,7 +933,6 @@ textarea:focus{
     border-bottom:1px solid var(--border);
   }
 
-  /* HAMBURGER IS ON THE LEFT */
   .hamburger{
     width:40px;
     height:40px;
@@ -955,8 +992,15 @@ textarea:focus{
   .checkbox-grid{
     grid-template-columns:1fr;
   }
-}
 
+  .inline-field{
+    flex-wrap:wrap;
+  }
+
+  .inline-field .btn{
+    width:100%;
+  }
+}
 </style>
 </head>
 
@@ -964,116 +1008,180 @@ textarea:focus{
 
 <div class="app">
 
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+  ></div>
 
-<aside class="sidebar" id="sidebar">
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
 
-  <div class="sidebar-brand">
-    <div class="logo">L</div>
-    <div class="brand-name">Lunelle</div>
-    <div class="brand-sub">MY BEAUTY DIARY ♡</div>
+    <div class="sidebar-brand">
+
+      <div class="logo">L</div>
+
+      <div class="brand-name">
+        Lunelle
+      </div>
+
+      <div class="brand-sub">
+        MY BEAUTY DIARY ♡
+      </div>
+
+    </div>
+
+
+    <div class="nav-section">
+
+      <div class="nav-label">
+        MY SPACE
+      </div>
+
+      <button class="nav-btn active" data-page="dashboard">
+        <span class="nav-icon">⌂</span>
+        Dashboard
+      </button>
+
+      <button class="nav-btn" data-page="all">
+        <span class="nav-icon">♡</span>
+        All Products
+      </button>
+
+      <button class="nav-btn" data-page="add">
+        <span class="nav-icon">＋</span>
+        Add Product
+      </button>
+
+    </div>
+
+
+    <div class="nav-section">
+
+      <div class="nav-label">
+        MY LISTS
+      </div>
+
+      <button class="nav-btn" data-page="yes">
+        <span class="nav-icon">♡</span>
+        YES List
+      </button>
+
+      <button class="nav-btn" data-page="maybe">
+        <span class="nav-icon">✦</span>
+        MAYBE List
+      </button>
+
+      <button class="nav-btn" data-page="no">
+        <span class="nav-icon">×</span>
+        NO List
+      </button>
+
+      <button class="nav-btn" data-page="empties">
+        <span class="nav-icon">○</span>
+        EMPTIES
+      </button>
+
+    </div>
+
+
+    <div class="nav-section">
+
+      <div class="nav-label">
+        MY DETAILS
+      </div>
+
+      <button class="nav-btn" data-page="profile">
+        <span class="nav-icon">♧</span>
+        My Profile
+      </button>
+
+      <button class="nav-btn" data-page="avoid">
+        <span class="nav-icon">!</span>
+        What Should I Avoid?
+      </button>
+
+      <button class="nav-btn" data-page="ingredients">
+        <span class="nav-icon">✿</span>
+        My Ingredients
+      </button>
+
+    </div>
+
+
+    <div class="nav-section">
+
+      <div class="nav-label">
+        MORE
+      </div>
+
+      <button class="nav-btn" data-page="settings">
+        <span class="nav-icon">⚙</span>
+        Settings
+      </button>
+
+    </div>
+
+
+    <div class="sidebar-footer">
+      © 2026 Cytara™
+    </div>
+
+  </aside>
+
+
+  <div class="mobile-topbar">
+
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+
+    <div class="mobile-title">
+      Lunelle
+    </div>
+
   </div>
 
-  <div class="nav-section">
-    <div class="nav-label">MY SPACE</div>
 
-    <button class="nav-btn active" data-page="dashboard">
-      <span class="nav-icon">⌂</span>
-      Dashboard
-    </button>
+  <main
+    class="main"
+    id="main"
+  ></main>
 
-    <button class="nav-btn" data-page="all">
-      <span class="nav-icon">♡</span>
-      All Products
-    </button>
-
-    <button class="nav-btn" data-page="add">
-      <span class="nav-icon">＋</span>
-      Add Product
-    </button>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-label">MY LISTS</div>
-
-    <button class="nav-btn" data-page="yes">
-      <span class="nav-icon">♡</span>
-      YES List
-    </button>
-
-    <button class="nav-btn" data-page="maybe">
-      <span class="nav-icon">✦</span>
-      MAYBE List
-    </button>
-
-    <button class="nav-btn" data-page="no">
-      <span class="nav-icon">×</span>
-      NO List
-    </button>
-
-    <button class="nav-btn" data-page="empties">
-      <span class="nav-icon">○</span>
-      EMPTIES
-    </button>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-label">MY DETAILS</div>
-
-    <button class="nav-btn" data-page="profile">
-      <span class="nav-icon">♧</span>
-      My Profile
-    </button>
-
-    <button class="nav-btn" data-page="avoid">
-      <span class="nav-icon">!</span>
-      What Should I Avoid?
-    </button>
-
-    <button class="nav-btn" data-page="ingredients">
-      <span class="nav-icon">✿</span>
-      My Ingredients
-    </button>
-  </div>
-
-  <div class="nav-section">
-    <div class="nav-label">MORE</div>
-
-    <button class="nav-btn" data-page="settings">
-      <span class="nav-icon">⚙</span>
-      Settings
-    </button>
-  </div>
-
-  <div class="sidebar-footer">
-    © 2026 Cytara™
-  </div>
-
-</aside>
-
-<div class="mobile-topbar">
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
-    ☰
-  </button>
-
-  <div class="mobile-title">
-    Lunelle
-  </div>
 </div>
 
-<main class="main" id="main"></main>
 
+<div
+  class="modal-overlay"
+  id="modalOverlay"
+>
+  <div
+    class="modal"
+    id="modalContent"
+  ></div>
 </div>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modalContent"></div>
-</div>
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast"
+></div>
+
 
 <script>
 
-const STORAGE_KEY = "lunelle_beauty_diary_v5";
+/* =========================================================
+   LUNELLE BEAUTY DIARY
+========================================================= */
+
+const STORAGE_KEY =
+  "lunelle_beauty_diary_v7";
+
 
 const DEFAULTS = {
 
@@ -1179,10 +1287,6 @@ const DEFAULTS = {
 };
 
 
-/* =========================
-   PROFILE OPTIONS
-========================= */
-
 const SKIN_TYPES = [
   "Normal",
   "Dry",
@@ -1190,6 +1294,7 @@ const SKIN_TYPES = [
   "Combination",
   "Sensitive"
 ];
+
 
 const SKIN_CONDITIONS = [
   "Acne-prone",
@@ -1207,7 +1312,6 @@ const SKIN_CONDITIONS = [
   "Fine Lines"
 ];
 
-/* EXACTLY 16 PERSONAL COLOR OPTIONS */
 
 const PERSONAL_COLORS = [
 
@@ -1233,6 +1337,7 @@ const PERSONAL_COLORS = [
 
 ];
 
+
 const SHADE_TYPES = [
 
   "Foundation",
@@ -1254,17 +1359,30 @@ const SHADE_TYPES = [
 
 
 let data = loadData();
-let currentPage = "dashboard";
-let editingId = null;
-let currentProductId = null;
+
+let currentPage =
+  "dashboard";
+
+let currentSettingsTab =
+  "personal";
+
+let editingId =
+  null;
+
+let previousPageBeforeEdit =
+  "all";
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =========================================================
+   DATA
+========================================================= */
 
-function clone(x){
-  return JSON.parse(JSON.stringify(x));
+function clone(obj){
+
+  return JSON.parse(
+    JSON.stringify(obj)
+  );
+
 }
 
 
@@ -1274,11 +1392,15 @@ function loadData(){
 
     const saved =
       JSON.parse(
-        localStorage.getItem(STORAGE_KEY)
+        localStorage.getItem(
+          STORAGE_KEY
+        )
       );
 
     if(!saved){
+
       return clone(DEFAULTS);
+
     }
 
     return {
@@ -1294,13 +1416,13 @@ function loadData(){
 
       brands:
         Array.isArray(saved.brands)
-        ? saved.brands
-        : clone(DEFAULTS.brands),
+          ? saved.brands
+          : clone(DEFAULTS.brands),
 
       categories:
         Array.isArray(saved.categories)
-        ? saved.categories
-        : clone(DEFAULTS.categories),
+          ? saved.categories
+          : clone(DEFAULTS.categories),
 
       types:{
         ...clone(DEFAULTS.types),
@@ -1308,14 +1430,16 @@ function loadData(){
       },
 
       avoidIngredients:
-        Array.isArray(saved.avoidIngredients)
-        ? saved.avoidIngredients
-        : [],
+        Array.isArray(
+          saved.avoidIngredients
+        )
+          ? saved.avoidIngredients
+          : [],
 
       products:
         Array.isArray(saved.products)
-        ? saved.products
-        : []
+          ? saved.products
+          : []
 
     };
 
@@ -1338,68 +1462,58 @@ function saveData(){
 }
 
 
-function esc(v){
+function esc(value){
 
-  return String(v ?? "")
-    .replace(
-      /[&<>"']/g,
-      m => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[m])
-    );
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    char => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char])
+  );
+
+}
+
+
+function normalize(value){
+
+  return String(
+    value || ""
+  )
+  .trim()
+  .toLowerCase();
 
 }
 
 
 function uid(){
 
-  return Date.now().toString(36)
+  return (
+    Date.now().toString(36)
     +
     Math.random()
       .toString(36)
-      .slice(2,7);
-
-}
-
-
-function toast(msg){
-
-  const el =
-    document.getElementById("toast");
-
-  el.textContent = msg;
-
-  el.classList.add("show");
-
-  setTimeout(
-    () => el.classList.remove("show"),
-    2200
+      .slice(2,8)
   );
 
 }
 
 
-function normalize(v){
+function formatDate(value){
 
-  return String(v || "")
-    .trim()
-    .toLowerCase();
-
-}
-
-
-function formatDate(v){
-
-  if(!v){
+  if(!value){
     return "—";
   }
 
   const d =
-    new Date(v + "T00:00:00");
+    new Date(
+      value + "T00:00:00"
+    );
 
   if(isNaN(d)){
     return "—";
@@ -1417,26 +1531,36 @@ function formatDate(v){
 }
 
 
-function daysBetween(a,b){
+function daysBetween(
+  start,
+  end
+){
 
-  if(!a || !b){
+  if(!start || !end){
     return null;
   }
 
-  const x =
-    new Date(a + "T00:00:00");
+  const a =
+    new Date(
+      start + "T00:00:00"
+    );
 
-  const y =
-    new Date(b + "T00:00:00");
+  const b =
+    new Date(
+      end + "T00:00:00"
+    );
 
-  if(isNaN(x) || isNaN(y)){
+  if(
+    isNaN(a) ||
+    isNaN(b)
+  ){
     return null;
   }
 
   return Math.max(
     0,
     Math.floor(
-      (y-x)/86400000
+      (b-a)/86400000
     )
   );
 
@@ -1454,140 +1578,90 @@ function formatDuration(days){
 
   if(days < 30){
 
-    return `${days} day${days===1?"":"s"}`;
+    return (
+      days +
+      " day" +
+      (days === 1 ? "" : "s")
+    );
 
   }
 
   const months =
-    Math.floor(days / 30.4375);
+    Math.floor(
+      days / 30.4375
+    );
 
   if(months < 12){
 
-    return `${months} month${months===1?"":"s"}`;
+    return (
+      months +
+      " month" +
+      (months === 1 ? "" : "s")
+    );
 
   }
 
   const years =
-    Math.floor(months / 12);
+    Math.floor(
+      months / 12
+    );
 
-  const rem =
+  const remainder =
     months % 12;
 
-  return `${years} year${years===1?"":"s"}${
-    rem
-      ? ` ${rem} month${rem===1?"":"s"}`
-      : ""
-  }`;
+  return (
+    years +
+    " year" +
+    (years === 1 ? "" : "s") +
+    (
+      remainder
+        ? " " +
+          remainder +
+          " month" +
+          (remainder === 1 ? "" : "s")
+        : ""
+    )
+  );
 
 }
 
 
 function productDuration(p){
 
-  return p.openedOn && p.emptyOn
-    ? formatDuration(
-        daysBetween(
-          p.openedOn,
-          p.emptyOn
-        )
-      )
-    : "—";
+  if(
+    !p.openedOn ||
+    !p.emptyOn
+  ){
 
-}
+    return "—";
 
+  }
 
-function isShadeEligible(p){
-
-  const t =
-    normalize(p.productType);
-
-  return (
-    SHADE_TYPES.some(
-      x => normalize(x) === t
+  return formatDuration(
+    daysBetween(
+      p.openedOn,
+      p.emptyOn
     )
-    ||
-    normalize(p.category) === "makeup"
   );
 
 }
 
 
-function resultBadge(result){
-
-  const label = {
-    yes:"♡ YES",
-    maybe:"✦ MAYBE",
-    no:"× NO"
-  }[result] || "—";
-
-  return `
-    <span class="badge ${esc(result || "maybe")}">
-      ${label}
-    </span>
-  `;
-
-}
-
-
-function statusBadge(status){
-
-  const map = {
-    not_open:"Not Open",
-    opened:"Opened",
-    finished:"Finished / Empty",
-    decluttered:"Decluttered"
-  };
-
-  return `
-    <span class="badge ${
-      status==="finished"
-        ? "finished"
-        : status==="decluttered"
-          ? "decluttered"
-          : "open"
-    }">
-      ${map[status] || "—"}
-    </span>
-  `;
-
-}
-
-
-/* =========================
+/* =========================================================
    NAVIGATION
-========================= */
-
-function render(){
-
-  renderMain();
-  updateNav();
-
-}
-
-
-function updateNav(){
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(
-      b =>
-        b.classList.toggle(
-          "active",
-          b.dataset.page === currentPage
-        )
-    );
-
-}
-
+========================================================= */
 
 function navigate(page){
 
-  currentPage = page;
-  editingId = null;
+  currentPage =
+    page;
 
-  closeSidebar();
+  editingId =
+    null;
 
   render();
+
+  closeSidebar();
 
   window.scrollTo({
     top:0,
@@ -1597,24 +1671,173 @@ function navigate(page){
 }
 
 
+function render(){
+
+  const main =
+    document.getElementById(
+      "main"
+    );
+
+
+  if(currentPage === "dashboard"){
+
+    main.innerHTML =
+      renderDashboard();
+
+  }
+
+  else if(currentPage === "all"){
+
+    main.innerHTML =
+      renderProductList(
+        "All Products",
+        data.products
+      );
+
+  }
+
+  else if(currentPage === "yes"){
+
+    main.innerHTML =
+      renderProductList(
+        "YES List",
+        data.products.filter(
+          p => p.result === "yes"
+        )
+      );
+
+  }
+
+  else if(currentPage === "maybe"){
+
+    main.innerHTML =
+      renderProductList(
+        "MAYBE List",
+        data.products.filter(
+          p => p.result === "maybe"
+        )
+      );
+
+  }
+
+  else if(currentPage === "no"){
+
+    main.innerHTML =
+      renderProductList(
+        "NO List",
+        data.products.filter(
+          p => p.result === "no"
+        )
+      );
+
+  }
+
+  else if(currentPage === "empties"){
+
+    main.innerHTML =
+      renderProductList(
+        "EMPTIES",
+        data.products.filter(
+          p => p.status === "finished"
+        )
+      );
+
+  }
+
+  else if(currentPage === "add"){
+
+    main.innerHTML =
+      renderProductForm();
+
+  }
+
+  else if(currentPage === "profile"){
+
+    main.innerHTML =
+      renderProfile();
+
+  }
+
+  else if(currentPage === "avoid"){
+
+    main.innerHTML =
+      renderAvoid();
+
+  }
+
+  else if(currentPage === "ingredients"){
+
+    main.innerHTML =
+      renderIngredients();
+
+  }
+
+  else if(currentPage === "settings"){
+
+    main.innerHTML =
+      renderSettings();
+
+  }
+
+  bindPageEvents();
+
+  updateNav();
+
+}
+
+
+function updateNav(){
+
+  document
+    .querySelectorAll(
+      ".nav-btn"
+    )
+    .forEach(
+      button => {
+
+        button.classList.toggle(
+          "active",
+          button.dataset.page ===
+          currentPage
+        );
+
+      }
+    );
+
+}
+
+
 document
-  .querySelectorAll(".nav-btn")
+  .querySelectorAll(
+    ".nav-btn"
+  )
   .forEach(
-    b =>
-      b.addEventListener(
+    button => {
+
+      button.addEventListener(
         "click",
-        () => navigate(b.dataset.page)
-      )
+        () =>
+          navigate(
+            button.dataset.page
+          )
+      );
+
+    }
   );
 
 
+/* =========================================================
+   HEADER
+========================================================= */
+
 function header(
   title,
-  sub,
+  subtitle,
   action=""
 ){
 
   return `
+
     <div class="page-header">
 
       <div>
@@ -1628,7 +1851,7 @@ function header(
         </h1>
 
         <div class="page-sub">
-          ${esc(sub)}
+          ${esc(subtitle)}
         </div>
 
       </div>
@@ -1644,94 +1867,15 @@ function header(
       }
 
     </div>
+
   `;
 
 }
 
 
-/* =========================
-   MAIN RENDER
-========================= */
-
-function renderMain(){
-
-  const main =
-    document.getElementById("main");
-
-  if(currentPage === "dashboard")
-    main.innerHTML = renderDashboard();
-
-  else if(currentPage === "all")
-    main.innerHTML =
-      renderProductList(
-        "All Products",
-        data.products
-      );
-
-  else if(currentPage === "yes")
-    main.innerHTML =
-      renderProductList(
-        "YES List",
-        data.products.filter(
-          p => p.result === "yes"
-        )
-      );
-
-  else if(currentPage === "maybe")
-    main.innerHTML =
-      renderProductList(
-        "MAYBE List",
-        data.products.filter(
-          p => p.result === "maybe"
-        )
-      );
-
-  else if(currentPage === "no")
-    main.innerHTML =
-      renderProductList(
-        "NO List",
-        data.products.filter(
-          p => p.result === "no"
-        )
-      );
-
-  else if(currentPage === "empties")
-    main.innerHTML =
-      renderProductList(
-        "EMPTIES",
-        data.products.filter(
-          p => p.status === "finished"
-        )
-      );
-
-  else if(currentPage === "add")
-    main.innerHTML =
-      renderProductForm();
-
-  else if(currentPage === "profile")
-    main.innerHTML =
-      renderProfile();
-
-  else if(currentPage === "avoid")
-    main.innerHTML =
-      renderAvoid();
-
-  else if(currentPage === "ingredients")
-    main.innerHTML =
-      renderIngredients();
-
-  else if(currentPage === "settings")
-    main.innerHTML =
-      renderSettings();
-
-  bindPageEvents();
-
-}
-
-
-/* =========================
+/* =========================================================
    DASHBOARD
-========================= */
+========================================================= */
 
 function renderDashboard(){
 
@@ -1758,6 +1902,7 @@ function renderDashboard(){
       .reverse()
       .slice(0,6);
 
+
   return (
 
     header(
@@ -1768,6 +1913,7 @@ function renderDashboard(){
     +
 
     `
+
     <div class="stats">
 
       <div class="stat">
@@ -1784,6 +1930,7 @@ function renderDashboard(){
         </div>
       </div>
 
+
       <div class="stat">
         <div class="stat-label">
           YES
@@ -1798,6 +1945,7 @@ function renderDashboard(){
         </div>
       </div>
 
+
       <div class="stat">
         <div class="stat-label">
           MAYBE
@@ -1811,6 +1959,7 @@ function renderDashboard(){
           still deciding
         </div>
       </div>
+
 
       <div class="stat">
         <div class="stat-label">
@@ -1828,6 +1977,7 @@ function renderDashboard(){
 
     </div>
 
+
     <div class="panel">
 
       <div class="panel-title">
@@ -1839,7 +1989,11 @@ function renderDashboard(){
 
           ? `
             <div class="product-grid">
-              ${recent.map(productCard).join("")}
+              ${
+                recent
+                  .map(productCard)
+                  .join("")
+              }
             </div>
           `
 
@@ -1847,10 +2001,6 @@ function renderDashboard(){
             <div class="empty-state">
 
               Your beauty diary is still empty.
-              <br>
-
-              Let's add your first product ♡
-
               <br><br>
 
               <button
@@ -1865,6 +2015,7 @@ function renderDashboard(){
       }
 
     </div>
+
     `
 
   );
@@ -1872,9 +2023,9 @@ function renderDashboard(){
 }
 
 
-/* =========================
+/* =========================================================
    PRODUCT LIST
-========================= */
+========================================================= */
 
 function renderProductList(
   title,
@@ -1899,6 +2050,7 @@ function renderProductList(
     +
 
     `
+
     <div class="panel">
 
       ${
@@ -1906,7 +2058,11 @@ function renderProductList(
 
           ? `
             <div class="product-grid">
-              ${items.map(productCard).join("")}
+              ${
+                items
+                  .map(productCard)
+                  .join("")
+              }
             </div>
           `
 
@@ -1918,6 +2074,7 @@ function renderProductList(
       }
 
     </div>
+
     `
 
   );
@@ -1925,9 +2082,9 @@ function renderProductList(
 }
 
 
-/* =========================
+/* =========================================================
    PRODUCT CARD
-========================= */
+========================================================= */
 
 function productCard(p){
 
@@ -1956,6 +2113,7 @@ function productCard(p){
 
       </div>
 
+
       <div class="meta">
 
         <span class="meta-chip">
@@ -1976,11 +2134,12 @@ function productCard(p){
 
       </div>
 
+
       ${
         p.shade
-
           ? `
             <div class="shade-line">
+
               Shade ·
               <strong>
                 ${esc(p.shade)}
@@ -1996,13 +2155,12 @@ function productCard(p){
 
             </div>
           `
-
           : ""
       }
 
+
       ${
         p.status === "finished"
-
           ? `
             <div class="card-bottom">
 
@@ -2012,17 +2170,19 @@ function productCard(p){
               ${productDuration(p)}
 
               <div class="buy-line">
+
                 Would You Buy It Again? ·
+
                 ${
                   p.buyAgain === "yes"
                     ? "♡ YES"
                     : "× NO"
                 }
+
               </div>
 
             </div>
           `
-
           : ""
       }
 
@@ -2033,9 +2193,51 @@ function productCard(p){
 }
 
 
-/* =========================
+function resultBadge(result){
+
+  const labels = {
+    yes:"♡ YES",
+    maybe:"✦ MAYBE",
+    no:"× NO"
+  };
+
+  return `
+    <span class="badge ${esc(result || "maybe")}">
+      ${labels[result] || "—"}
+    </span>
+  `;
+
+}
+
+
+function statusBadge(status){
+
+  const labels = {
+    not_open:"Not Open",
+    opened:"Opened",
+    finished:"Finished / Empty",
+    decluttered:"Decluttered"
+  };
+
+  const cls =
+    status === "finished"
+      ? "finished"
+      : status === "decluttered"
+        ? "decluttered"
+        : "open";
+
+  return `
+    <span class="badge ${cls}">
+      ${labels[status] || "—"}
+    </span>
+  `;
+
+}
+
+
+/* =========================================================
    PRODUCT FORM
-========================= */
+========================================================= */
 
 function renderProductForm(){
 
@@ -2046,15 +2248,11 @@ function renderProductForm(){
         )
       : null;
 
-  const title =
-    p
-      ? "Edit Product"
-      : "Add Product";
 
   return (
 
     header(
-      title,
+      p ? "Edit Product" : "Add Product",
       p
         ? "Update your beauty diary entry."
         : "Capture all the little details while you remember them.",
@@ -2073,6 +2271,7 @@ function renderProductForm(){
     +
 
     `
+
     <form
       id="productForm"
       class="panel"
@@ -2080,7 +2279,6 @@ function renderProductForm(){
 
       <div class="form-grid">
 
-        <!-- PRODUCT NAME -->
 
         <div class="form-group">
 
@@ -2098,8 +2296,6 @@ function renderProductForm(){
 
         </div>
 
-
-        <!-- BRAND -->
 
         <div class="form-group">
 
@@ -2142,8 +2338,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- CATEGORY -->
-
         <div class="form-group">
 
           <label class="form-label">
@@ -2170,8 +2364,6 @@ function renderProductForm(){
 
         </div>
 
-
-        <!-- PRODUCT TYPE -->
 
         <div class="form-group">
 
@@ -2214,8 +2406,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- INGREDIENTS -->
-
         <div class="form-group full">
 
           <label class="form-label">
@@ -2243,8 +2433,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- SHADE -->
-
         <div class="form-group full">
 
           <label class="form-label">
@@ -2260,8 +2448,6 @@ function renderProductForm(){
 
         </div>
 
-
-        <!-- SHADE MATCH -->
 
         <div class="form-group full">
 
@@ -2300,6 +2486,7 @@ function renderProductForm(){
 
               </div>
 
+
               <div class="radio-option">
 
                 <input
@@ -2327,8 +2514,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- OPENED ON -->
-
         <div class="form-group">
 
           <label class="form-label">
@@ -2347,8 +2532,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- STATUS -->
-
         <div class="form-group">
 
           <label class="form-label">
@@ -2360,7 +2543,8 @@ function renderProductForm(){
             <option
               value="not_open"
               ${
-                p?.status === "not_open" || !p
+                !p ||
+                p.status === "not_open"
                   ? "selected"
                   : ""
               }
@@ -2404,8 +2588,6 @@ function renderProductForm(){
           </select>
 
 
-          <!-- FINISHED EXTRA -->
-
           <div
             class="status-extra ${
               p?.status === "finished"
@@ -2429,11 +2611,10 @@ function renderProductForm(){
             >
 
 
-            <!-- USAGE -->
-
             <div
               class="usage-summary ${
-                p?.openedOn && p?.emptyOn
+                p?.openedOn &&
+                p?.emptyOn
                   ? "show"
                   : ""
               }"
@@ -2444,7 +2625,8 @@ function renderProductForm(){
 
               <strong>
                 ${
-                  p?.openedOn && p?.emptyOn
+                  p?.openedOn &&
+                  p?.emptyOn
                     ? productDuration(p)
                     : "Add Opened On + Empty On"
                 }
@@ -2452,8 +2634,6 @@ function renderProductForm(){
 
             </div>
 
-
-            <!-- BUY AGAIN -->
 
             <div
               class="buy-again-wrap ${
@@ -2491,6 +2671,7 @@ function renderProductForm(){
 
                 </div>
 
+
                 <div class="radio-option">
 
                   <input
@@ -2520,8 +2701,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- RESULT -->
-
         <div class="form-group full">
 
           <label class="form-label">
@@ -2538,7 +2717,8 @@ function renderProductForm(){
                 id="resultYes"
                 value="yes"
                 ${
-                  !p || p.result === "yes"
+                  !p ||
+                  p.result === "yes"
                     ? "checked"
                     : ""
                 }
@@ -2549,6 +2729,7 @@ function renderProductForm(){
               </label>
 
             </div>
+
 
             <div class="radio-option">
 
@@ -2569,6 +2750,7 @@ function renderProductForm(){
               </label>
 
             </div>
+
 
             <div class="radio-option">
 
@@ -2595,8 +2777,6 @@ function renderProductForm(){
         </div>
 
 
-        <!-- NOTES -->
-
         <div class="form-group full">
 
           <label class="form-label">
@@ -2618,7 +2798,7 @@ function renderProductForm(){
         <button
           type="button"
           class="btn"
-          onclick="navigate('${p ? "all" : "dashboard"}')"
+          onclick="cancelProductForm()"
         >
           Cancel
         </button>
@@ -2637,1108 +2817,6 @@ function renderProductForm(){
       </div>
 
     </form>
-    `
-
-  );
-
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-function renderProfile(){
-
-  const pr = data.profile;
-
-  const matches =
-    data.products.filter(
-      p =>
-        p.shadeMatch === "match" &&
-        p.shade
-    );
-
-  return (
-
-    header(
-      "My Profile",
-      "Your personal beauty details. This page is read-only; edit them in Settings."
-    )
-
-    +
-
-    `
-    <div class="profile-layout">
-
-      <div class="profile-card">
-
-        <div class="panel-title">
-          PERSONAL DETAILS
-        </div>
-
-        ${profileRow(
-          "Name",
-          pr.name || "Not set"
-        )}
-
-        ${profileRow(
-          "Age",
-          pr.age || "Not set"
-        )}
-
-        ${profileRow(
-          "Skin Type",
-          pr.skinType || "Not set"
-        )}
-
-        ${profileRow(
-          "Skin Condition",
-          pr.skinConditions?.length
-
-            ? `
-              <div class="condition-tags">
-
-                ${
-                  pr.skinConditions
-                    .map(
-                      x =>
-                        `<span class="tag">${esc(x)}</span>`
-                    )
-                    .join("")
-                }
-
-              </div>
-            `
-
-            : "Not set"
-        )}
-
-        ${profileRow(
-          "Skin Tone",
-          pr.skinTone || "Not set"
-        )}
-
-        ${profileRow(
-          "Personal Color",
-          pr.personalColor?.length
-
-            ? `
-              <div class="condition-tags">
-
-                ${
-                  pr.personalColor
-                    .map(
-                      x =>
-                        `<span class="tag">${esc(x)}</span>`
-                    )
-                    .join("")
-                }
-
-              </div>
-            `
-
-            : "Not set"
-        )}
-
-      </div>
-
-
-      <div class="profile-card">
-
-        <div class="panel-title">
-          MY SHADE MATCHES
-        </div>
-
-        ${
-          matches.length
-
-            ? matches
-                .map(
-                  p =>
-                    `
-                    <div class="shade-match">
-
-                      <strong>
-                        ${esc(p.name)}
-                      </strong>
-
-                      <small>
-                        ${esc(p.brand || "No brand")}
-                        ·
-                        ${esc(p.productType || p.category || "")}
-                        ·
-                        Shade ${esc(p.shade)}
-                      </small>
-
-                    </div>
-                    `
-                )
-                .join("")
-
-            : `
-              <div
-                class="empty-state"
-                style="padding:25px 5px"
-              >
-                No shade matches recorded yet.
-                <br>
-                Mark a makeup product as MATCH
-                when adding it.
-              </div>
-            `
-        }
-
-      </div>
-
-    </div>
-    `
-
-  );
-
-}
-
-
-function profileRow(k,v){
-
-  return `
-    <div class="profile-row">
-
-      <span class="profile-key">
-        ${esc(k)}
-      </span>
-
-      <span class="profile-value">
-        ${v}
-      </span>
-
-    </div>
-  `;
-
-}
-
-
-/* =========================
-   AVOID
-========================= */
-
-function renderAvoid(){
-
-  const avoid =
-    data.avoidIngredients;
-
-  const matches = [];
-
-  data.products.forEach(
-    p => {
-
-      const ing =
-        String(p.ingredients || "")
-          .split(/[,;\n]+/)
-          .map(normalize)
-          .filter(Boolean);
-
-      avoid.forEach(
-        a => {
-
-          if(
-            ing.includes(
-              normalize(a)
-            )
-          ){
-
-            matches.push({
-              p,
-              a
-            });
-
-          }
-
-        }
-      );
-
-    }
-  );
-
-  return (
-
-    header(
-      "What Should I Avoid?",
-      "Ingredients you've marked as avoid ingredients will trigger warnings when you enter them."
-    )
-
-    +
-
-    `
-    <div class="panel">
-
-      <div class="panel-title">
-        MY AVOID INGREDIENTS
-      </div>
-
-      ${
-        avoid.length
-
-          ? `
-            <div class="condition-tags">
-
-              ${
-                avoid
-                  .map(
-                    a =>
-                      `<span class="tag">${esc(a)}</span>`
-                  )
-                  .join("")
-              }
-
-            </div>
-          `
-
-          : `
-            <div
-              class="empty-state"
-              style="padding:20px"
-            >
-              No avoid ingredients saved yet.
-            </div>
-          `
-      }
-
-    </div>
-
-
-    <div class="panel">
-
-      <div class="panel-title">
-        PRODUCTS CONTAINING THEM
-      </div>
-
-      ${
-        matches.length
-
-          ? matches
-              .map(
-                x =>
-                  `
-                  <div class="manage-item">
-
-                    <span>
-
-                      <strong>
-                        ${esc(x.p.name)}
-                      </strong>
-
-                      <br>
-
-                      <small
-                        style="color:var(--muted)"
-                      >
-                        ${esc(x.a)}
-                      </small>
-
-                    </span>
-
-                    ${resultBadge(x.p.result)}
-
-                  </div>
-                  `
-              )
-              .join("")
-
-          : `
-            <div
-              class="empty-state"
-              style="padding:20px"
-            >
-              No matching products found.
-            </div>
-          `
-      }
-
-    </div>
-    `
-
-  );
-
-}
-
-
-/* =========================
-   INGREDIENTS
-========================= */
-
-function renderIngredients(){
-
-  const counts = {};
-
-  data.products.forEach(
-    p => {
-
-      String(p.ingredients || "")
-        .split(/[,;\n]+/)
-        .map(x => x.trim())
-        .filter(Boolean)
-        .forEach(
-          x => {
-
-            const key =
-              x.toLowerCase();
-
-            if(!counts[key]){
-
-              counts[key] = {
-                name:x,
-                count:0
-              };
-
-            }
-
-            counts[key].count++;
-
-          }
-        );
-
-    }
-  );
-
-  const list =
-    Object.values(counts)
-      .sort(
-        (a,b) =>
-          b.count-a.count
-      );
-
-  return (
-
-    header(
-      "My Ingredients",
-      "A simple inventory of ingredients appearing in your product diary."
-    )
-
-    +
-
-    `
-    <div class="panel">
-
-      ${
-        list.length
-
-          ? `
-            <div class="manage-list">
-
-              ${
-                list
-                  .map(
-                    x =>
-                      `
-                      <div class="manage-item">
-
-                        <span>
-                          ${esc(x.name)}
-                        </span>
-
-                        <span class="tag">
-                          ${x.count}
-                          product${x.count===1?"":"s"}
-                        </span>
-
-                      </div>
-                      `
-                  )
-                  .join("")
-              }
-
-            </div>
-          `
-
-          : `
-            <div
-              class="empty-state"
-              style="padding:25px"
-            >
-              Add ingredients to your products
-              to build this list.
-            </div>
-          `
-      }
-
-    </div>
-    `
-
-  );
-
-}
-
-
-/* =========================
-   SETTINGS
-========================= */
-
-function renderSettings(){
-
-  const pr =
-    data.profile;
-
-  return (
-
-    header(
-      "Settings",
-      "Manage your profile, beauty libraries, app preferences, and data."
-    )
-
-    +
-
-    `
-    <div class="settings-tabs">
-
-      <button
-        class="settings-tab active"
-        data-tab="personal"
-      >
-        Personal
-      </button>
-
-      <button
-        class="settings-tab"
-        data-tab="brands"
-      >
-        Brands
-      </button>
-
-      <button
-        class="settings-tab"
-        data-tab="ingredients"
-      >
-        Ingredients
-      </button>
-
-      <button
-        class="settings-tab"
-        data-tab="types"
-      >
-        Types
-      </button>
-
-      <button
-        class="settings-tab"
-        data-tab="app"
-      >
-        App
-      </button>
-
-    </div>
-
-
-    <!-- PERSONAL -->
-
-    <div
-      class="setting-panel active"
-      id="tab-personal"
-    >
-
-      <form
-        id="personalForm"
-        class="panel"
-      >
-
-        <div class="form-grid">
-
-          <div class="form-group">
-
-            <label class="form-label">
-              Name
-            </label>
-
-            <input
-              id="profileName"
-              type="text"
-              value="${esc(pr.name)}"
-              placeholder="Your name"
-            >
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label class="form-label">
-              Age
-            </label>
-
-            <input
-              id="profileAge"
-              type="number"
-              min="1"
-              max="120"
-              value="${esc(pr.age)}"
-              placeholder="Age"
-            >
-
-          </div>
-
-
-          <!-- SKIN TYPE DROPDOWN -->
-
-          <div class="form-group">
-
-            <label class="form-label">
-              Skin Type
-            </label>
-
-            <select id="profileSkinType">
-
-              <option value="">
-                Choose your skin type
-              </option>
-
-              ${
-                SKIN_TYPES
-                  .map(
-                    x =>
-                      `
-                      <option
-                        value="${esc(x)}"
-                        ${
-                          pr.skinType === x
-                            ? "selected"
-                            : ""
-                        }
-                      >
-                        ${esc(x)}
-                      </option>
-                      `
-                  )
-                  .join("")
-              }
-
-            </select>
-
-          </div>
-
-
-          <!-- SKIN TONE -->
-
-          <div class="form-group">
-
-            <label class="form-label">
-              Skin Tone
-            </label>
-
-            <select id="profileSkinTone">
-
-              <option value="">
-                Choose your skin tone
-              </option>
-
-              ${
-                [
-                  "Very Fair",
-                  "Fair",
-                  "Light",
-                  "Light-Medium",
-                  "Medium",
-                  "Medium-Tan",
-                  "Tan",
-                  "Deep",
-                  "Very Deep"
-                ]
-                .map(
-                  x =>
-                    `
-                    <option
-                      value="${esc(x)}"
-                      ${
-                        pr.skinTone === x
-                          ? "selected"
-                          : ""
-                      }
-                    >
-                      ${esc(x)}
-                    </option>
-                    `
-                )
-                .join("")
-              }
-
-            </select>
-
-          </div>
-
-
-          <!-- MULTIPLE SKIN CONDITIONS -->
-
-          <div class="form-group full">
-
-            <label class="form-label">
-
-              Skin Condition
-
-              <span class="optional">
-                (choose one or more)
-              </span>
-
-            </label>
-
-            <div class="checkbox-grid">
-
-              ${
-                SKIN_CONDITIONS
-                  .map(
-                    (x,i) =>
-                      `
-                      <div class="check-option">
-
-                        <input
-                          type="checkbox"
-                          id="condition${i}"
-                          name="skinCondition"
-                          value="${esc(x)}"
-                          ${
-                            pr.skinConditions
-                              .includes(x)
-                              ? "checked"
-                              : ""
-                          }
-                        >
-
-                        <label for="condition${i}">
-                          ${esc(x)}
-                        </label>
-
-                      </div>
-                      `
-                  )
-                  .join("")
-              }
-
-            </div>
-
-          </div>
-
-
-          <!-- 16 PERSONAL COLORS -->
-
-          <div class="form-group full">
-
-            <label class="form-label">
-
-              Personal Color
-
-              <span class="optional">
-                (choose one or more)
-              </span>
-
-            </label>
-
-            <div class="checkbox-grid">
-
-              ${
-                PERSONAL_COLORS
-                  .map(
-                    (x,i) =>
-                      `
-                      <div class="check-option">
-
-                        <input
-                          type="checkbox"
-                          id="color${i}"
-                          name="personalColor"
-                          value="${esc(x)}"
-                          ${
-                            pr.personalColor
-                              .includes(x)
-                              ? "checked"
-                              : ""
-                          }
-                        >
-
-                        <label for="color${i}">
-                          ${esc(x)}
-                        </label>
-
-                      </div>
-                      `
-                  )
-                  .join("")
-              }
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="form-actions">
-
-          <button
-            class="btn primary"
-            type="submit"
-          >
-            Save Personal Details ♡
-          </button>
-
-        </div>
-
-      </form>
-
-    </div>
-
-
-    <!-- BRANDS -->
-
-    <div
-      class="setting-panel"
-      id="tab-brands"
-    >
-
-      <div class="panel">
-
-        <div class="panel-title">
-          BRAND LIBRARY
-        </div>
-
-        <div
-          class="inline-field"
-          style="margin-bottom:14px"
-        >
-
-          <input
-            id="newBrand"
-            type="text"
-            placeholder="Add a brand..."
-          >
-
-          <button
-            class="btn primary"
-            type="button"
-            onclick="addBrandFromSettings()"
-          >
-            ＋ Add
-          </button>
-
-        </div>
-
-        <div class="manage-list">
-
-          ${
-            data.brands
-              .map(
-                (b,i) =>
-                  `
-                  <div class="manage-item">
-
-                    <span>
-                      ${esc(b)}
-                    </span>
-
-                    <button
-                      class="remove-mini"
-                      type="button"
-                      onclick="removeBrand(${i})"
-                    >
-                      Remove
-                    </button>
-
-                  </div>
-                  `
-              )
-              .join("")
-          }
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- INGREDIENTS -->
-
-    <div
-      class="setting-panel"
-      id="tab-ingredients"
-    >
-
-      <div class="panel">
-
-        <div class="panel-title">
-          AVOID INGREDIENTS
-        </div>
-
-        <div
-          class="inline-field"
-          style="margin-bottom:14px"
-        >
-
-          <input
-            id="newAvoid"
-            type="text"
-            placeholder="e.g. fragrance"
-          >
-
-          <button
-            class="btn primary"
-            type="button"
-            onclick="addAvoidFromSettings()"
-          >
-            ＋ Add
-          </button>
-
-        </div>
-
-        <div class="manage-list">
-
-          ${
-            data.avoidIngredients.length
-
-              ? data.avoidIngredients
-                  .map(
-                    (b,i) =>
-                      `
-                      <div class="manage-item">
-
-                        <span>
-                          ${esc(b)}
-                        </span>
-
-                        <button
-                          class="remove-mini"
-                          type="button"
-                          onclick="removeAvoid(${i})"
-                        >
-                          Remove
-                        </button>
-
-                      </div>
-                      `
-                  )
-                  .join("")
-
-              : `
-                <div
-                  class="empty-state"
-                  style="padding:20px"
-                >
-                  No avoid ingredients yet.
-                </div>
-              `
-          }
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- TYPES -->
-
-    <div
-      class="setting-panel"
-      id="tab-types"
-    >
-
-      <div class="panel">
-
-        <div class="panel-title">
-          PRODUCT TYPES BY CATEGORY
-        </div>
-
-        ${
-          data.categories
-            .map(
-              cat =>
-                `
-                <div style="margin-bottom:18px">
-
-                  <div
-                    style="
-                      font-size:11px;
-                      font-weight:800;
-                      margin-bottom:8px;
-                    "
-                  >
-                    ${esc(cat)}
-                  </div>
-
-                  <div class="condition-tags">
-
-                    ${
-                      (data.types[cat] || [])
-                        .map(
-                          (t,i) =>
-                            `
-                            <span class="tag">
-
-                              ${esc(t)}
-
-                              <button
-                                style="
-                                  border:0;
-                                  background:none;
-                                  color:#aa7187;
-                                "
-                                onclick="
-                                  removeType(
-                                    '${encodeURIComponent(cat)}',
-                                    ${i}
-                                  )
-                                "
-                              >
-                                ×
-                              </button>
-
-                            </span>
-                            `
-                        )
-                        .join("")
-                    }
-
-                  </div>
-
-                </div>
-                `
-            )
-            .join("")
-        }
-
-
-        <div class="inline-field">
-
-          <input
-            id="newTypeCategory"
-            type="text"
-            placeholder="Category"
-          >
-
-          <input
-            id="newTypeName"
-            type="text"
-            placeholder="New product type"
-          >
-
-          <button
-            class="btn primary"
-            type="button"
-            onclick="addTypeFromSettings()"
-          >
-            ＋ Add
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- APP -->
-
-    <div
-      class="setting-panel"
-      id="tab-app"
-    >
-
-      <div class="panel">
-
-        <div class="panel-title">
-          APP
-        </div>
-
-
-        <div class="manage-item">
-
-          <span>
-            Language
-          </span>
-
-          <select
-            id="languageSetting"
-            style="width:130px"
-          >
-
-            <option
-              value="en"
-              ${
-                data.language === "en"
-                  ? "selected"
-                  : ""
-              }
-            >
-              English
-            </option>
-
-            <option
-              value="id"
-              ${
-                data.language === "id"
-                  ? "selected"
-                  : ""
-              }
-            >
-              Indonesia
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div
-          class="manage-item"
-          style="margin-top:8px"
-        >
-
-          <span>
-            Saved locally on this browser
-          </span>
-
-          <span class="tag">
-            ${data.products.length}
-            products
-          </span>
-
-        </div>
-
-
-        <div
-          style="
-            margin-top:18px;
-            padding:14px;
-            border-radius:13px;
-            background:#fff1f3;
-            color:#9e6574;
-            font-size:10px;
-            line-height:1.6;
-          "
-        >
-
-          <strong>
-            Reset diary
-          </strong>
-
-          <br>
-
-          This removes all Lunelle data from
-          this browser. You will be asked to
-          type RESET before it happens.
-
-        </div>
-
-
-        <button
-          class="btn danger"
-          style="margin-top:10px"
-          type="button"
-          onclick="resetApp()"
-        >
-          Reset All Data
-        </button>
-
-      </div>
-
-    </div>
 
     `
 
@@ -3747,9 +2825,9 @@ function renderSettings(){
 }
 
 
-/* =========================
+/* =========================================================
    PAGE EVENTS
-========================= */
+========================================================= */
 
 function bindPageEvents(){
 
@@ -3757,6 +2835,7 @@ function bindPageEvents(){
     document.getElementById(
       "productForm"
     );
+
 
   if(form){
 
@@ -3766,61 +2845,39 @@ function bindPageEvents(){
       () => data.brands
     );
 
+
     bindSearch(
       "categoryInput",
       "categorySuggestions",
       () => data.categories
     );
 
+
     bindSearch(
       "typeInput",
       "typeSuggestions",
       () => {
 
-        const cat =
+        const category =
           document
             .getElementById(
               "categoryInput"
             )
-            ?.value;
+            ?.value
+            .trim();
 
-        return cat &&
-          data.types[cat]
+        if(
+          category &&
+          data.types[category]
+        ){
 
-          ? data.types[cat]
+          return data.types[category];
 
-          : Object.values(
-              data.types
-            ).flat();
+        }
 
-      }
-    );
-
-
-    [
-      "brandInput",
-      "categoryInput",
-      "typeInput"
-    ]
-    .forEach(
-      id => {
-
-        document
-          .getElementById(id)
-          ?.addEventListener(
-            "input",
-            () => {
-
-              if(
-                id === "categoryInput"
-              ){
-
-                updateShadeSection();
-
-              }
-
-            }
-          );
+        return Object.values(
+          data.types
+        ).flat();
 
       }
     );
@@ -3831,7 +2888,7 @@ function bindPageEvents(){
         "categoryInput"
       )
       ?.addEventListener(
-        "change",
+        "input",
         updateShadeSection
       );
 
@@ -3891,6 +2948,44 @@ function bindPageEvents(){
       handleProductSubmit
     );
 
+
+    /*
+      Enter on normal product inputs submits.
+      Enter inside Ingredients / Notes does NOT submit.
+      This lets the user write naturally in textareas.
+    */
+
+    form
+      .querySelectorAll(
+        'input:not([type="radio"]):not([type="date"]), select'
+      )
+      .forEach(
+        element => {
+
+          element.addEventListener(
+            "keydown",
+            e => {
+
+              if(
+                e.key === "Enter" &&
+                element.id !== "brandInput" &&
+                element.id !== "categoryInput" &&
+                element.id !== "typeInput"
+              ){
+
+                e.preventDefault();
+
+                form.requestSubmit();
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
     checkIngredientWarning();
 
   }
@@ -3909,39 +3004,10 @@ function bindPageEvents(){
           "click",
           () => {
 
-            document
-              .querySelectorAll(
-                ".settings-tab"
-              )
-              .forEach(
-                x =>
-                  x.classList.remove(
-                    "active"
-                  )
-              );
+            currentSettingsTab =
+              tab.dataset.tab;
 
-            document
-              .querySelectorAll(
-                ".setting-panel"
-              )
-              .forEach(
-                x =>
-                  x.classList.remove(
-                    "active"
-                  )
-              );
-
-            tab.classList.add(
-              "active"
-            );
-
-            document
-              .getElementById(
-                "tab-" + tab.dataset.tab
-              )
-              .classList.add(
-                "active"
-              );
+            render();
 
           }
         );
@@ -3950,30 +3016,66 @@ function bindPageEvents(){
     );
 
 
-  /* PERSONAL FORM */
+  /* PERSONAL */
 
-  const pf =
+  const personalForm =
     document.getElementById(
       "personalForm"
     );
 
-  if(pf){
+  if(personalForm){
 
-    pf.addEventListener(
+    personalForm.addEventListener(
       "submit",
       savePersonal
     );
+
+    /*
+      Enter inside Personal inputs
+      saves immediately.
+      Checkboxes naturally don't need Enter.
+    */
+
+    personalForm
+      .querySelectorAll(
+        'input[type="text"], input[type="number"], select'
+      )
+      .forEach(
+        element => {
+
+          element.addEventListener(
+            "keydown",
+            e => {
+
+              if(
+                e.key === "Enter"
+              ){
+
+                e.preventDefault();
+
+                personalForm.requestSubmit();
+
+              }
+
+            }
+          );
+
+        }
+      );
 
   }
 
 
   /* LANGUAGE */
 
-  document
-    .getElementById(
+  const language =
+    document.getElementById(
       "languageSetting"
-    )
-    ?.addEventListener(
+    );
+
+  if(language){
+
+    language.addEventListener(
       "change",
       e => {
 
@@ -3983,22 +3085,155 @@ function bindPageEvents(){
         saveData();
 
         toast(
-          e.target.value === "id"
-
-            ? "Bahasa disimpan. UI akan tetap menggunakan label utama English untuk saat ini."
-
-            : "Language saved."
+          "Language preference saved."
         );
 
       }
     );
 
+  }
+
+
+  /*
+    SETTINGS ENTER SHORTCUTS
+
+    Brands:
+      Enter = add
+
+    Ingredients:
+      Enter = add
+
+    Types:
+      Enter in Type field = add
+      Enter in Category field only does not add
+      because Type is still missing.
+  */
+
+  const newBrand =
+    document.getElementById(
+      "newBrand"
+    );
+
+  if(newBrand){
+
+    newBrand.addEventListener(
+      "keydown",
+      e => {
+
+        if(
+          e.key === "Enter"
+        ){
+
+          e.preventDefault();
+
+          addBrandFromSettings();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  const newAvoid =
+    document.getElementById(
+      "newAvoid"
+    );
+
+  if(newAvoid){
+
+    newAvoid.addEventListener(
+      "keydown",
+      e => {
+
+        if(
+          e.key === "Enter"
+        ){
+
+          e.preventDefault();
+
+          addAvoidFromSettings();
+
+        }
+
+      }
+    );
+
+  }
+
+
+  const newTypeCategory =
+    document.getElementById(
+      "newTypeCategory"
+    );
+
+  const newTypeName =
+    document.getElementById(
+      "newTypeName"
+    );
+
+
+  if(newTypeCategory){
+
+    newTypeCategory.addEventListener(
+      "keydown",
+      e => {
+
+        if(
+          e.key === "Enter"
+        ){
+
+          e.preventDefault();
+
+          if(
+            newTypeName &&
+            newTypeName.value.trim()
+          ){
+
+            addTypeFromSettings();
+
+          }else{
+
+            newTypeName?.focus();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+
+
+  if(newTypeName){
+
+    newTypeName.addEventListener(
+      "keydown",
+      e => {
+
+        if(
+          e.key === "Enter"
+        ){
+
+          e.preventDefault();
+
+          addTypeFromSettings();
+
+        }
+
+      }
+    );
+
+  }
+
 }
 
 
-/* =========================
-   SEARCHABLE INPUT
-========================= */
+/* =========================================================
+   SEARCHABLE INPUTS
+========================================================= */
 
 function bindSearch(
   inputId,
@@ -4021,12 +3256,74 @@ function bindSearch(
   }
 
 
-  function show(){
+  let highlightedIndex =
+    -1;
 
-    const q =
-      normalize(input.value);
 
-    const unique =
+  function getSuggestionItems(){
+
+    return [
+      ...box.querySelectorAll(
+        ".suggest-item"
+      )
+    ];
+
+  }
+
+
+  function updateHighlight(){
+
+    const items =
+      getSuggestionItems();
+
+
+    items.forEach(
+      (item,index) => {
+
+        item.classList.toggle(
+          "highlighted",
+          index ===
+          highlightedIndex
+        );
+
+      }
+    );
+
+  }
+
+
+  function chooseSuggestion(
+    item
+  ){
+
+    if(!item){
+      return;
+    }
+
+    input.value =
+      item.dataset.value;
+
+    box.classList.remove(
+      "show"
+    );
+
+    highlightedIndex =
+      -1;
+
+    updateShadeSection();
+
+  }
+
+
+  function showSuggestions(){
+
+    const query =
+      normalize(
+        input.value
+      );
+
+
+    const items =
       [
         ...new Set(
           getItems()
@@ -4036,18 +3333,20 @@ function bindSearch(
 
 
     const filtered =
-      unique
+      items
         .filter(
-          x =>
-            !q ||
-            normalize(x)
-              .includes(q)
+          item =>
+            !query ||
+            normalize(item)
+              .includes(query)
         )
         .sort(
           (a,b) => {
 
-            if(!q){
+            if(!query){
+
               return a.localeCompare(b);
+
             }
 
             const aa =
@@ -4056,13 +3355,31 @@ function bindSearch(
             const bb =
               normalize(b);
 
-            return (
-              (aa.startsWith(q) ? 0 : 1)
-              -
-              (bb.startsWith(q) ? 0 : 1)
-            )
-            ||
-            aa.localeCompare(bb);
+            const aStarts =
+              aa.startsWith(query);
+
+            const bStarts =
+              bb.startsWith(query);
+
+            if(
+              aStarts &&
+              !bStarts
+            ){
+
+              return -1;
+
+            }
+
+            if(
+              !aStarts &&
+              bStarts
+            ){
+
+              return 1;
+
+            }
+
+            return aa.localeCompare(bb);
 
           }
         )
@@ -4070,47 +3387,55 @@ function bindSearch(
 
 
     box.innerHTML =
-
       filtered
         .map(
-          x =>
+          item =>
             `
             <div
               class="suggest-item"
-              data-value="${esc(x)}"
+              data-value="${esc(item)}"
             >
-              ${esc(x)}
+              ${esc(item)}
             </div>
             `
         )
-        .join("")
+        .join("");
 
-      +
 
-      (
-        q &&
-        !unique.some(
-          x =>
-            normalize(x) === q
-        )
+    if(
+      query &&
+      !items.some(
+        item =>
+          normalize(item) ===
+          query
+      )
+    ){
 
-          ? `
-            <div
-              class="suggest-item"
-              data-value="${esc(input.value.trim())}"
-            >
-              ＋ Use
-              “${esc(input.value.trim())}”
-            </div>
-            `
+      box.innerHTML += `
 
-          : ""
-      );
+        <div
+          class="suggest-item"
+          data-value="${esc(
+            input.value.trim()
+          )}"
+        >
+          ＋ Use
+          “${esc(input.value.trim())}”
+        </div>
+
+      `;
+
+    }
+
+
+    highlightedIndex =
+      -1;
 
 
     box.classList.toggle(
       "show",
-      filtered.length > 0 || !!q
+      filtered.length > 0 ||
+      Boolean(query)
     );
 
 
@@ -4127,30 +3452,9 @@ function bindSearch(
 
               e.preventDefault();
 
-              input.value =
-                item.dataset.value;
-
-              box.classList.remove(
-                "show"
+              chooseSuggestion(
+                item
               );
-
-
-              if(
-                inputId === "categoryInput"
-              ){
-
-                updateShadeSection();
-
-              }
-
-
-              if(
-                inputId === "typeInput"
-              ){
-
-                updateShadeSection();
-
-              }
 
             }
           );
@@ -4163,12 +3467,107 @@ function bindSearch(
 
   input.addEventListener(
     "focus",
-    show
+    showSuggestions
   );
+
 
   input.addEventListener(
     "input",
-    show
+    showSuggestions
+  );
+
+
+  /*
+    ENTER IN SEARCHABLE FIELD:
+
+    If suggestions exist:
+      Enter chooses the highlighted/top suggestion.
+
+    If there is no suggestion:
+      Enter lets the normal product form submit.
+  */
+
+  input.addEventListener(
+    "keydown",
+    e => {
+
+      if(
+        e.key === "ArrowDown"
+      ){
+
+        const items =
+          getSuggestionItems();
+
+        if(!items.length){
+          return;
+        }
+
+        e.preventDefault();
+
+        highlightedIndex =
+          Math.min(
+            highlightedIndex + 1,
+            items.length - 1
+          );
+
+        updateHighlight();
+
+      }
+
+
+      else if(
+        e.key === "ArrowUp"
+      ){
+
+        const items =
+          getSuggestionItems();
+
+        if(!items.length){
+          return;
+        }
+
+        e.preventDefault();
+
+        highlightedIndex =
+          Math.max(
+            highlightedIndex - 1,
+            0
+          );
+
+        updateHighlight();
+
+      }
+
+
+      else if(
+        e.key === "Enter"
+      ){
+
+        const items =
+          getSuggestionItems();
+
+        if(
+          box.classList.contains(
+            "show"
+          ) &&
+          items.length
+        ){
+
+          e.preventDefault();
+
+          chooseSuggestion(
+            items[
+              highlightedIndex >= 0
+                ? highlightedIndex
+                : 0
+            ]
+          );
+
+        }
+
+      }
+
+    }
   );
 
 
@@ -4186,6 +3585,9 @@ function bindSearch(
           "show"
         );
 
+        highlightedIndex =
+          -1;
+
       }
 
     }
@@ -4194,13 +3596,34 @@ function bindSearch(
 }
 
 
-/* =========================
+/* =========================================================
    SHADE
-========================= */
+========================================================= */
+
+function isShadeEligible(p){
+
+  const type =
+    normalize(
+      p.productType
+    );
+
+  return (
+    normalize(p.category) ===
+    "makeup"
+    ||
+    SHADE_TYPES.some(
+      x =>
+        normalize(x) ===
+        type
+    )
+  );
+
+}
+
 
 function updateShadeSection(){
 
-  const cat =
+  const category =
     normalize(
       document
         .getElementById(
@@ -4208,6 +3631,7 @@ function updateShadeSection(){
         )
         ?.value
     );
+
 
   const type =
     normalize(
@@ -4220,11 +3644,12 @@ function updateShadeSection(){
 
 
   const show =
-    cat === "makeup"
+    category === "makeup"
     ||
     SHADE_TYPES.some(
       x =>
-        normalize(x) === type
+        normalize(x) ===
+        type
     );
 
 
@@ -4240,27 +3665,29 @@ function updateShadeSection(){
 }
 
 
-/* =========================
+/* =========================================================
    INGREDIENT WARNING
-========================= */
+========================================================= */
 
 function checkIngredientWarning(){
 
-  const box =
+  const warning =
     document.getElementById(
       "ingredientWarning"
     );
 
-  if(!box){
+  if(!warning){
     return;
   }
 
 
-  const entered =
+  const ingredients =
     String(
-      document.getElementById(
-        "ingredients"
-      ).value || ""
+      document
+        .getElementById(
+          "ingredients"
+        )
+        .value || ""
     )
     .split(/[,;\n]+/)
     .map(normalize)
@@ -4268,21 +3695,20 @@ function checkIngredientWarning(){
 
 
   const matches =
-    data.avoidIngredients
-      .filter(
-        a =>
-          entered.includes(
-            normalize(a)
-          )
-      );
+    data.avoidIngredients.filter(
+      ingredient =>
+        ingredients.includes(
+          normalize(ingredient)
+        )
+    );
 
 
   if(matches.length){
 
-    box.style.display =
+    warning.style.display =
       "block";
 
-    box.innerHTML =
+    warning.innerHTML =
       "⚠ Avoid ingredient found: " +
       "<strong>" +
       matches
@@ -4292,7 +3718,7 @@ function checkIngredientWarning(){
 
   }else{
 
-    box.style.display =
+    warning.style.display =
       "none";
 
   }
@@ -4300,16 +3726,19 @@ function checkIngredientWarning(){
 }
 
 
-/* =========================
-   EMPTY / USAGE
-========================= */
+/* =========================================================
+   STATUS / EMPTY
+========================================================= */
 
 function updateEmptyFields(){
 
   const finished =
-    document.getElementById(
-      "status"
-    )?.value === "finished";
+    document
+      .getElementById(
+        "status"
+      )
+      ?.value ===
+    "finished";
 
 
   document
@@ -4322,36 +3751,7 @@ function updateEmptyFields(){
     );
 
 
-  if(!finished){
-
-    const s =
-      document.getElementById(
-        "usageSummary"
-      );
-
-    if(s){
-      s.classList.remove(
-        "show"
-      );
-    }
-
-
-    const b =
-      document.getElementById(
-        "buyAgainWrap"
-      );
-
-    if(b){
-      b.classList.remove(
-        "show"
-      );
-    }
-
-  }else{
-
-    updateUsageSummary();
-
-  }
+  updateUsageSummary();
 
 }
 
@@ -4359,19 +3759,25 @@ function updateEmptyFields(){
 function updateUsageSummary(){
 
   const status =
-    document.getElementById(
-      "status"
-    )?.value;
+    document
+      .getElementById(
+        "status"
+      )
+      ?.value;
 
   const opened =
-    document.getElementById(
-      "openedOn"
-    )?.value;
+    document
+      .getElementById(
+        "openedOn"
+      )
+      ?.value;
 
   const empty =
-    document.getElementById(
-      "emptyOn"
-    )?.value;
+    document
+      .getElementById(
+        "emptyOn"
+      )
+      ?.value;
 
 
   const summary =
@@ -4391,39 +3797,43 @@ function updateUsageSummary(){
 
 
   if(
-    status === "finished"
-    &&
+    status === "finished" &&
     empty
   ){
-
-    const d =
-      daysBetween(
-        opened,
-        empty
-      );
-
 
     summary.classList.add(
       "show"
     );
 
 
-    summary.innerHTML =
-      d === null
+    if(opened){
 
-        ? `
-          Usage duration:
-          <strong>
-            Please add Opened On to calculate.
-          </strong>
+      const days =
+        daysBetween(
+          opened,
+          empty
+        );
+
+
+      summary.innerHTML =
         `
-
-        : `
-          Usage duration:
-          <strong>
-            ${formatDuration(d)}
-          </strong>
+        Usage duration:
+        <strong>
+          ${formatDuration(days)}
+        </strong>
         `;
+
+    }else{
+
+      summary.innerHTML =
+        `
+        Usage duration:
+        <strong>
+          Add Opened On to calculate.
+        </strong>
+        `;
+
+    }
 
 
     buy.classList.add(
@@ -4456,9 +3866,9 @@ function getRadio(name){
 }
 
 
-/* =========================
+/* =========================================================
    SAVE PRODUCT
-========================= */
+========================================================= */
 
 function handleProductSubmit(e){
 
@@ -4474,24 +3884,6 @@ function handleProductSubmit(e){
       .trim();
 
 
-  const category =
-    document
-      .getElementById(
-        "categoryInput"
-      )
-      .value
-      .trim();
-
-
-  const type =
-    document
-      .getElementById(
-        "typeInput"
-      )
-      .value
-      .trim();
-
-
   const brand =
     document
       .getElementById(
@@ -4501,12 +3893,40 @@ function handleProductSubmit(e){
       .trim();
 
 
-  const status =
+  const category =
     document
       .getElementById(
-        "status"
+        "categoryInput"
       )
-      .value;
+      .value
+      .trim();
+
+
+  const productType =
+    document
+      .getElementById(
+        "typeInput"
+      )
+      .value
+      .trim();
+
+
+  const ingredients =
+    document
+      .getElementById(
+        "ingredients"
+      )
+      .value
+      .trim();
+
+
+  const shade =
+    document
+      .getElementById(
+        "shadeInput"
+      )
+      .value
+      .trim();
 
 
   const openedOn =
@@ -4517,12 +3937,28 @@ function handleProductSubmit(e){
       .value;
 
 
+  const status =
+    document
+      .getElementById(
+        "status"
+      )
+      .value;
+
+
   const emptyOn =
     document
       .getElementById(
         "emptyOn"
       )
       ?.value || "";
+
+
+  const result =
+    getRadio("result");
+
+
+  const shadeMatch =
+    getRadio("shadeMatch");
 
 
   const buyAgain =
@@ -4545,24 +3981,7 @@ function handleProductSubmit(e){
     if(!emptyOn){
 
       toast(
-        "Finished / Empty products need an Empty On date."
-      );
-
-      return;
-
-    }
-
-
-    if(
-      openedOn &&
-      daysBetween(
-        openedOn,
-        emptyOn
-      ) === null
-    ){
-
-      toast(
-        "Please check the dates."
+        "Finished / Empty needs an Empty On date."
       );
 
       return;
@@ -4633,15 +4052,14 @@ function handleProductSubmit(e){
   }
 
 
-  /* AUTO-SAVE TYPE UNDER CATEGORY */
+  /* AUTO-SAVE TYPE */
 
-  if(type){
+  if(productType){
 
-    if(
-      !data.types[category]
-    ){
+    if(!data.types[category]){
 
-      data.types[category] = [];
+      data.types[category] =
+        [];
 
     }
 
@@ -4650,12 +4068,12 @@ function handleProductSubmit(e){
       !data.types[category].some(
         x =>
           normalize(x) ===
-          normalize(type)
+          normalize(productType)
       )
     ){
 
       data.types[category].push(
-        type
+        productType
       );
 
     }
@@ -4663,10 +4081,11 @@ function handleProductSubmit(e){
   }
 
 
-  const obj = {
+  const product = {
 
     id:
-      editingId || uid(),
+      editingId ||
+      uid(),
 
     name,
 
@@ -4674,26 +4093,13 @@ function handleProductSubmit(e){
 
     category,
 
-    productType:type,
+    productType,
 
-    ingredients:
-      document
-        .getElementById(
-          "ingredients"
-        )
-        .value
-        .trim(),
+    ingredients,
 
-    shade:
-      document
-        .getElementById(
-          "shadeInput"
-        )
-        .value
-        .trim(),
+    shade,
 
-    shadeMatch:
-      getRadio("shadeMatch"),
+    shadeMatch,
 
     openedOn,
 
@@ -4707,9 +4113,7 @@ function handleProductSubmit(e){
         : "",
 
     result:
-      getRadio("result")
-      ||
-      "yes",
+      result || "yes",
 
     notes:
       document
@@ -4720,27 +4124,29 @@ function handleProductSubmit(e){
         .trim(),
 
     updatedAt:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
 
   };
 
 
-  const idx =
+  const existingIndex =
     data.products.findIndex(
       x =>
-        x.id === obj.id
+        x.id === product.id
     );
 
 
-  if(idx >= 0){
+  if(existingIndex >= 0){
 
-    data.products[idx] =
-      obj;
+    data.products[
+      existingIndex
+    ] = product;
 
   }else{
 
     data.products.push(
-      obj
+      product
     );
 
   }
@@ -4748,25 +4154,79 @@ function handleProductSubmit(e){
 
   saveData();
 
-  toast(
-    editingId
-      ? "Product updated ♡"
-      : "Product saved ♡"
-  );
 
+  /*
+    STAY ON CURRENT PAGE.
 
-  editingId = null;
+    Editing:
+      remain on Edit Product.
 
-  currentPage = "all";
+    Adding:
+      remain on Add Product.
+      Clear the form.
+  */
 
-  render();
+  if(editingId){
+
+    toast(
+      "Product updated ♡"
+    );
+
+    render();
+
+  }else{
+
+    toast(
+      "Product saved ♡"
+    );
+
+    render();
+
+    /*
+      Since Add Product stays open,
+      focus Product Name so the user
+      can immediately type the next product.
+    */
+
+    setTimeout(
+      () => {
+
+        document
+          .getElementById(
+            "productName"
+          )
+          ?.focus();
+
+      },
+      50
+    );
+
+  }
 
 }
 
 
-/* =========================
+/* =========================================================
+   CANCEL
+========================================================= */
+
+function cancelProductForm(){
+
+  editingId =
+    null;
+
+  navigate(
+    previousPageBeforeEdit ||
+    "all"
+  );
+
+}
+
+
+/* =========================================================
    QUICK ADD BRAND
-========================= */
+   ENTER WORKS HERE TOO
+========================================================= */
 
 function quickAddBrand(){
 
@@ -4781,7 +4241,7 @@ function quickAddBrand(){
   }
 
 
-  const v =
+  const brand =
     value.trim();
 
 
@@ -4789,11 +4249,13 @@ function quickAddBrand(){
     !data.brands.some(
       x =>
         normalize(x) ===
-        normalize(v)
+        normalize(brand)
     )
   ){
 
-    data.brands.push(v);
+    data.brands.push(
+      brand
+    );
 
   }
 
@@ -4808,7 +4270,12 @@ function quickAddBrand(){
 
 
   if(input){
-    input.value = v;
+
+    input.value =
+      brand;
+
+    input.focus();
+
   }
 
 
@@ -4819,9 +4286,9 @@ function quickAddBrand(){
 }
 
 
-/* =========================
+/* =========================================================
    QUICK ADD TYPE
-========================= */
+========================================================= */
 
 function quickAddType(){
 
@@ -4834,7 +4301,7 @@ function quickAddType(){
       .trim();
 
 
-  const value =
+  const type =
     prompt(
       category
         ? `New product type for ${category}:`
@@ -4842,15 +4309,16 @@ function quickAddType(){
     );
 
 
-  if(!value?.trim()){
+  if(!type?.trim()){
     return;
   }
 
 
-  const type =
-    value.trim();
+  const cleanType =
+    type.trim();
 
-  const cat =
+
+  const cleanCategory =
     category || "Other";
 
 
@@ -4858,34 +4326,37 @@ function quickAddType(){
     !data.categories.some(
       x =>
         normalize(x) ===
-        normalize(cat)
+        normalize(cleanCategory)
     )
   ){
 
     data.categories.push(
-      cat
+      cleanCategory
     );
 
   }
 
 
-  if(!data.types[cat]){
+  if(
+    !data.types[cleanCategory]
+  ){
 
-    data.types[cat] = [];
+    data.types[cleanCategory] =
+      [];
 
   }
 
 
   if(
-    !data.types[cat].some(
+    !data.types[cleanCategory].some(
       x =>
         normalize(x) ===
-        normalize(type)
+        normalize(cleanType)
     )
   ){
 
-    data.types[cat].push(
-      type
+    data.types[cleanCategory].push(
+      cleanType
     );
 
   }
@@ -4898,14 +4369,16 @@ function quickAddType(){
     .getElementById(
       "categoryInput"
     )
-    .value = cat;
+    .value =
+      cleanCategory;
 
 
   document
     .getElementById(
       "typeInput"
     )
-    .value = type;
+    .value =
+      cleanType;
 
 
   updateShadeSection();
@@ -4917,9 +4390,1113 @@ function quickAddType(){
 }
 
 
-/* =========================
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function renderProfile(){
+
+  const profile =
+    data.profile;
+
+
+  const matches =
+    data.products.filter(
+      p =>
+        p.shadeMatch === "match" &&
+        p.shade
+    );
+
+
+  return (
+
+    header(
+      "My Profile",
+      "Your personal beauty details. Edit them through Settings."
+    )
+
+    +
+
+    `
+
+    <div class="profile-layout">
+
+      <div class="profile-card">
+
+        <div class="panel-title">
+          PERSONAL DETAILS
+        </div>
+
+        ${profileRow(
+          "Name",
+          profile.name ||
+          "Not set"
+        )}
+
+        ${profileRow(
+          "Age",
+          profile.age ||
+          "Not set"
+        )}
+
+        ${profileRow(
+          "Skin Type",
+          profile.skinType ||
+          "Not set"
+        )}
+
+        ${profileRow(
+          "Skin Condition",
+          profile.skinConditions?.length
+            ? `
+              <div class="condition-tags">
+
+                ${
+                  profile.skinConditions
+                    .map(
+                      x =>
+                        `<span class="tag">${esc(x)}</span>`
+                    )
+                    .join("")
+                }
+
+              </div>
+            `
+            : "Not set"
+        )}
+
+        ${profileRow(
+          "Skin Tone",
+          profile.skinTone ||
+          "Not set"
+        )}
+
+        ${profileRow(
+          "Personal Color",
+          profile.personalColor?.length
+            ? `
+              <div class="condition-tags">
+
+                ${
+                  profile.personalColor
+                    .map(
+                      x =>
+                        `<span class="tag">${esc(x)}</span>`
+                    )
+                    .join("")
+                }
+
+              </div>
+            `
+            : "Not set"
+        )}
+
+      </div>
+
+
+      <div class="profile-card">
+
+        <div class="panel-title">
+          MY SHADE MATCHES
+        </div>
+
+        ${
+          matches.length
+
+            ? matches
+                .map(
+                  p =>
+                    `
+                    <div class="shade-match">
+
+                      <strong>
+                        ${esc(p.name)}
+                      </strong>
+
+                      <small>
+                        ${esc(
+                          p.brand ||
+                          "No brand"
+                        )}
+
+                        ·
+
+                        ${esc(
+                          p.productType ||
+                          p.category ||
+                          ""
+                        )}
+
+                        ·
+
+                        Shade
+                        ${esc(p.shade)}
+
+                      </small>
+
+                    </div>
+                    `
+                )
+                .join("")
+
+            : `
+              <div
+                class="empty-state"
+                style="padding:25px 5px"
+              >
+                No shade matches recorded yet.
+              </div>
+            `
+        }
+
+      </div>
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+function profileRow(
+  key,
+  value
+){
+
+  return `
+
+    <div class="profile-row">
+
+      <span class="profile-key">
+        ${esc(key)}
+      </span>
+
+      <span class="profile-value">
+        ${value}
+      </span>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   AVOID
+========================================================= */
+
+function renderAvoid(){
+
+  const avoid =
+    data.avoidIngredients;
+
+
+  return (
+
+    header(
+      "What Should I Avoid?",
+      "Ingredients you've marked as avoid ingredients will trigger warnings."
+    )
+
+    +
+
+    `
+
+    <div class="panel">
+
+      <div class="panel-title">
+        MY AVOID INGREDIENTS
+      </div>
+
+      ${
+        avoid.length
+
+          ? `
+            <div class="condition-tags">
+
+              ${
+                avoid
+                  .map(
+                    x =>
+                      `<span class="tag">${esc(x)}</span>`
+                  )
+                  .join("")
+              }
+
+            </div>
+          `
+
+          : `
+            <div
+              class="empty-state"
+              style="padding:20px"
+            >
+              No avoid ingredients saved yet.
+            </div>
+          `
+      }
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+/* =========================================================
+   INGREDIENTS
+========================================================= */
+
+function renderIngredients(){
+
+  const counts = {};
+
+
+  data.products.forEach(
+    p => {
+
+      String(
+        p.ingredients || ""
+      )
+      .split(/[,;\n]+/)
+      .map(
+        x => x.trim()
+      )
+      .filter(Boolean)
+      .forEach(
+        ingredient => {
+
+          const key =
+            normalize(
+              ingredient
+            );
+
+
+          if(!counts[key]){
+
+            counts[key] = {
+              name:ingredient,
+              count:0
+            };
+
+          }
+
+
+          counts[key].count++;
+
+        }
+      );
+
+    }
+  );
+
+
+  const list =
+    Object.values(
+      counts
+    )
+    .sort(
+      (a,b) =>
+        b.count -
+        a.count
+    );
+
+
+  return (
+
+    header(
+      "My Ingredients",
+      "A simple inventory of ingredients appearing in your beauty diary."
+    )
+
+    +
+
+    `
+
+    <div class="panel">
+
+      ${
+        list.length
+
+          ? `
+            <div class="manage-list">
+
+              ${
+                list
+                  .map(
+                    item =>
+                      `
+                      <div class="manage-item">
+
+                        <span>
+                          ${esc(item.name)}
+                        </span>
+
+                        <span class="tag">
+                          ${item.count}
+                          product${item.count===1?"":"s"}
+                        </span>
+
+                      </div>
+                      `
+                  )
+                  .join("")
+              }
+
+            </div>
+          `
+
+          : `
+            <div
+              class="empty-state"
+              style="padding:25px"
+            >
+              Add ingredients to your products
+              to build this list.
+            </div>
+          `
+      }
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function renderSettings(){
+
+  const profile =
+    data.profile;
+
+
+  return (
+
+    header(
+      "Settings",
+      "Manage your personal details and beauty libraries."
+    )
+
+    +
+
+    `
+
+    <div class="settings-tabs">
+
+      ${settingsTab(
+        "personal",
+        "Personal"
+      )}
+
+      ${settingsTab(
+        "brands",
+        "Brands"
+      )}
+
+      ${settingsTab(
+        "ingredients",
+        "Ingredients"
+      )}
+
+      ${settingsTab(
+        "types",
+        "Types"
+      )}
+
+      ${settingsTab(
+        "app",
+        "App"
+      )}
+
+    </div>
+
+
+    <!-- PERSONAL -->
+
+    <div
+      class="setting-panel ${
+        currentSettingsTab === "personal"
+          ? "active"
+          : ""
+      }"
+    >
+
+      <form
+        id="personalForm"
+        class="panel"
+      >
+
+        <div class="form-grid">
+
+
+          <div class="form-group">
+
+            <label class="form-label">
+              Name
+            </label>
+
+            <input
+              id="profileName"
+              type="text"
+              value="${esc(profile.name)}"
+              placeholder="Your name"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label class="form-label">
+              Age
+            </label>
+
+            <input
+              id="profileAge"
+              type="number"
+              min="1"
+              max="120"
+              value="${esc(profile.age)}"
+              placeholder="Age"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label class="form-label">
+              Skin Type
+            </label>
+
+            <select
+              id="profileSkinType"
+            >
+
+              <option value="">
+                Choose your skin type
+              </option>
+
+              ${
+                SKIN_TYPES
+                  .map(
+                    type =>
+                      `
+                      <option
+                        value="${esc(type)}"
+                        ${
+                          profile.skinType === type
+                            ? "selected"
+                            : ""
+                        }
+                      >
+                        ${esc(type)}
+                      </option>
+                      `
+                  )
+                  .join("")
+              }
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label class="form-label">
+              Skin Tone
+            </label>
+
+            <select
+              id="profileSkinTone"
+            >
+
+              <option value="">
+                Choose your skin tone
+              </option>
+
+              ${
+                [
+                  "Very Fair",
+                  "Fair",
+                  "Light",
+                  "Light-Medium",
+                  "Medium",
+                  "Medium-Tan",
+                  "Tan",
+                  "Deep",
+                  "Very Deep"
+                ]
+                .map(
+                  tone =>
+                    `
+                    <option
+                      value="${esc(tone)}"
+                      ${
+                        profile.skinTone === tone
+                          ? "selected"
+                          : ""
+                      }
+                    >
+                      ${esc(tone)}
+                    </option>
+                    `
+                )
+                .join("")
+              }
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label class="form-label">
+
+              Skin Condition
+
+              <span class="optional">
+                (choose one or more)
+              </span>
+
+            </label>
+
+            <div class="checkbox-grid">
+
+              ${
+                SKIN_CONDITIONS
+                  .map(
+                    (condition,index) =>
+                      `
+                      <div class="check-option">
+
+                        <input
+                          type="checkbox"
+                          id="condition${index}"
+                          name="skinCondition"
+                          value="${esc(condition)}"
+                          ${
+                            profile.skinConditions
+                              .includes(condition)
+                              ? "checked"
+                              : ""
+                          }
+                        >
+
+                        <label
+                          for="condition${index}"
+                        >
+                          ${esc(condition)}
+                        </label>
+
+                      </div>
+                      `
+                  )
+                  .join("")
+              }
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group full">
+
+            <label class="form-label">
+
+              Personal Color
+
+              <span class="optional">
+                (choose one or more)
+              </span>
+
+            </label>
+
+            <div class="checkbox-grid">
+
+              ${
+                PERSONAL_COLORS
+                  .map(
+                    (color,index) =>
+                      `
+                      <div class="check-option">
+
+                        <input
+                          type="checkbox"
+                          id="personalColor${index}"
+                          name="personalColor"
+                          value="${esc(color)}"
+                          ${
+                            profile.personalColor
+                              .includes(color)
+                              ? "checked"
+                              : ""
+                          }
+                        >
+
+                        <label
+                          for="personalColor${index}"
+                        >
+                          ${esc(color)}
+                        </label>
+
+                      </div>
+                      `
+                  )
+                  .join("")
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button
+            type="submit"
+            class="btn primary"
+          >
+            Save Personal Details ♡
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <!-- BRANDS -->
+
+    <div
+      class="setting-panel ${
+        currentSettingsTab === "brands"
+          ? "active"
+          : ""
+      }"
+    >
+
+      <div class="panel">
+
+        <div class="panel-title">
+          BRAND LIBRARY
+        </div>
+
+
+        <div
+          class="inline-field"
+          style="margin-bottom:14px"
+        >
+
+          <input
+            id="newBrand"
+            type="text"
+            placeholder="Add a brand... Press Enter ↵"
+          >
+
+          <button
+            class="btn primary"
+            type="button"
+            onclick="addBrandFromSettings()"
+          >
+            ＋ Add
+          </button>
+
+        </div>
+
+
+        <div class="manage-list">
+
+          ${
+            data.brands
+              .map(
+                (brand,index) =>
+                  `
+                  <div class="manage-item">
+
+                    <span>
+                      ${esc(brand)}
+                    </span>
+
+                    <button
+                      class="remove-mini"
+                      type="button"
+                      onclick="removeBrand(${index})"
+                    >
+                      Remove
+                    </button>
+
+                  </div>
+                  `
+              )
+              .join("")
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- INGREDIENT SETTINGS -->
+
+    <div
+      class="setting-panel ${
+        currentSettingsTab === "ingredients"
+          ? "active"
+          : ""
+      }"
+    >
+
+      <div class="panel">
+
+        <div class="panel-title">
+          AVOID INGREDIENTS
+        </div>
+
+
+        <div
+          class="inline-field"
+          style="margin-bottom:14px"
+        >
+
+          <input
+            id="newAvoid"
+            type="text"
+            placeholder="Add ingredient... Press Enter ↵"
+          >
+
+          <button
+            class="btn primary"
+            type="button"
+            onclick="addAvoidFromSettings()"
+          >
+            ＋ Add
+          </button>
+
+        </div>
+
+
+        <div class="manage-list">
+
+          ${
+            data.avoidIngredients.length
+
+              ? data.avoidIngredients
+                  .map(
+                    (item,index) =>
+                      `
+                      <div class="manage-item">
+
+                        <span>
+                          ${esc(item)}
+                        </span>
+
+                        <button
+                          class="remove-mini"
+                          type="button"
+                          onclick="removeAvoid(${index})"
+                        >
+                          Remove
+                        </button>
+
+                      </div>
+                      `
+                  )
+                  .join("")
+
+              : `
+                <div
+                  class="empty-state"
+                  style="padding:20px"
+                >
+                  No avoid ingredients yet.
+                </div>
+              `
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TYPES -->
+
+    <div
+      class="setting-panel ${
+        currentSettingsTab === "types"
+          ? "active"
+          : ""
+      }"
+    >
+
+      <div class="panel">
+
+        <div class="panel-title">
+          PRODUCT TYPES BY CATEGORY
+        </div>
+
+
+        ${
+          data.categories
+            .map(
+              category =>
+                `
+                <div
+                  style="
+                    margin-bottom:18px;
+                  "
+                >
+
+                  <div
+                    style="
+                      font-size:11px;
+                      font-weight:800;
+                      margin-bottom:8px;
+                    "
+                  >
+                    ${esc(category)}
+                  </div>
+
+
+                  <div class="condition-tags">
+
+                    ${
+                      (
+                        data.types[category]
+                        || []
+                      )
+                      .map(
+                        (type,index) =>
+                          `
+                          <span class="tag">
+
+                            ${esc(type)}
+
+                            <button
+                              type="button"
+                              style="
+                                border:0;
+                                background:none;
+                                color:#aa7187;
+                                margin-left:3px;
+                              "
+                              onclick="
+                                removeType(
+                                  '${encodeURIComponent(category)}',
+                                  ${index}
+                                )
+                              "
+                            >
+                              ×
+                            </button>
+
+                          </span>
+                          `
+                      )
+                      .join("")
+                    }
+
+                  </div>
+
+                </div>
+                `
+            )
+            .join("")
+        }
+
+
+        <div class="inline-field">
+
+          <input
+            id="newTypeCategory"
+            type="text"
+            placeholder="Category"
+          >
+
+          <input
+            id="newTypeName"
+            type="text"
+            placeholder="New type... Press Enter ↵"
+          >
+
+          <button
+            class="btn primary"
+            type="button"
+            onclick="addTypeFromSettings()"
+          >
+            ＋ Add
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- APP -->
+
+    <div
+      class="setting-panel ${
+        currentSettingsTab === "app"
+          ? "active"
+          : ""
+      }"
+    >
+
+      <div class="panel">
+
+        <div class="panel-title">
+          APP
+        </div>
+
+
+        <div class="manage-item">
+
+          <span>
+            Language
+          </span>
+
+          <select
+            id="languageSetting"
+            style="width:130px"
+          >
+
+            <option
+              value="en"
+              ${
+                data.language === "en"
+                  ? "selected"
+                  : ""
+              }
+            >
+              English
+            </option>
+
+            <option
+              value="id"
+              ${
+                data.language === "id"
+                  ? "selected"
+                  : ""
+              }
+            >
+              Indonesia
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div
+          class="manage-item"
+          style="margin-top:8px"
+        >
+
+          <span>
+            Saved locally
+          </span>
+
+          <span class="tag">
+            ${data.products.length}
+            products
+          </span>
+
+        </div>
+
+
+        <div
+          style="
+            margin-top:18px;
+            padding:14px;
+            border-radius:13px;
+            background:#fff1f3;
+            color:#9e6574;
+            font-size:10px;
+            line-height:1.6;
+          "
+        >
+
+          <strong>
+            Reset diary
+          </strong>
+
+          <br>
+
+          This removes all Lunelle data
+          from this browser.
+
+        </div>
+
+
+        <button
+          class="btn danger"
+          style="margin-top:10px"
+          type="button"
+          onclick="resetApp()"
+        >
+          Reset All Data
+        </button>
+
+      </div>
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+function settingsTab(
+  id,
+  label
+){
+
+  return `
+
+    <button
+      type="button"
+      class="settings-tab ${
+        currentSettingsTab === id
+          ? "active"
+          : ""
+      }"
+      data-tab="${id}"
+    >
+      ${label}
+    </button>
+
+  `;
+
+}
+
+
+/* =========================================================
    SAVE PERSONAL
-========================= */
+========================================================= */
 
 function savePersonal(e){
 
@@ -4959,79 +5536,121 @@ function savePersonal(e){
       .value;
 
 
-  /* MULTIPLE SKIN CONDITIONS */
-
   data.profile.skinConditions =
     [
-      ...document.querySelectorAll(
-        'input[name="skinCondition"]:checked'
-      )
+      ...document
+        .querySelectorAll(
+          'input[name="skinCondition"]:checked'
+        )
     ]
     .map(
-      x => x.value
+      input =>
+        input.value
     );
 
 
-  /* MULTIPLE PERSONAL COLORS */
-
   data.profile.personalColor =
     [
-      ...document.querySelectorAll(
-        'input[name="personalColor"]:checked'
-      )
+      ...document
+        .querySelectorAll(
+          'input[name="personalColor"]:checked'
+        )
     ]
     .map(
-      x => x.value
+      input =>
+        input.value
     );
 
 
   saveData();
+
+
+  /*
+    IMPORTANT:
+    stay on Personal.
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "personal";
+
+  render();
 
   toast(
     "Personal details saved ♡"
   );
 
-  navigate(
-    "profile"
-  );
-
 }
 
 
-/* =========================
-   SETTINGS BRAND
-========================= */
+/* =========================================================
+   ADD BRAND FROM SETTINGS
+========================================================= */
 
 function addBrandFromSettings(){
 
-  const el =
+  const input =
     document.getElementById(
       "newBrand"
     );
 
-  const v =
-    el.value.trim();
+
+  const brand =
+    input.value.trim();
 
 
-  if(!v){
+  if(!brand){
+
+    toast(
+      "Enter a brand name first."
+    );
+
+    input.focus();
+
     return;
+
   }
 
 
   if(
-    !data.brands.some(
+    data.brands.some(
       x =>
         normalize(x) ===
-        normalize(v)
+        normalize(brand)
     )
   ){
 
-    data.brands.push(v);
+    toast(
+      "That brand already exists."
+    );
+
+    input.select();
+
+    return;
 
   }
 
 
+  data.brands.push(
+    brand
+  );
+
+
   saveData();
+
+
+  /*
+    STAY:
+      Settings → Brands
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "brands";
 
   render();
 
@@ -5039,14 +5658,47 @@ function addBrandFromSettings(){
     "Brand added ♡"
   );
 
+
+  /*
+    Focus the same Add Brand field
+    after rerender so the user can
+    immediately type another one.
+  */
+
+  setTimeout(
+    () => {
+
+      document
+        .getElementById(
+          "newBrand"
+        )
+        ?.focus();
+
+    },
+    50
+  );
+
 }
 
 
-function removeBrand(i){
+/* =========================================================
+   REMOVE BRAND
+========================================================= */
+
+function removeBrand(index){
+
+  const brand =
+    data.brands[index];
+
+
+  if(!brand){
+    return;
+  }
+
 
   if(
     !confirm(
-      `Remove "${data.brands[i]}" from the brand library?`
+      `Remove "${brand}" from the brand library?`
     )
   ){
 
@@ -5056,53 +5708,100 @@ function removeBrand(i){
 
 
   data.brands.splice(
-    i,
+    index,
     1
   );
 
+
   saveData();
 
+
+  /*
+    STAY:
+      Settings → Brands
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "brands";
+
   render();
+
+  toast(
+    "Brand removed."
+  );
 
 }
 
 
-/* =========================
-   AVOID INGREDIENT SETTINGS
-========================= */
+/* =========================================================
+   ADD AVOID
+========================================================= */
 
 function addAvoidFromSettings(){
 
-  const el =
+  const input =
     document.getElementById(
       "newAvoid"
     );
 
-  const v =
-    el.value.trim();
+
+  const value =
+    input.value.trim();
 
 
-  if(!v){
+  if(!value){
+
+    toast(
+      "Enter an ingredient first."
+    );
+
+    input.focus();
+
     return;
+
   }
 
 
   if(
-    !data.avoidIngredients.some(
+    data.avoidIngredients.some(
       x =>
         normalize(x) ===
-        normalize(v)
+        normalize(value)
     )
   ){
 
-    data.avoidIngredients.push(
-      v
+    toast(
+      "That ingredient is already saved."
     );
+
+    input.select();
+
+    return;
 
   }
 
 
+  data.avoidIngredients.push(
+    value
+  );
+
+
   saveData();
+
+
+  /*
+    STAY:
+      Settings → Ingredients
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "ingredients";
 
   render();
 
@@ -5110,52 +5809,104 @@ function addAvoidFromSettings(){
     "Avoid ingredient saved."
   );
 
+
+  setTimeout(
+    () => {
+
+      document
+        .getElementById(
+          "newAvoid"
+        )
+        ?.focus();
+
+    },
+    50
+  );
+
 }
 
 
-function removeAvoid(i){
+/* =========================================================
+   REMOVE AVOID
+========================================================= */
+
+function removeAvoid(index){
+
+  if(
+    !data.avoidIngredients[index]
+  ){
+    return;
+  }
+
 
   data.avoidIngredients.splice(
-    i,
+    index,
     1
   );
 
+
   saveData();
 
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "ingredients";
+
   render();
+
+  toast(
+    "Ingredient removed."
+  );
 
 }
 
 
-/* =========================
-   SETTINGS TYPES
-========================= */
+/* =========================================================
+   ADD TYPE
+========================================================= */
 
 function addTypeFromSettings(){
 
-  const cat =
-    document
-      .getElementById(
-        "newTypeCategory"
-      )
-      .value
-      .trim();
+  const categoryInput =
+    document.getElementById(
+      "newTypeCategory"
+    );
 
+  const typeInput =
+    document.getElementById(
+      "newTypeName"
+    );
+
+
+  const category =
+    categoryInput.value.trim();
 
   const type =
-    document
-      .getElementById(
-        "newTypeName"
-      )
-      .value
-      .trim();
+    typeInput.value.trim();
 
 
-  if(!cat || !type){
+  if(!category){
 
     toast(
-      "Enter both category and product type."
+      "Enter a category first."
     );
+
+    categoryInput.focus();
+
+    return;
+
+  }
+
+
+  if(!type){
+
+    toast(
+      "Enter a product type."
+    );
+
+    typeInput.focus();
 
     return;
 
@@ -5166,40 +5917,64 @@ function addTypeFromSettings(){
     !data.categories.some(
       x =>
         normalize(x) ===
-        normalize(cat)
+        normalize(category)
     )
   ){
 
     data.categories.push(
-      cat
+      category
     );
 
   }
 
 
-  if(!data.types[cat]){
+  if(
+    !data.types[category]
+  ){
 
-    data.types[cat] = [];
+    data.types[category] =
+      [];
 
   }
 
 
   if(
-    !data.types[cat].some(
+    data.types[category].some(
       x =>
         normalize(x) ===
         normalize(type)
     )
   ){
 
-    data.types[cat].push(
-      type
+    toast(
+      "That product type already exists in this category."
     );
+
+    typeInput.select();
+
+    return;
 
   }
 
 
+  data.types[category].push(
+    type
+  );
+
+
   saveData();
+
+
+  /*
+    STAY:
+      Settings → Types
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "types";
 
   render();
 
@@ -5207,57 +5982,91 @@ function addTypeFromSettings(){
     "Product type added ♡"
   );
 
+
+  setTimeout(
+    () => {
+
+      document
+        .getElementById(
+          "newTypeName"
+        )
+        ?.focus();
+
+    },
+    50
+  );
+
 }
 
+
+/* =========================================================
+   REMOVE TYPE
+========================================================= */
 
 function removeType(
-  catEncoded,
-  i
+  encodedCategory,
+  index
 ){
 
-  const cat =
+  const category =
     decodeURIComponent(
-      catEncoded
+      encodedCategory
     );
 
 
-  if(data.types[cat]){
-
-    data.types[cat].splice(
-      i,
-      1
-    );
-
-  }
-
-
-  saveData();
-
-  render();
-
-}
-
-
-/* =========================
-   PRODUCT MODAL
-========================= */
-
-function openProductModal(id){
-
-  const p =
-    data.products.find(
-      x =>
-        x.id === id
-    );
-
-
-  if(!p){
+  if(
+    !data.types[category] ||
+    !data.types[category][index]
+  ){
     return;
   }
 
 
-  currentProductId =
-    id;
+  data.types[category].splice(
+    index,
+    1
+  );
+
+
+  saveData();
+
+
+  /*
+    STAY:
+      Settings → Types
+  */
+
+  currentPage =
+    "settings";
+
+  currentSettingsTab =
+    "types";
+
+  render();
+
+  toast(
+    "Product type removed."
+  );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openProductModal(id){
+
+  const product =
+    data.products.find(
+      p =>
+        p.id === id
+    );
+
+
+  if(!product){
+    return;
+  }
 
 
   document
@@ -5266,159 +6075,178 @@ function openProductModal(id){
     )
     .innerHTML = `
 
-    <div class="modal-head">
+      <div class="modal-head">
 
-      <div>
+        <div>
 
-        <div class="eyebrow">
-          PRODUCT DETAIL
+          <div class="eyebrow">
+            PRODUCT DETAIL
+          </div>
+
+          <h2
+            style="
+              font:28px Georgia,serif;
+              margin:6px 0 2px;
+            "
+          >
+            ${esc(product.name)}
+          </h2>
+
+          <div
+            style="
+              font-size:10px;
+              color:var(--muted);
+            "
+          >
+            ${esc(
+              product.brand ||
+              "No brand"
+            )}
+          </div>
+
         </div>
 
-        <h2
-          style="
-            font:28px Georgia,serif;
-            margin:6px 0 2px;
-          "
-        >
-          ${esc(p.name)}
-        </h2>
 
-        <div
-          style="
-            font-size:10px;
-            color:var(--muted);
-          "
+        <button
+          class="close"
+          onclick="closeModal()"
         >
-          ${esc(p.brand || "No brand")}
-        </div>
+          ×
+        </button>
 
       </div>
 
 
-      <button
-        class="close"
-        onclick="closeModal()"
+      <div
+        style="
+          margin-top:12px;
+          display:flex;
+          gap:7px;
+        "
       >
-        ×
-      </button>
 
-    </div>
+        ${resultBadge(
+          product.result
+        )}
 
+        ${statusBadge(
+          product.status
+        )}
 
-    <div style="margin-top:12px">
-
-      ${resultBadge(p.result)}
-
-      ${statusBadge(p.status)}
-
-    </div>
+      </div>
 
 
-    <div class="detail-grid">
+      <div class="detail-grid">
 
-      ${detail(
-        "Category",
-        p.category
-      )}
+        ${detail(
+          "Category",
+          product.category
+        )}
 
-      ${detail(
-        "Product Type",
-        p.productType || "—"
-      )}
+        ${detail(
+          "Product Type",
+          product.productType ||
+          "—"
+        )}
 
-      ${detail(
-        "Shade",
-        p.shade || "—"
-      )}
+        ${detail(
+          "Shade",
+          product.shade ||
+          "—"
+        )}
 
-      ${detail(
-        "Shade Match",
-        p.shadeMatch === "match"
-          ? "MATCH"
-          : p.shadeMatch === "not_match"
-            ? "NOT MATCH"
+        ${detail(
+          "Shade Match",
+          product.shadeMatch === "match"
+            ? "MATCH"
+            : product.shadeMatch === "not_match"
+              ? "NOT MATCH"
+              : "—"
+        )}
+
+        ${detail(
+          "Opened On",
+          formatDate(
+            product.openedOn
+          )
+        )}
+
+        ${detail(
+          "Empty On",
+          formatDate(
+            product.emptyOn
+          )
+        )}
+
+        ${detail(
+          "Usage Duration",
+          product.status === "finished"
+            ? productDuration(product)
             : "—"
-      )}
+        )}
 
-      ${detail(
-        "Opened On",
-        formatDate(p.openedOn)
-      )}
+        ${detail(
+          "Buy It Again",
+          product.status === "finished"
+            ? (
+                product.buyAgain === "yes"
+                  ? "YES"
+                  : "NO"
+              )
+            : "—"
+        )}
 
-      ${detail(
-        "Empty On",
-        formatDate(p.emptyOn)
-      )}
-
-      ${detail(
-        "Usage Duration",
-        p.status === "finished"
-          ? productDuration(p)
-          : "—"
-      )}
-
-      ${detail(
-        "Buy It Again",
-        p.status === "finished"
-          ? (
-              p.buyAgain === "yes"
-                ? "YES"
-                : "NO"
-            )
-          : "—"
-      )}
-
-    </div>
+      </div>
 
 
-    <div class="modal-notes">
+      <div class="modal-notes">
 
-      <strong>
-        Ingredients
-      </strong>
+        <strong>
+          Ingredients
+        </strong>
 
-      <br>
+        <br>
 
-      ${esc(
-        p.ingredients ||
-        "No ingredients recorded."
-      )}
+        ${esc(
+          product.ingredients ||
+          "No ingredients recorded."
+        )}
 
-      <br><br>
+        <br><br>
 
-      <strong>
-        Notes
-      </strong>
+        <strong>
+          Notes
+        </strong>
 
-      <br>
+        <br>
 
-      ${esc(
-        p.notes ||
-        "No notes."
-      )}
+        ${esc(
+          product.notes ||
+          "No notes."
+        )}
 
-    </div>
+      </div>
 
 
-    <div class="modal-actions">
+      <div class="modal-actions">
 
-      <button
-        class="btn"
-        onclick="closeModal()"
-      >
-        Close
-      </button>
+        <button
+          class="btn"
+          onclick="closeModal()"
+        >
+          Close
+        </button>
 
-      <button
-        class="btn primary"
-        onclick="editProduct('${esc(p.id)}')"
-      >
-        Edit Product
-      </button>
+        <button
+          class="btn primary"
+          onclick="editProduct('${esc(product.id)}')"
+        >
+          Edit Product
+        </button>
 
-    </div>
+      </div>
 
-  `;
+    `;
 
 
   document
@@ -5432,20 +6260,25 @@ function openProductModal(id){
 }
 
 
-function detail(k,v){
+function detail(
+  key,
+  value
+){
 
   return `
+
     <div class="detail">
 
       <small>
-        ${esc(k)}
+        ${esc(key)}
       </small>
 
       <strong>
-        ${esc(v)}
+        ${esc(value)}
       </strong>
 
     </div>
+
   `;
 
 }
@@ -5461,118 +6294,8 @@ function closeModal(){
       "show"
     );
 
-  currentProductId =
-    null;
-
 }
 
-
-function editProduct(id){
-
-  closeModal();
-
-  editingId =
-    id;
-
-  currentPage =
-    "add";
-
-  render();
-
-}
-
-
-function deleteProduct(id){
-
-  const p =
-    data.products.find(
-      x =>
-        x.id === id
-    );
-
-
-  if(!p){
-    return;
-  }
-
-
-  if(
-    !confirm(
-      `Delete "${p.name}"? This cannot be undone.`
-    )
-  ){
-
-    return;
-
-  }
-
-
-  data.products =
-    data.products.filter(
-      x =>
-        x.id !== id
-    );
-
-
-  saveData();
-
-  toast(
-    "Product deleted."
-  );
-
-
-  editingId =
-    null;
-
-  currentPage =
-    "all";
-
-  render();
-
-}
-
-
-/* =========================
-   RESET
-========================= */
-
-function resetApp(){
-
-  const answer =
-    prompt(
-      "Type RESET to delete all Lunelle data from this browser."
-    );
-
-
-  if(answer === "RESET"){
-
-    localStorage.removeItem(
-      STORAGE_KEY
-    );
-
-    data =
-      clone(DEFAULTS);
-
-    editingId =
-      null;
-
-    currentPage =
-      "dashboard";
-
-    render();
-
-    toast(
-      "Lunelle has been reset."
-    );
-
-  }
-
-}
-
-
-/* =========================
-   MODAL CLICK
-========================= */
 
 document
   .getElementById(
@@ -5595,16 +6318,150 @@ document
   );
 
 
-/* =========================
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+function editProduct(id){
+
+  previousPageBeforeEdit =
+    currentPage;
+
+
+  editingId =
+    id;
+
+
+  currentPage =
+    "add";
+
+
+  closeModal();
+
+  render();
+
+}
+
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+function deleteProduct(id){
+
+  const product =
+    data.products.find(
+      p =>
+        p.id === id
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  if(
+    !confirm(
+      `Delete "${product.name}"? This cannot be undone.`
+    )
+  ){
+
+    return;
+
+  }
+
+
+  data.products =
+    data.products.filter(
+      p =>
+        p.id !== id
+    );
+
+
+  saveData();
+
+
+  const returnPage =
+    previousPageBeforeEdit ||
+    "all";
+
+
+  editingId =
+    null;
+
+  currentPage =
+    returnPage;
+
+  render();
+
+  toast(
+    "Product deleted."
+  );
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetApp(){
+
+  const answer =
+    prompt(
+      "Type RESET to delete all Lunelle data from this browser."
+    );
+
+
+  if(
+    answer !==
+    "RESET"
+  ){
+
+    return;
+
+  }
+
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  data =
+    clone(DEFAULTS);
+
+
+  currentPage =
+    "dashboard";
+
+  currentSettingsTab =
+    "personal";
+
+  editingId =
+    null;
+
+
+  render();
+
+  toast(
+    "Lunelle has been reset."
+  );
+
+}
+
+
+/* =========================================================
    MOBILE SIDEBAR
-========================= */
+========================================================= */
 
 const sidebar =
   document.getElementById(
     "sidebar"
   );
 
-const overlay =
+const sidebarOverlay =
   document.getElementById(
     "sidebarOverlay"
   );
@@ -5616,7 +6473,7 @@ function openSidebar(){
     "open"
   );
 
-  overlay.classList.add(
+  sidebarOverlay.classList.add(
     "show"
   );
 
@@ -5629,7 +6486,7 @@ function closeSidebar(){
     "open"
   );
 
-  overlay.classList.remove(
+  sidebarOverlay.classList.remove(
     "show"
   );
 
@@ -5646,15 +6503,60 @@ document
   );
 
 
-overlay.addEventListener(
+sidebarOverlay.addEventListener(
   "click",
   closeSidebar
 );
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer =
+  null;
+
+
+function toast(message){
+
+  const element =
+    document.getElementById(
+      "toast"
+    );
+
+
+  element.textContent =
+    message;
+
+
+  element.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      () => {
+
+        element.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
 
 render();
 
