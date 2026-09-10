@@ -1,0 +1,5530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lunelle — My Beauty Diary</title>
+
+<style>
+:root{
+  --pink:#f6b8d2;
+  --pink2:#fde5ef;
+  --purple:#b9a4ed;
+  --purple2:#eee8ff;
+  --blue:#a9d8f5;
+  --blue2:#e7f5ff;
+
+  --text:#675875;
+  --muted:#9a8fa2;
+  --white:#fffafd;
+  --border:#eadde9;
+
+  --yes:#8dbfa8;
+  --maybe:#a99adf;
+  --no:#d79aaa;
+  --warning:#e5ad78;
+
+  --shadow:0 15px 45px rgba(150,110,150,.10);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(246,184,210,.25),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(169,216,245,.22),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaff,
+      #fdf8ff 45%,
+      #f8fbff
+    );
+
+  color:var(--text);
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:260px;
+  height:100vh;
+
+  padding:25px 16px 18px;
+
+  overflow-y:auto;
+  overflow-x:hidden;
+
+  background:rgba(255,255,255,.84);
+  backdrop-filter:blur(25px);
+
+  border-right:1px solid var(--border);
+
+  z-index:100;
+
+  display:flex;
+  flex-direction:column;
+}
+
+.sidebar::-webkit-scrollbar{
+  width:5px;
+}
+
+.sidebar::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+  background:#ead7e5;
+  border-radius:20px;
+}
+
+.logo{
+  padding:5px 12px 24px;
+}
+
+.logo-name{
+  font-family:Georgia,serif;
+  font-size:31px;
+  color:#80678d;
+  letter-spacing:-1px;
+}
+
+.logo-sub{
+  margin-top:3px;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#b6a6b9;
+}
+
+.nav-section{
+  margin-bottom:18px;
+}
+
+.nav-label{
+  padding:0 13px 7px;
+
+  font-size:9px;
+  font-weight:800;
+
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+
+  color:#b5a6b7;
+}
+
+.nav-item{
+  width:100%;
+
+  border:0;
+  background:transparent;
+
+  padding:10px 12px;
+
+  margin:2px 0;
+
+  border-radius:13px;
+
+  color:#76657e;
+
+  text-align:left;
+
+  font-size:12px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav-item:hover{
+  background:#fff1f7;
+  color:#b76f93;
+}
+
+.nav-item.active{
+  background:
+    linear-gradient(
+      135deg,
+      #ffe7f1,
+      #eee8ff
+    );
+
+  color:#a66f91;
+
+  box-shadow:
+    0 5px 18px rgba(190,150,190,.10);
+}
+
+.nav-icon{
+  width:21px;
+  text-align:center;
+  font-size:14px;
+}
+
+.sidebar-spacer{
+  flex:1;
+  min-height:15px;
+}
+
+.footer{
+  padding:18px 10px 5px;
+
+  text-align:center;
+
+  font-size:9px;
+  letter-spacing:1px;
+
+  color:#b9adb9;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+  margin-left:260px;
+  min-height:100vh;
+
+  padding:42px 48px 55px;
+}
+
+.container{
+  max-width:1120px;
+  margin:auto;
+}
+
+.page-header{
+  margin-bottom:27px;
+}
+
+.page-title{
+  font-family:Georgia,serif;
+
+  font-size:38px;
+
+  color:#715b78;
+
+  letter-spacing:-1px;
+}
+
+.page-description{
+  margin-top:7px;
+
+  color:#a195a7;
+
+  font-size:12px;
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card{
+  background:rgba(255,255,255,.80);
+
+  border:1px solid var(--border);
+
+  border-radius:23px;
+
+  padding:24px;
+
+  box-shadow:var(--shadow);
+
+  margin-bottom:18px;
+}
+
+.card-title{
+  font-size:15px;
+  font-weight:800;
+  color:#75627d;
+}
+
+.card-description{
+  margin-top:5px;
+
+  color:#a399a8;
+
+  font-size:11px;
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.welcome{
+  padding:29px;
+
+  border-radius:28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,224,237,.88),
+      rgba(232,225,255,.88),
+      rgba(225,244,255,.82)
+    );
+
+  border:1px solid #eee0ed;
+
+  box-shadow:var(--shadow);
+
+  margin-bottom:20px;
+}
+
+.welcome-small{
+  font-size:11px;
+  color:#9b8199;
+}
+
+.welcome-name{
+  margin-top:5px;
+
+  font-family:Georgia,serif;
+
+  font-size:31px;
+
+  color:#725b7b;
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:13px;
+}
+
+.stat{
+  padding:20px;
+
+  border-radius:19px;
+
+  background:#fffafd;
+
+  border:1px solid var(--border);
+}
+
+.stat-number{
+  font-family:Georgia,serif;
+
+  font-size:28px;
+
+  color:#8b7094;
+}
+
+.stat-label{
+  margin-top:3px;
+
+  font-size:10px;
+  color:#a399a7;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.btn{
+  border:0;
+
+  padding:11px 17px;
+
+  border-radius:13px;
+
+  font-size:11px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-primary{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e8a8c5,
+      #a99adf
+    );
+
+  box-shadow:
+    0 7px 20px rgba(190,150,190,.20);
+}
+
+.btn-soft{
+  background:#f7eef7;
+  color:#8d718e;
+}
+
+.btn-blue{
+  background:#e8f6ff;
+  color:#7099b2;
+}
+
+.btn-danger{
+  background:#fff0f3;
+  color:#bd7188;
+}
+
+
+/* =====================================================
+   FORMS
+===================================================== */
+
+.form-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:17px;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-label{
+  display:block;
+
+  margin-bottom:7px;
+
+  font-size:11px;
+  font-weight:800;
+
+  color:#79687e;
+}
+
+.optional{
+  color:#b3a7b4;
+  font-weight:500;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+  width:100%;
+
+  border:1px solid #eadde9;
+
+  outline:none;
+
+  background:#fffafd;
+
+  color:#6d6072;
+
+  border-radius:16px;
+
+  padding:13px 15px;
+
+  font-family:inherit;
+
+  font-size:12px;
+
+  transition:.2s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+  border-color:#e5a8c4;
+
+  box-shadow:
+    0 0 0 4px rgba(246,184,210,.12);
+}
+
+.form-textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+.full{
+  grid-column:1 / -1;
+}
+
+.inline{
+  display:flex;
+  gap:8px;
+  align-items:stretch;
+}
+
+.inline .form-input,
+.inline .form-select{
+  flex:1;
+}
+
+
+/* =====================================================
+   RESULT BUTTONS
+===================================================== */
+
+.result-buttons{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+}
+
+.result-btn{
+  border:0;
+
+  border-radius:16px;
+
+  padding:15px;
+
+  background:#f9f4f8;
+
+  color:#9b899c;
+
+  font-size:13px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.result-btn:hover{
+  transform:translateY(-1px);
+}
+
+.result-btn.selected.yes{
+  background:#e7f5ed;
+  color:#65967c;
+}
+
+.result-btn.selected.maybe{
+  background:#eee9ff;
+  color:#8874bd;
+}
+
+.result-btn.selected.no{
+  background:#fff0f3;
+  color:#b8798b;
+}
+
+
+/* =====================================================
+   CHIPS
+===================================================== */
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.chip{
+  border:1px solid #eadde9;
+
+  background:#fffafd;
+
+  color:#8b7b8e;
+
+  border-radius:30px;
+
+  padding:8px 13px;
+
+  font-size:10px;
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.chip:hover{
+  border-color:#dfc9dd;
+}
+
+.chip.selected{
+  background:
+    linear-gradient(
+      135deg,
+      #ffe2ed,
+      #ebe4ff
+    );
+
+  border-color:#e5cbe1;
+
+  color:#9b7193;
+}
+
+
+/* =====================================================
+   INGREDIENT WARNING
+===================================================== */
+
+.warning-box{
+  display:none;
+
+  margin-bottom:18px;
+
+  padding:16px 18px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff4e9,
+      #fff1f5
+    );
+
+  border:1px solid #f0d7c6;
+
+  color:#966f58;
+}
+
+.warning-box.show{
+  display:block;
+}
+
+.warning-title{
+  font-size:12px;
+  font-weight:900;
+}
+
+.warning-text{
+  margin-top:5px;
+
+  font-size:10px;
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   PRODUCT CARDS
+===================================================== */
+
+.product-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:14px;
+}
+
+.product-card{
+  position:relative;
+
+  padding:18px;
+
+  border-radius:19px;
+
+  background:#fffafd;
+
+  border:1px solid var(--border);
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.product-card:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(150,110,150,.09);
+}
+
+.product-status{
+  display:inline-block;
+
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  background:#f6eef7;
+
+  color:#9b819d;
+
+  font-size:8px;
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  letter-spacing:.5px;
+}
+
+.product-name{
+  margin-top:10px;
+
+  font-size:13px;
+  font-weight:800;
+
+  color:#6e5d75;
+}
+
+.product-brand{
+  margin-top:3px;
+
+  font-size:10px;
+  color:#aaa0aa;
+}
+
+.product-meta{
+  margin-top:10px;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:5px;
+}
+
+.meta-chip{
+  padding:5px 8px;
+
+  border-radius:15px;
+
+  background:#f8f2f8;
+
+  color:#97879a;
+
+  font-size:8px;
+}
+
+.product-result{
+  position:absolute;
+
+  right:15px;
+  top:15px;
+
+  font-size:15px;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+  text-align:center;
+
+  padding:50px 20px;
+
+  color:#aaa0ad;
+}
+
+.empty-icon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.empty-title{
+  font-size:13px;
+  font-weight:800;
+}
+
+.empty-text{
+  margin-top:5px;
+  font-size:10px;
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-info-grid{
+  margin-top:20px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:12px;
+}
+
+.profile-info{
+  padding:14px;
+
+  border-radius:15px;
+
+  background:#fcf7fc;
+
+  border:1px solid #f0e5ef;
+}
+
+.profile-info-label{
+  font-size:9px;
+
+  color:#a69aa8;
+
+  text-transform:uppercase;
+
+  letter-spacing:.6px;
+}
+
+.profile-info-value{
+  margin-top:5px;
+
+  font-size:12px;
+
+  color:#75647b;
+
+  font-weight:700;
+}
+
+.shade-match-card{
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  padding:13px;
+
+  margin-top:10px;
+
+  border-radius:15px;
+
+  background:#fffafd;
+
+  border:1px solid var(--border);
+
+  transition:.2s;
+}
+
+.shade-match-card:hover{
+  transform:translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(150,110,150,.08);
+}
+
+.shade-circle{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe0eb,
+      #e8e2ff
+    );
+}
+
+.shade-info{
+  flex:1;
+}
+
+.shade-name{
+  font-size:11px;
+  font-weight:800;
+}
+
+.shade-brand{
+  margin-top:2px;
+
+  font-size:9px;
+  color:#a49aa7;
+}
+
+.shade-type{
+  margin-top:3px;
+
+  font-size:8px;
+  color:#b3a9b4;
+}
+
+.read-only-note{
+  font-size:8px;
+  font-weight:800;
+  color:#9c82a1;
+}
+
+
+/* =====================================================
+   SETTINGS TABS
+===================================================== */
+
+.settings-tabs{
+  display:flex;
+
+  gap:5px;
+
+  overflow-x:auto;
+
+  padding:5px;
+
+  margin-bottom:18px;
+
+  border-radius:17px;
+
+  background:#f8f0f7;
+
+  border:1px solid #eee2ec;
+}
+
+.settings-tabs::-webkit-scrollbar{
+  height:4px;
+}
+
+.settings-tabs::-webkit-scrollbar-thumb{
+  background:#e6d4e2;
+  border-radius:20px;
+}
+
+.settings-tab{
+  border:0;
+
+  background:transparent;
+
+  color:#998c9e;
+
+  padding:10px 17px;
+
+  border-radius:12px;
+
+  font-size:10px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  white-space:nowrap;
+}
+
+.settings-tab.active{
+  background:white;
+
+  color:#9d7193;
+
+  box-shadow:
+    0 4px 13px rgba(150,110,150,.08);
+}
+
+.library-row{
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  margin-bottom:8px;
+
+  padding:10px 12px;
+
+  border-radius:12px;
+
+  background:#fcf8fc;
+
+  border:1px solid #f0e6ef;
+}
+
+.library-row span{
+  flex:1;
+
+  font-size:11px;
+
+  color:#78677c;
+}
+
+.delete-small{
+  border:0;
+
+  background:#fff0f3;
+
+  color:#b77889;
+
+  width:25px;
+  height:25px;
+
+  border-radius:50%;
+
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-backdrop{
+  position:fixed;
+
+  inset:0;
+
+  z-index:500;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(74,55,78,.20);
+
+  backdrop-filter:blur(7px);
+}
+
+.modal-backdrop.show{
+  display:flex;
+}
+
+.modal{
+  width:min(620px,100%);
+
+  max-height:90vh;
+
+  overflow-y:auto;
+
+  padding:27px;
+
+  border-radius:25px;
+
+  background:#fffafd;
+
+  border:1px solid var(--border);
+
+  box-shadow:
+    0 30px 80px rgba(80,50,90,.20);
+}
+
+.modal-header{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.modal-title{
+  font-family:Georgia,serif;
+
+  font-size:25px;
+
+  color:#725d78;
+}
+
+.close{
+  border:0;
+
+  background:#f7eef7;
+
+  color:#8d788f;
+
+  width:33px;
+  height:33px;
+
+  border-radius:50%;
+
+  cursor:pointer;
+}
+
+.modal-actions{
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:8px;
+
+  margin-top:20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:215px;
+  }
+
+  .main{
+    margin-left:215px;
+    padding:30px 25px;
+  }
+
+  .product-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .stats{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .profile-info-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+}
+
+@media(max-width:680px){
+
+  .sidebar{
+    position:relative;
+
+    width:100%;
+    height:auto;
+
+    max-height:none;
+
+    border-right:0;
+    border-bottom:1px solid var(--border);
+  }
+
+  .main{
+    margin-left:0;
+    padding:25px 16px;
+  }
+
+  .form-grid,
+  .product-grid,
+  .profile-info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .page-title{
+    font-size:30px;
+  }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+  <!-- APP NAME
+       Cytara is NOT here.
+       Cytara™ only appears in footer.
+  -->
+
+  <div class="logo">
+
+    <div class="logo-name">
+      Lunelle
+    </div>
+
+    <div class="logo-sub">
+      my beauty diary ♡
+    </div>
+
+  </div>
+
+
+  <!-- MY SPACE -->
+
+  <div class="nav-section">
+
+    <div class="nav-label">
+      My Space
+    </div>
+
+    <button
+      class="nav-item active"
+      data-page="dashboard"
+      onclick="navigate('dashboard',this)"
+    >
+      <span class="nav-icon">⌂</span>
+      Dashboard
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="all"
+      onclick="navigate('all',this)"
+    >
+      <span class="nav-icon">♡</span>
+      All Products
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="add"
+      onclick="navigate('add',this)"
+    >
+      <span class="nav-icon">＋</span>
+      Add Product
+    </button>
+
+  </div>
+
+
+  <!-- MY LISTS -->
+
+  <div class="nav-section">
+
+    <div class="nav-label">
+      My Lists
+    </div>
+
+    <button
+      class="nav-item"
+      data-page="yes"
+      onclick="navigate('yes',this)"
+    >
+      <span class="nav-icon">♡</span>
+      YES List
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="maybe"
+      onclick="navigate('maybe',this)"
+    >
+      <span class="nav-icon">✧</span>
+      MAYBE List
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="no"
+      onclick="navigate('no',this)"
+    >
+      <span class="nav-icon">♡</span>
+      NO List
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="empties"
+      onclick="navigate('empties',this)"
+    >
+      <span class="nav-icon">♧</span>
+      EMPTIES
+    </button>
+
+  </div>
+
+
+  <!-- MY DETAILS -->
+
+  <div class="nav-section">
+
+    <div class="nav-label">
+      My Details
+    </div>
+
+    <button
+      class="nav-item"
+      data-page="profile"
+      onclick="navigate('profile',this)"
+    >
+      <span class="nav-icon">♙</span>
+      My Profile
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="avoid"
+      onclick="navigate('avoid',this)"
+    >
+      <span class="nav-icon">⚠</span>
+      What Should I Avoid?
+    </button>
+
+    <button
+      class="nav-item"
+      data-page="ingredients"
+      onclick="navigate('ingredients',this)"
+    >
+      <span class="nav-icon">✦</span>
+      My Ingredients
+    </button>
+
+  </div>
+
+
+  <!-- MORE -->
+
+  <div class="nav-section">
+
+    <div class="nav-label">
+      More
+    </div>
+
+    <button
+      class="nav-item"
+      data-page="settings"
+      onclick="navigate('settings',this)"
+    >
+      <span class="nav-icon">⚙</span>
+      Settings
+    </button>
+
+  </div>
+
+
+  <div class="sidebar-spacer"></div>
+
+
+  <!-- TRADEMARK ONLY -->
+
+  <div class="footer">
+    © 2026 Cytara™
+  </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+  <div
+    class="container"
+    id="app"
+  ></div>
+
+</main>
+
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  class="modal-backdrop"
+  id="modalBackdrop"
+  onclick="closeModalOutside(event)"
+>
+
+  <div
+    class="modal"
+    id="modal"
+  ></div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE_KEY =
+  "lunelle_beauty_diary_v1";
+
+
+const defaultData = {
+
+  personal:{
+    name:"",
+    age:"",
+    skinType:"",
+    skinCondition:"",
+    skinTone:"",
+    personalColor:""
+  },
+
+  products:[],
+
+  brands:[
+    "Laneige",
+    "Clio",
+    "Rom&nd",
+    "NARS",
+    "Rare Beauty"
+  ],
+
+  ingredients:[
+    "Alcohol",
+    "Fragrance",
+    "Essential Oil",
+    "Denatured Alcohol",
+    "Ethanol"
+  ],
+
+  avoidIngredients:[],
+
+  types:{
+
+    Skincare:[
+      "Cleanser",
+      "Toner",
+      "Essence",
+      "Serum",
+      "Moisturizer",
+      "Sunscreen",
+      "Mask",
+      "Eye Cream",
+      "Oil",
+      "Exfoliator"
+    ],
+
+    Makeup:[
+      "Foundation",
+      "Cushion",
+      "Concealer",
+      "Powder",
+      "Blush",
+      "Contour",
+      "Bronzer",
+      "Highlighter",
+      "Eyeshadow",
+      "Eyeliner",
+      "Mascara",
+      "Eyebrow",
+      "Lipstick",
+      "Lip Tint",
+      "Lip Gloss",
+      "Lip Liner"
+    ],
+
+    Haircare:[
+      "Shampoo",
+      "Conditioner",
+      "Hair Mask",
+      "Hair Oil",
+      "Hair Serum",
+      "Styling"
+    ],
+
+    Bodycare:[
+      "Body Wash",
+      "Body Lotion",
+      "Body Scrub",
+      "Body Oil",
+      "Hand Cream"
+    ]
+
+  },
+
+  language:"en"
+
+};
+
+
+let data =
+  loadData();
+
+let currentSettingsTab =
+  "personal";
+
+let editingProductId =
+  null;
+
+
+/* =====================================================
+   LOAD / SAVE
+===================================================== */
+
+function loadData(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+    if(!saved){
+
+      return structuredClone(
+        defaultData
+      );
+
+    }
+
+    const parsed =
+      JSON.parse(saved);
+
+    return {
+
+      ...structuredClone(
+        defaultData
+      ),
+
+      ...parsed,
+
+      personal:{
+        ...defaultData.personal,
+        ...(parsed.personal || {})
+      },
+
+      types:{
+        ...defaultData.types,
+        ...(parsed.types || {})
+      }
+
+    };
+
+  }catch(error){
+
+    console.error(error);
+
+    return structuredClone(
+      defaultData
+    );
+
+  }
+
+}
+
+
+function saveData(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
+}
+
+
+/* =====================================================
+   HELPERS
+===================================================== */
+
+function escapeHTML(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+function normalizeIngredient(value){
+
+  return String(
+    value || ""
+  )
+  .trim()
+  .toLowerCase();
+
+}
+
+
+function parseIngredients(text){
+
+  return String(
+    text || ""
+  )
+  .split(/[,;\n]+/)
+  .map(
+    x => x.trim()
+  )
+  .filter(Boolean);
+
+}
+
+
+function ingredientMatches(
+  ingredients
+){
+
+  const avoided =
+    data.avoidIngredients || [];
+
+  return ingredients.filter(
+    ingredient =>
+
+      avoided.some(
+        bad =>
+
+          normalizeIngredient(
+            ingredient
+          )
+          ===
+          normalizeIngredient(
+            bad
+          )
+      )
+  );
+
+}
+
+
+function isShadeEligible(type){
+
+  const eligible = [
+
+    "Foundation",
+    "Cushion",
+    "Concealer",
+    "Powder",
+    "Blush",
+    "Bronzer",
+    "Contour",
+    "Highlighter",
+    "Lipstick",
+    "Lip Tint",
+    "Lip Gloss",
+    "Lip Liner",
+    "Eyeshadow"
+
+  ];
+
+  return eligible.includes(
+    type
+  );
+
+}
+
+
+function statusLabel(status){
+
+  const map = {
+
+    not_open:
+      "Not Open",
+
+    opened:
+      "Opened",
+
+    finished:
+      "Finished",
+
+    decluttered:
+      "Decluttered"
+
+  };
+
+  return (
+    map[status] ||
+    "Not Open"
+  );
+
+}
+
+
+function getResultLabel(result){
+
+  if(result === "yes")
+    return "YES";
+
+  if(result === "maybe")
+    return "MAYBE";
+
+  if(result === "no")
+    return "NO";
+
+  return "—";
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function navigate(
+  page,
+  button
+){
+
+  document
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  renderPage(page);
+
+}
+
+
+function renderPage(page){
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+
+  switch(page){
+
+    case "dashboard":
+
+      renderDashboard();
+
+      break;
+
+
+    case "all":
+
+      renderProductList(
+        "All Products",
+        data.products
+      );
+
+      break;
+
+
+    case "add":
+
+      renderAddProduct();
+
+      break;
+
+
+    case "yes":
+
+      renderProductList(
+        "YES List ♡",
+        data.products.filter(
+          p =>
+            p.result === "yes"
+        )
+      );
+
+      break;
+
+
+    case "maybe":
+
+      renderProductList(
+        "MAYBE List ✧",
+        data.products.filter(
+          p =>
+            p.result === "maybe"
+        )
+      );
+
+      break;
+
+
+    case "no":
+
+      renderProductList(
+        "NO List ♡",
+        data.products.filter(
+          p =>
+            p.result === "no"
+        )
+      );
+
+      break;
+
+
+    case "empties":
+
+      renderProductList(
+        "EMPTIES ♧",
+        data.products.filter(
+          p =>
+            p.status === "finished"
+        )
+      );
+
+      break;
+
+
+    case "profile":
+
+      renderProfile();
+
+      break;
+
+
+    case "avoid":
+
+      renderAvoid();
+
+      break;
+
+
+    case "ingredients":
+
+      renderMyIngredients();
+
+      break;
+
+
+    case "settings":
+
+      renderSettings();
+
+      break;
+
+  }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function renderDashboard(){
+
+  const personal =
+    data.personal;
+
+  const name =
+    personal.name ||
+    "Beautiful";
+
+
+  const total =
+    data.products.length;
+
+  const yes =
+    data.products.filter(
+      p =>
+        p.result === "yes"
+    ).length;
+
+  const maybe =
+    data.products.filter(
+      p =>
+        p.result === "maybe"
+    ).length;
+
+  const no =
+    data.products.filter(
+      p =>
+        p.result === "no"
+    ).length;
+
+  const empties =
+    data.products.filter(
+      p =>
+        p.status === "finished"
+    ).length;
+
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        Hello, ${escapeHTML(name)} ♡
+      </div>
+
+      <div class="page-description">
+        A little place to remember what
+        works for you — and what doesn't.
+      </div>
+
+    </div>
+
+
+    <div class="welcome">
+
+      <div class="welcome-small">
+        YOUR BEAUTY SPACE
+      </div>
+
+      <div class="welcome-name">
+        Your beauty, your rules.
+      </div>
+
+      <div class="page-description">
+        Keep track of every product,
+        ingredient, shade and little discovery.
+      </div>
+
+      <button
+        class="btn btn-primary"
+        style="margin-top:17px"
+        onclick="
+          navigate(
+            'add',
+            document.querySelector('[data-page=add]')
+          )
+        "
+      >
+        ＋ Add a product
+      </button>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <div class="stat-number">
+          ${total}
+        </div>
+
+        <div class="stat-label">
+          Products
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="stat-number">
+          ${yes}
+        </div>
+
+        <div class="stat-label">
+          YES List
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="stat-number">
+          ${maybe}
+        </div>
+
+        <div class="stat-label">
+          Maybe
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div class="stat-number">
+          ${no}
+        </div>
+
+        <div class="stat-label">
+          No List
+        </div>
+
+      </div>
+
+    </div>
+
+
+    ${
+      empties
+      ? `
+
+        <div
+          class="card"
+          style="margin-top:20px"
+        >
+
+          <div class="card-title">
+            Tiny reminder ♧
+          </div>
+
+          <div class="card-description">
+            You have ${empties}
+            finished product${empties === 1 ? "" : "s"}
+            in your Empties.
+          </div>
+
+        </div>
+
+      `
+      : ""
+    }
+
+
+    ${
+      data.products.length
+
+      ? `
+
+        <div
+          class="card"
+          style="margin-top:20px"
+        >
+
+          <div class="card-title">
+            Recently Added ♡
+          </div>
+
+          <div
+            class="product-grid"
+            style="margin-top:15px"
+          >
+
+            ${
+              [...data.products]
+                .reverse()
+                .slice(0,3)
+                .map(
+                  productCard
+                )
+                .join("")
+            }
+
+          </div>
+
+        </div>
+
+      `
+
+      : ""
+
+    }
+
+  `;
+
+}
+
+
+/* =====================================================
+   PRODUCT LIST
+===================================================== */
+
+function renderProductList(
+  title,
+  products
+){
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        ${escapeHTML(title)}
+      </div>
+
+      <div class="page-description">
+        ${products.length}
+        product${products.length === 1 ? "" : "s"} here.
+      </div>
+
+    </div>
+
+
+    ${
+      products.length
+
+      ? `
+
+        <div class="product-grid">
+
+          ${
+            products
+              .map(
+                productCard
+              )
+              .join("")
+          }
+
+        </div>
+
+      `
+
+      : `
+
+        <div class="card">
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              ♡
+            </div>
+
+            <div class="empty-title">
+              Nothing here yet.
+            </div>
+
+            <div class="empty-text">
+              Your products will appear here
+              once you start adding them.
+            </div>
+
+          </div>
+
+        </div>
+
+      `
+
+    }
+
+  `;
+
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+function productCard(p){
+
+  return `
+
+    <div
+      class="product-card"
+      onclick="viewProduct(${p.id})"
+    >
+
+      ${
+        p.result
+        ? `
+
+          <div class="product-result">
+
+            ${
+              p.result === "yes"
+              ? "♡"
+              : p.result === "maybe"
+              ? "✧"
+              : "♡"
+            }
+
+          </div>
+
+        `
+        : ""
+      }
+
+
+      <span class="product-status">
+
+        ${escapeHTML(
+          statusLabel(
+            p.status
+          )
+        )}
+
+      </span>
+
+
+      <div class="product-name">
+        ${escapeHTML(p.name)}
+      </div>
+
+
+      ${
+        p.brand
+        ? `
+
+          <div class="product-brand">
+            ${escapeHTML(p.brand)}
+          </div>
+
+        `
+        : ""
+      }
+
+
+      <div class="product-meta">
+
+        <span class="meta-chip">
+          ${escapeHTML(
+            p.category
+          )}
+        </span>
+
+
+        ${
+          p.type
+          ? `
+
+            <span class="meta-chip">
+              ${escapeHTML(p.type)}
+            </span>
+
+          `
+          : ""
+        }
+
+
+        ${
+          p.shadeMatch
+          ? `
+
+            <span class="meta-chip">
+
+              ${
+                p.shadeMatch === "match"
+                ? "Shade ♡"
+                : "Shade —"
+              }
+
+            </span>
+
+          `
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   ADD / EDIT PRODUCT
+===================================================== */
+
+function renderAddProduct(
+  product=null
+){
+
+  editingProductId =
+    product?.id ||
+    null;
+
+
+  const p =
+    product || {
+
+      name:"",
+      brand:"",
+      category:"Makeup",
+      type:"",
+      ingredients:"",
+      result:"",
+      status:"not_open",
+      openedDate:"",
+      shadeMatch:"",
+      notes:""
+
+    };
+
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+
+        ${
+          product
+          ? "Edit your little something ♡"
+          : "Tambah sedikit sesuatu ♡"
+        }
+
+      </div>
+
+      <div class="page-description">
+        Keep the details you want to remember.
+      </div>
+
+    </div>
+
+
+    <div
+      class="warning-box"
+      id="ingredientWarning"
+    ></div>
+
+
+    <div class="card">
+
+      <div class="form-grid">
+
+
+        <!-- PRODUCT NAME -->
+
+        <div class="form-group full">
+
+          <label class="form-label">
+            Product Name
+          </label>
+
+          <input
+            class="form-input"
+            id="productName"
+            value="${escapeHTML(p.name)}"
+            placeholder="e.g. Glow Serum"
+          >
+
+        </div>
+
+
+        <!-- BRAND -->
+
+        <div class="form-group full">
+
+          <label class="form-label">
+
+            Brand
+
+            <span class="optional">
+              · optional
+            </span>
+
+          </label>
+
+
+          <div class="inline">
+
+            <input
+              class="form-input"
+              id="brandInput"
+              list="brandList"
+              value="${escapeHTML(p.brand || "")}"
+              placeholder="e.g. Laneige"
+            >
+
+
+            <button
+              type="button"
+              class="btn btn-soft"
+              onclick="quickAddBrand()"
+            >
+              ＋ New
+            </button>
+
+          </div>
+
+
+          <datalist id="brandList">
+
+            ${
+              data.brands
+                .map(
+                  b =>
+                    `<option value="${escapeHTML(b)}">`
+                )
+                .join("")
+            }
+
+          </datalist>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Category
+          </label>
+
+          <select
+            class="form-select"
+            id="categorySelect"
+            onchange="updateTypeOptions()"
+          >
+
+            ${
+              Object.keys(
+                data.types
+              )
+              .map(
+                category =>
+                  `
+
+                  <option
+                    value="${escapeHTML(category)}"
+                    ${
+                      p.category === category
+                      ? "selected"
+                      : ""
+                    }
+                  >
+                    ${escapeHTML(category)}
+                  </option>
+
+                  `
+              )
+              .join("")
+            }
+
+          </select>
+
+        </div>
+
+
+        <!-- PRODUCT TYPE -->
+
+        <div class="form-group">
+
+          <label class="form-label">
+
+            Product Type
+
+            <span class="optional">
+              · optional
+            </span>
+
+          </label>
+
+
+          <div class="inline">
+
+            <select
+              class="form-select"
+              id="typeSelect"
+              onchange="updateShadeSection()"
+            ></select>
+
+
+            <button
+              type="button"
+              class="btn btn-blue"
+              onclick="quickAddProductType()"
+            >
+              ＋ New
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- INGREDIENTS -->
+
+        <div class="form-group full">
+
+          <label class="form-label">
+            Ingredients
+          </label>
+
+          <textarea
+            class="form-textarea"
+            id="ingredientsInput"
+            placeholder="Water, Glycerin, Niacinamide..."
+            oninput="checkIngredientWarning()"
+          >${escapeHTML(p.ingredients || "")}</textarea>
+
+        </div>
+
+
+        <!-- SHADE -->
+
+        <div
+          class="form-group full"
+          id="shadeSection"
+        ></div>
+
+
+        <!-- OPENED DATE -->
+
+        <div class="form-group">
+
+          <label class="form-label">
+
+            Opened On
+
+            <span class="optional">
+              · optional
+            </span>
+
+          </label>
+
+          <input
+            class="form-input"
+            type="date"
+            id="openedDate"
+            value="${escapeHTML(p.openedDate || "")}"
+          >
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Product Status
+          </label>
+
+          <select
+            class="form-select"
+            id="statusSelect"
+          >
+
+            <option
+              value="not_open"
+              ${
+                p.status === "not_open"
+                ? "selected"
+                : ""
+              }
+            >
+              Not Open
+            </option>
+
+
+            <option
+              value="opened"
+              ${
+                p.status === "opened"
+                ? "selected"
+                : ""
+              }
+            >
+              Opened
+            </option>
+
+
+            <option
+              value="finished"
+              ${
+                p.status === "finished"
+                ? "selected"
+                : ""
+              }
+            >
+              Finished / Empty
+            </option>
+
+
+            <option
+              value="decluttered"
+              ${
+                p.status === "decluttered"
+                ? "selected"
+                : ""
+              }
+            >
+              Decluttered
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="form-group full">
+
+          <label class="form-label">
+            How did it work for you?
+          </label>
+
+
+          <div class="result-buttons">
+
+            <button
+              type="button"
+              class="result-btn ${
+                p.result === "yes"
+                ? "selected yes"
+                : ""
+              }"
+              onclick="selectResult('yes')"
+              id="resultYes"
+            >
+              ♡ YES
+            </button>
+
+
+            <button
+              type="button"
+              class="result-btn ${
+                p.result === "maybe"
+                ? "selected maybe"
+                : ""
+              }"
+              onclick="selectResult('maybe')"
+              id="resultMaybe"
+            >
+              ✧ MAYBE
+            </button>
+
+
+            <button
+              type="button"
+              class="result-btn ${
+                p.result === "no"
+                ? "selected no"
+                : ""
+              }"
+              onclick="selectResult('no')"
+              id="resultNo"
+            >
+              ♡ NO
+            </button>
+
+          </div>
+
+
+          <input
+            type="hidden"
+            id="resultInput"
+            value="${escapeHTML(p.result || "")}"
+          >
+
+        </div>
+
+
+        <!-- NOTES -->
+
+        <div class="form-group full">
+
+          <label class="form-label">
+
+            Notes
+
+            <span class="optional">
+              · optional
+            </span>
+
+          </label>
+
+
+          <textarea
+            class="form-textarea"
+            id="notesInput"
+            placeholder="What did you love? What didn't work?"
+          >${escapeHTML(p.notes || "")}</textarea>
+
+        </div>
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          justify-content:flex-end;
+          gap:8px;
+          margin-top:10px;
+        "
+      >
+
+        <button
+          class="btn btn-soft"
+          onclick="
+            navigate(
+              'dashboard',
+              document.querySelector('[data-page=dashboard]')
+            )
+          "
+        >
+          Cancel
+        </button>
+
+
+        <button
+          class="btn btn-primary"
+          onclick="saveProduct()"
+        >
+
+          ${
+            product
+            ? "Save Changes ♡"
+            : "Save Product ♡"
+          }
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  updateTypeOptions(
+    p.type
+  );
+
+  updateShadeSection(
+    p.shadeMatch
+  );
+
+  checkIngredientWarning();
+
+}
+
+
+/* =====================================================
+   TYPE OPTIONS
+===================================================== */
+
+function updateTypeOptions(
+  selected=""
+){
+
+  const category =
+    document.getElementById(
+      "categorySelect"
+    )?.value;
+
+  const select =
+    document.getElementById(
+      "typeSelect"
+    );
+
+
+  if(
+    !select ||
+    !category
+  )
+    return;
+
+
+  const types =
+    data.types[
+      category
+    ] || [];
+
+
+  select.innerHTML = `
+
+    <option value="">
+      Select type
+    </option>
+
+    ${
+      types
+        .map(
+          type =>
+            `
+
+            <option
+              value="${escapeHTML(type)}"
+              ${
+                selected === type
+                ? "selected"
+                : ""
+              }
+            >
+              ${escapeHTML(type)}
+            </option>
+
+            `
+        )
+        .join("")
+    }
+
+  `;
+
+
+  updateShadeSection();
+
+}
+
+
+/* =====================================================
+   SHADE SECTION
+===================================================== */
+
+function updateShadeSection(
+  selected=""
+){
+
+  const section =
+    document.getElementById(
+      "shadeSection"
+    );
+
+
+  if(!section)
+    return;
+
+
+  const type =
+    document.getElementById(
+      "typeSelect"
+    )?.value;
+
+
+  if(
+    !isShadeEligible(type)
+  ){
+
+    section.innerHTML = "";
+
+    return;
+
+  }
+
+
+  const current =
+    selected ||
+    document.getElementById(
+      "shadeMatchInput"
+    )?.value ||
+    "";
+
+
+  section.innerHTML = `
+
+    <label class="form-label">
+      Shade Match Me
+    </label>
+
+
+    <div class="chips">
+
+      <button
+        type="button"
+        class="chip ${
+          current === "match"
+          ? "selected"
+          : ""
+        }"
+        onclick="selectShade('match')"
+      >
+        ♡ Shade Match Me
+      </button>
+
+
+      <button
+        type="button"
+        class="chip ${
+          current === "not_match"
+          ? "selected"
+          : ""
+        }"
+        onclick="selectShade('not_match')"
+      >
+        Shade Not For Me
+      </button>
+
+    </div>
+
+
+    <input
+      type="hidden"
+      id="shadeMatchInput"
+      value="${escapeHTML(current)}"
+    >
+
+  `;
+
+}
+
+
+function selectShade(
+  value
+){
+
+  const input =
+    document.getElementById(
+      "shadeMatchInput"
+    );
+
+
+  if(input)
+    input.value =
+      value;
+
+
+  updateShadeSection(
+    value
+  );
+
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+function selectResult(
+  result
+){
+
+  document
+    .querySelectorAll(
+      ".result-btn"
+    )
+    .forEach(
+      btn => {
+
+        btn.classList.remove(
+          "selected",
+          "yes",
+          "maybe",
+          "no"
+        );
+
+      }
+    );
+
+
+  const id =
+    "result" +
+    result
+      .charAt(0)
+      .toUpperCase() +
+    result.slice(1);
+
+
+  const button =
+    document.getElementById(
+      id
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "selected",
+      result
+    );
+
+  }
+
+
+  const input =
+    document.getElementById(
+      "resultInput"
+    );
+
+
+  if(input)
+    input.value =
+      result;
+
+}
+
+
+/* =====================================================
+   INGREDIENT WARNING
+===================================================== */
+
+function checkIngredientWarning(){
+
+  const warning =
+    document.getElementById(
+      "ingredientWarning"
+    );
+
+  const input =
+    document.getElementById(
+      "ingredientsInput"
+    );
+
+
+  if(
+    !warning ||
+    !input
+  )
+    return;
+
+
+  const ingredients =
+    parseIngredients(
+      input.value
+    );
+
+
+  const matches =
+    ingredientMatches(
+      ingredients
+    );
+
+
+  if(
+    !matches.length
+  ){
+
+    warning.classList.remove(
+      "show"
+    );
+
+    warning.innerHTML =
+      "";
+
+    return;
+
+  }
+
+
+  warning.classList.add(
+    "show"
+  );
+
+
+  warning.innerHTML = `
+
+    <div class="warning-title">
+      ⚠ You may want to check this one
+    </div>
+
+
+    <div class="warning-text">
+
+      This product contains
+
+      <strong>
+        ${
+          matches
+            .map(
+              escapeHTML
+            )
+            .join(", ")
+        }
+      </strong>
+
+      — an ingredient you've marked
+      as something to avoid.
+
+      <br><br>
+
+      This is a personal reminder based
+      on your own list, not a medical judgement.
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
+
+function saveProduct(){
+
+  const name =
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+
+  if(!name){
+
+    alert(
+      "Please add a product name ♡"
+    );
+
+    return;
+
+  }
+
+
+  const category =
+    document.getElementById(
+      "categorySelect"
+    ).value;
+
+
+  const type =
+    document.getElementById(
+      "typeSelect"
+    ).value;
+
+
+  const product = {
+
+    id:
+      editingProductId ||
+      Date.now(),
+
+    name,
+
+    brand:
+      document.getElementById(
+        "brandInput"
+      ).value.trim(),
+
+    category,
+
+    type,
+
+    ingredients:
+      document.getElementById(
+        "ingredientsInput"
+      ).value.trim(),
+
+    result:
+      document.getElementById(
+        "resultInput"
+      ).value,
+
+    status:
+      document.getElementById(
+        "statusSelect"
+      ).value,
+
+    openedDate:
+      document.getElementById(
+        "openedDate"
+      ).value,
+
+    shadeMatch:
+      document.getElementById(
+        "shadeMatchInput"
+      )?.value || "",
+
+    notes:
+      document.getElementById(
+        "notesInput"
+      ).value.trim(),
+
+    updatedAt:
+      new Date().toISOString()
+
+  };
+
+
+  const existingIndex =
+    data.products.findIndex(
+      p =>
+        p.id ===
+        product.id
+    );
+
+
+  if(
+    existingIndex >= 0
+  ){
+
+    data.products[
+      existingIndex
+    ] = product;
+
+  }else{
+
+    data.products.push(
+      product
+    );
+
+  }
+
+
+  saveData();
+
+
+  editingProductId =
+    null;
+
+
+  alert(
+    "Saved ♡"
+  );
+
+
+  navigate(
+    "all",
+    document.querySelector(
+      '[data-page="all"]'
+    )
+  );
+
+}
+
+
+/* =====================================================
+   QUICK ADD BRAND
+===================================================== */
+
+function quickAddBrand(){
+
+  const brand =
+    prompt(
+      "Add a new brand ♡"
+    );
+
+
+  if(!brand)
+    return;
+
+
+  const clean =
+    brand.trim();
+
+
+  if(!clean)
+    return;
+
+
+  const exists =
+    data.brands.some(
+      x =>
+        x.toLowerCase() ===
+        clean.toLowerCase()
+    );
+
+
+  if(exists){
+
+    alert(
+      "This brand is already in your library ♡"
+    );
+
+    return;
+
+  }
+
+
+  data.brands.push(
+    clean
+  );
+
+  data.brands.sort();
+
+  saveData();
+
+
+  const input =
+    document.getElementById(
+      "brandInput"
+    );
+
+
+  if(input)
+    input.value =
+      clean;
+
+
+  const list =
+    document.getElementById(
+      "brandList"
+    );
+
+
+  if(list){
+
+    list.innerHTML =
+      data.brands
+        .map(
+          b =>
+            `<option value="${escapeHTML(b)}">`
+        )
+        .join("");
+
+  }
+
+}
+
+
+/* =====================================================
+   QUICK ADD PRODUCT TYPE
+===================================================== */
+
+function quickAddProductType(){
+
+  const category =
+    document.getElementById(
+      "categorySelect"
+    )?.value;
+
+
+  if(!category)
+    return;
+
+
+  const type =
+    prompt(
+      `Add a new ${category} type ♡`
+    );
+
+
+  if(!type)
+    return;
+
+
+  const clean =
+    type.trim();
+
+
+  if(!clean)
+    return;
+
+
+  if(
+    !data.types[category]
+  ){
+
+    data.types[category] =
+      [];
+
+  }
+
+
+  const exists =
+    data.types[
+      category
+    ].some(
+      x =>
+        x.toLowerCase() ===
+        clean.toLowerCase()
+    );
+
+
+  if(exists){
+
+    alert(
+      "This product type already exists ♡"
+    );
+
+    return;
+
+  }
+
+
+  data.types[
+    category
+  ].push(
+    clean
+  );
+
+  data.types[
+    category
+  ].sort();
+
+
+  saveData();
+
+
+  updateTypeOptions(
+    clean
+  );
+
+}
+
+
+/* =====================================================
+   VIEW PRODUCT
+===================================================== */
+
+function viewProduct(
+  id
+){
+
+  const p =
+    data.products.find(
+      x =>
+        x.id === id
+    );
+
+
+  if(!p)
+    return;
+
+
+  document.getElementById(
+    "modal"
+  ).innerHTML = `
+
+    <div class="modal-header">
+
+      <div class="modal-title">
+        ${escapeHTML(p.name)}
+      </div>
+
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    ${
+      p.brand
+      ? `
+
+        <div
+          style="
+            color:#a092a4;
+            font-size:11px;
+            margin-bottom:15px;
+          "
+        >
+          ${escapeHTML(p.brand)}
+        </div>
+
+      `
+      : ""
+    }
+
+
+    <div class="profile-info-grid">
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Category
+        </div>
+
+        <div class="profile-info-value">
+          ${escapeHTML(p.category)}
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Type
+        </div>
+
+        <div class="profile-info-value">
+          ${escapeHTML(
+            p.type || "—"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Status
+        </div>
+
+        <div class="profile-info-value">
+          ${escapeHTML(
+            statusLabel(
+              p.status
+            )
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Opened
+        </div>
+
+        <div class="profile-info-value">
+          ${escapeHTML(
+            p.openedDate || "—"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Result
+        </div>
+
+        <div class="profile-info-value">
+          ${escapeHTML(
+            getResultLabel(
+              p.result
+            )
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Shade
+        </div>
+
+        <div class="profile-info-value">
+
+          ${
+            p.shadeMatch ===
+            "match"
+
+            ? "♡ Match Me"
+
+            : p.shadeMatch ===
+              "not_match"
+
+            ? "Not My Shade"
+
+            : "—"
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    ${
+      p.ingredients
+      ? `
+
+        <div
+          class="card"
+          style="
+            margin-top:15px;
+            box-shadow:none;
+          "
+        >
+
+          <div class="card-title">
+            Ingredients
+          </div>
+
+
+          <div
+            class="card-description"
+            style="line-height:2"
+          >
+
+            ${
+              parseIngredients(
+                p.ingredients
+              )
+              .map(
+                ingredient =>
+                  `
+
+                  <span
+                    class="meta-chip"
+                    style="
+                      display:inline-block;
+                      margin:3px;
+                    "
+                  >
+                    ${escapeHTML(
+                      ingredient
+                    )}
+                  </span>
+
+                  `
+              )
+              .join("")
+            }
+
+          </div>
+
+        </div>
+
+      `
+      : ""
+    }
+
+
+    ${
+      p.notes
+      ? `
+
+        <div
+          class="card"
+          style="
+            margin-top:15px;
+            box-shadow:none;
+          "
+        >
+
+          <div class="card-title">
+            Notes
+          </div>
+
+
+          <div
+            class="card-description"
+            style="margin-top:10px"
+          >
+            ${escapeHTML(p.notes)}
+          </div>
+
+        </div>
+
+      `
+      : ""
+    }
+
+
+    <div class="modal-actions">
+
+      <button
+        class="btn btn-danger"
+        onclick="deleteProduct(${p.id})"
+      >
+        Delete
+      </button>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="editProduct(${p.id})"
+      >
+        Edit Product ♡
+      </button>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById(
+      "modalBackdrop"
+    )
+    .classList.add(
+      "show"
+    );
+
+}
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+function editProduct(
+  id
+){
+
+  const p =
+    data.products.find(
+      x =>
+        x.id === id
+    );
+
+
+  if(!p)
+    return;
+
+
+  closeModal();
+
+
+  renderAddProduct(
+    p
+  );
+
+
+  document
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+
+  document
+    .querySelector(
+      '[data-page="add"]'
+    )
+    ?.classList.add(
+      "active"
+    );
+
+}
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+function deleteProduct(
+  id
+){
+
+  if(
+    !confirm(
+      "Delete this product permanently?"
+    )
+  )
+    return;
+
+
+  data.products =
+    data.products.filter(
+      p =>
+        p.id !== id
+    );
+
+
+  saveData();
+
+
+  closeModal();
+
+
+  renderProductList(
+    "All Products",
+    data.products
+  );
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function closeModal(){
+
+  document
+    .getElementById(
+      "modalBackdrop"
+    )
+    .classList.remove(
+      "show"
+    );
+
+}
+
+
+function closeModalOutside(
+  event
+){
+
+  if(
+    event.target.id ===
+    "modalBackdrop"
+  ){
+
+    closeModal();
+
+  }
+
+}
+
+
+/* =====================================================
+   MY PROFILE
+===================================================== */
+
+function renderProfile(){
+
+  const p =
+    data.personal;
+
+
+  const shades =
+    data.products.filter(
+      product =>
+        product.shadeMatch ===
+        "match"
+    );
+
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        My Profile ♡
+      </div>
+
+      <div class="page-description">
+        Your personal beauty profile
+        and shade diary.
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        Personal Information
+      </div>
+
+      <div class="card-description">
+        Edit these details from
+        Settings → Personal.
+      </div>
+
+
+      <div class="profile-info-grid">
+
+        ${profileField(
+          "Name",
+          p.name
+        )}
+
+        ${profileField(
+          "Age",
+          p.age
+        )}
+
+        ${profileField(
+          "Skin Type",
+          p.skinType
+        )}
+
+        ${profileField(
+          "Skin Condition",
+          p.skinCondition
+        )}
+
+        ${profileField(
+          "Skin Tone",
+          p.skinTone
+        )}
+
+        ${profileField(
+          "Personal Color",
+          p.personalColor
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        My Shade Matches 🎀
+      </div>
+
+      <div class="card-description">
+        Makeup shades you've marked
+        as <b>Shade Match Me</b>.
+        This section is read-only.
+      </div>
+
+
+      ${
+        shades.length
+
+        ? shades
+            .map(
+              product =>
+                `
+
+                <div
+                  class="shade-match-card"
+                  onclick="viewProduct(${product.id})"
+                >
+
+                  <div class="shade-circle">
+                    🎀
+                  </div>
+
+
+                  <div class="shade-info">
+
+                    <div class="shade-name">
+                      ${escapeHTML(
+                        product.name
+                      )}
+                    </div>
+
+
+                    <div class="shade-brand">
+                      ${
+                        escapeHTML(
+                          product.brand ||
+                          "No brand"
+                        )
+                      }
+                    </div>
+
+
+                    <div class="shade-type">
+                      ${
+                        escapeHTML(
+                          product.type ||
+                          product.category
+                        )
+                      }
+                    </div>
+
+                  </div>
+
+
+                  <span class="read-only-note">
+                    MATCH ♡
+                  </span>
+
+                </div>
+
+                `
+            )
+            .join("")
+
+        : `
+
+          <div class="empty">
+
+            <div class="empty-icon">
+              🎀
+            </div>
+
+            <div class="empty-title">
+              No shade matches yet.
+            </div>
+
+            <div class="empty-text">
+              Mark makeup as
+              "Shade Match Me"
+              while adding a product.
+            </div>
+
+          </div>
+
+        `
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+function profileField(
+  label,
+  value
+){
+
+  return `
+
+    <div class="profile-info">
+
+      <div class="profile-info-label">
+        ${escapeHTML(label)}
+      </div>
+
+      <div class="profile-info-value">
+        ${
+          escapeHTML(
+            value ||
+            "Not added"
+          )
+        }
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   WHAT SHOULD I AVOID
+===================================================== */
+
+function renderAvoid(){
+
+  const avoided =
+    data.avoidIngredients;
+
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        What Should I Avoid? ⚠
+      </div>
+
+      <div class="page-description">
+        Ingredients you've personally
+        decided to keep an eye on.
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        Your Avoid List
+      </div>
+
+      <div class="card-description">
+        When you add a product containing
+        one of these ingredients,
+        Lunelle will remind you.
+      </div>
+
+
+      <div
+        style="
+          margin-top:17px;
+        "
+      >
+
+        ${
+          avoided.length
+
+          ? avoided
+              .map(
+                ingredient =>
+                  `
+
+                  <span
+                    class="meta-chip"
+                    style="
+                      display:inline-flex;
+                      align-items:center;
+                      gap:6px;
+                      margin:3px;
+                      padding:8px 10px;
+                    "
+                  >
+
+                    ${escapeHTML(
+                      ingredient
+                    )}
+
+                    <button
+                      onclick="removeAvoid('${escapeHTML(ingredient)}')"
+                      style="
+                        border:0;
+                        background:transparent;
+                        color:#bd7188;
+                        cursor:pointer;
+                      "
+                    >
+                      ×
+                    </button>
+
+                  </span>
+
+                  `
+              )
+              .join("")
+
+          : `
+
+            <div class="empty">
+              Nothing here yet ♡
+            </div>
+
+          `
+
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function removeAvoid(
+  ingredient
+){
+
+  data.avoidIngredients =
+    data.avoidIngredients.filter(
+      x =>
+        normalizeIngredient(x)
+        !==
+        normalizeIngredient(
+          ingredient
+        )
+    );
+
+
+  saveData();
+
+  renderAvoid();
+
+}
+
+
+/* =====================================================
+   MY INGREDIENTS
+===================================================== */
+
+function renderMyIngredients(){
+
+  const all =
+    data.ingredients;
+
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        My Ingredients ✦
+      </div>
+
+      <div class="page-description">
+        Your ingredient library.
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        Ingredient Library
+      </div>
+
+      <div class="card-description">
+        Manage your ingredients from
+        Settings → Ingredients.
+      </div>
+
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        ${
+          all.length
+
+          ? all
+              .map(
+                ingredient =>
+                  `
+
+                  <span
+                    class="meta-chip"
+                    style="
+                      display:inline-block;
+                      margin:3px;
+                      padding:8px 11px;
+                    "
+                  >
+                    ${escapeHTML(
+                      ingredient
+                    )}
+                  </span>
+
+                  `
+              )
+              .join("")
+
+          : `
+
+            <div class="empty">
+              No ingredients yet.
+            </div>
+
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function renderSettings(){
+
+  document.getElementById(
+    "app"
+  ).innerHTML = `
+
+    <div class="page-header">
+
+      <div class="page-title">
+        Settings ⚙
+      </div>
+
+      <div class="page-description">
+        Make Lunelle feel like yours.
+      </div>
+
+    </div>
+
+
+    <div class="settings-tabs">
+
+      <button
+        class="settings-tab ${
+          currentSettingsTab ===
+          "personal"
+          ? "active"
+          : ""
+        }"
+        onclick="
+          switchSettingsTab('personal')
+        "
+      >
+        ♡ Personal
+      </button>
+
+
+      <button
+        class="settings-tab ${
+          currentSettingsTab ===
+          "brands"
+          ? "active"
+          : ""
+        }"
+        onclick="
+          switchSettingsTab('brands')
+        "
+      >
+        ♡ Brands
+      </button>
+
+
+      <button
+        class="settings-tab ${
+          currentSettingsTab ===
+          "ingredients"
+          ? "active"
+          : ""
+        }"
+        onclick="
+          switchSettingsTab('ingredients')
+        "
+      >
+        ✦ Ingredients
+      </button>
+
+
+      <button
+        class="settings-tab ${
+          currentSettingsTab ===
+          "types"
+          ? "active"
+          : ""
+        }"
+        onclick="
+          switchSettingsTab('types')
+        "
+      >
+        ♧ Types
+      </button>
+
+
+      <button
+        class="settings-tab ${
+          currentSettingsTab ===
+          "app"
+          ? "active"
+          : ""
+        }"
+        onclick="
+          switchSettingsTab('app')
+        "
+      >
+        ⚙ App
+      </button>
+
+    </div>
+
+
+    <div
+      id="settingsContent"
+    ></div>
+
+  `;
+
+
+  renderSettingsTab();
+
+}
+
+
+function switchSettingsTab(
+  tab
+){
+
+  currentSettingsTab =
+    tab;
+
+  renderSettings();
+
+}
+
+
+function renderSettingsTab(){
+
+  const el =
+    document.getElementById(
+      "settingsContent"
+    );
+
+
+  if(!el)
+    return;
+
+
+  if(
+    currentSettingsTab ===
+    "personal"
+  ){
+
+    el.innerHTML =
+      settingsPersonal();
+
+    return;
+
+  }
+
+
+  if(
+    currentSettingsTab ===
+    "brands"
+  ){
+
+    el.innerHTML =
+      settingsBrands();
+
+    return;
+
+  }
+
+
+  if(
+    currentSettingsTab ===
+    "ingredients"
+  ){
+
+    el.innerHTML =
+      settingsIngredients();
+
+    return;
+
+  }
+
+
+  if(
+    currentSettingsTab ===
+    "types"
+  ){
+
+    el.innerHTML =
+      settingsTypes();
+
+    return;
+
+  }
+
+
+  if(
+    currentSettingsTab ===
+    "app"
+  ){
+
+    el.innerHTML =
+      settingsApp();
+
+    return;
+
+  }
+
+}
+
+
+/* =====================================================
+   SETTINGS — PERSONAL
+===================================================== */
+
+function settingsPersonal(){
+
+  const p =
+    data.personal;
+
+
+  return `
+
+    <div class="card">
+
+      <div class="card-title">
+        Personal Profile ♡
+      </div>
+
+      <div class="card-description">
+        This information powers your
+        My Profile page.
+      </div>
+
+
+      <div
+        class="form-grid"
+        style="
+          margin-top:20px;
+        "
+      >
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Name
+          </label>
+
+          <input
+            class="form-input"
+            id="setName"
+            value="${escapeHTML(p.name)}"
+            placeholder="Your name"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Age
+          </label>
+
+          <input
+            class="form-input"
+            id="setAge"
+            value="${escapeHTML(p.age)}"
+            placeholder="e.g. 24"
+            type="number"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Skin Type
+          </label>
+
+          <select
+            class="form-select"
+            id="setSkinType"
+          >
+
+            ${selectOptions(
+              [
+                "Dry",
+                "Normal",
+                "Combination",
+                "Oily",
+                "Sensitive"
+              ],
+              p.skinType
+            )}
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Skin Condition
+          </label>
+
+          <input
+            class="form-input"
+            id="setSkinCondition"
+            value="${escapeHTML(p.skinCondition)}"
+            placeholder="e.g. Dehydrated, acne-prone..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Skin Tone
+          </label>
+
+          <select
+            class="form-select"
+            id="setSkinTone"
+          >
+
+            ${selectOptions(
+              [
+                "Very Fair",
+                "Fair",
+                "Light",
+                "Light-Medium",
+                "Medium",
+                "Tan",
+                "Deep"
+              ],
+              p.skinTone
+            )}
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Personal Color
+          </label>
+
+          <select
+            class="form-select"
+            id="setPersonalColor"
+          >
+
+            ${selectOptions(
+              [
+                "Spring",
+                "Summer",
+                "Autumn",
+                "Winter",
+                "Not sure yet"
+              ],
+              p.personalColor
+            )}
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn btn-primary"
+        onclick="
+          savePersonalSettings()
+        "
+      >
+        Save Personal ♡
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function selectOptions(
+  options,
+  current
+){
+
+  return `
+
+    <option value="">
+      Select
+    </option>
+
+    ${
+      options
+        .map(
+          option =>
+            `
+
+            <option
+              value="${escapeHTML(option)}"
+              ${
+                current === option
+                ? "selected"
+                : ""
+              }
+            >
+              ${escapeHTML(option)}
+            </option>
+
+            `
+        )
+        .join("")
+    }
+
+  `;
+
+}
+
+
+function savePersonalSettings(){
+
+  data.personal = {
+
+    name:
+      document.getElementById(
+        "setName"
+      ).value.trim(),
+
+    age:
+      document.getElementById(
+        "setAge"
+      ).value.trim(),
+
+    skinType:
+      document.getElementById(
+        "setSkinType"
+      ).value,
+
+    skinCondition:
+      document.getElementById(
+        "setSkinCondition"
+      ).value.trim(),
+
+    skinTone:
+      document.getElementById(
+        "setSkinTone"
+      ).value,
+
+    personalColor:
+      document.getElementById(
+        "setPersonalColor"
+      ).value
+
+  };
+
+
+  saveData();
+
+
+  alert(
+    "Personal profile saved ♡"
+  );
+
+}
+
+
+/* =====================================================
+   SETTINGS — BRANDS
+===================================================== */
+
+function settingsBrands(){
+
+  return `
+
+    <div class="card">
+
+      <div class="card-title">
+        Brand Library ♡
+      </div>
+
+      <div class="card-description">
+        Add brands you use often.
+        They will appear in Add Product.
+      </div>
+
+
+      <div
+        class="inline"
+        style="
+          margin-top:18px;
+        "
+      >
+
+        <input
+          class="form-input"
+          id="newBrand"
+          placeholder="e.g. Charlotte Tilbury"
+        >
+
+
+        <button
+          class="btn btn-primary"
+          onclick="
+            addBrandFromSettings()
+          "
+        >
+          ＋ Add Brand
+        </button>
+
+      </div>
+
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        ${
+          data.brands
+            .map(
+              (
+                brand,
+                index
+              ) =>
+                libraryRow(
+                  brand,
+                  `removeBrand(${index})`
+                )
+            )
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function addBrandFromSettings(){
+
+  const input =
+    document.getElementById(
+      "newBrand"
+    );
+
+
+  const value =
+    input.value.trim();
+
+
+  if(!value)
+    return;
+
+
+  if(
+    data.brands.some(
+      x =>
+        x.toLowerCase() ===
+        value.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Brand already exists ♡"
+    );
+
+    return;
+
+  }
+
+
+  data.brands.push(
+    value
+  );
+
+  data.brands.sort();
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+function removeBrand(
+  index
+){
+
+  data.brands.splice(
+    index,
+    1
+  );
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+/* =====================================================
+   SETTINGS — INGREDIENTS
+===================================================== */
+
+function settingsIngredients(){
+
+  return `
+
+    <div class="card">
+
+      <div class="card-title">
+        Ingredient Library ✦
+      </div>
+
+      <div class="card-description">
+        Add ingredients you want Lunelle
+        to recognise.
+      </div>
+
+
+      <div
+        class="inline"
+        style="
+          margin-top:18px;
+        "
+      >
+
+        <input
+          class="form-input"
+          id="newIngredient"
+          placeholder="e.g. Niacinamide"
+        >
+
+
+        <button
+          class="btn btn-primary"
+          onclick="
+            addIngredientFromSettings()
+          "
+        >
+          ＋ Add
+        </button>
+
+      </div>
+
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        ${
+          data.ingredients
+            .map(
+              (
+                ingredient,
+                index
+              ) =>
+                libraryRow(
+                  ingredient,
+                  `removeIngredient(${index})`
+                )
+            )
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        Ingredients To Avoid ⚠
+      </div>
+
+      <div class="card-description">
+        These are the ingredients that
+        trigger the product warning.
+      </div>
+
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        ${
+          data.ingredients
+            .map(
+              ingredient => `
+
+                <button
+                  class="chip ${
+                    data.avoidIngredients.some(
+                      x =>
+                        normalizeIngredient(
+                          x
+                        )
+                        ===
+                        normalizeIngredient(
+                          ingredient
+                        )
+                    )
+                    ? "selected"
+                    : ""
+                  }"
+                  onclick="
+                    toggleAvoid(
+                      '${escapeHTML(ingredient)}'
+                    )
+                  "
+                >
+
+                  ${
+                    data.avoidIngredients.some(
+                      x =>
+                        normalizeIngredient(
+                          x
+                        )
+                        ===
+                        normalizeIngredient(
+                          ingredient
+                        )
+                    )
+                    ? "⚠"
+                    : "♡"
+                  }
+
+                  ${escapeHTML(
+                    ingredient
+                  )}
+
+                </button>
+
+              `
+            )
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function addIngredientFromSettings(){
+
+  const input =
+    document.getElementById(
+      "newIngredient"
+    );
+
+
+  const value =
+    input.value.trim();
+
+
+  if(!value)
+    return;
+
+
+  if(
+    data.ingredients.some(
+      x =>
+        x.toLowerCase() ===
+        value.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Ingredient already exists ♡"
+    );
+
+    return;
+
+  }
+
+
+  data.ingredients.push(
+    value
+  );
+
+  data.ingredients.sort();
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+function removeIngredient(
+  index
+){
+
+  const ingredient =
+    data.ingredients[
+      index
+    ];
+
+
+  data.ingredients.splice(
+    index,
+    1
+  );
+
+
+  data.avoidIngredients =
+    data.avoidIngredients.filter(
+      x =>
+        normalizeIngredient(x)
+        !==
+        normalizeIngredient(
+          ingredient
+        )
+    );
+
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+function toggleAvoid(
+  ingredient
+){
+
+  const exists =
+    data.avoidIngredients.some(
+      x =>
+        normalizeIngredient(x)
+        ===
+        normalizeIngredient(
+          ingredient
+        )
+    );
+
+
+  if(exists){
+
+    data.avoidIngredients =
+      data.avoidIngredients.filter(
+        x =>
+          normalizeIngredient(x)
+          !==
+          normalizeIngredient(
+            ingredient
+          )
+      );
+
+  }else{
+
+    data.avoidIngredients.push(
+      ingredient
+    );
+
+  }
+
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+/* =====================================================
+   SETTINGS — TYPES
+===================================================== */
+
+function settingsTypes(){
+
+  return `
+
+    <div class="card">
+
+      <div class="card-title">
+        Product Types ♧
+      </div>
+
+      <div class="card-description">
+        Product types are organised by
+        category.
+      </div>
+
+
+      <div
+        class="form-grid"
+        style="
+          margin-top:20px;
+        "
+      >
+
+        <div class="form-group">
+
+          <label class="form-label">
+            Category
+          </label>
+
+
+          <select
+            class="form-select"
+            id="newTypeCategory"
+          >
+
+            ${
+              Object.keys(
+                data.types
+              )
+              .map(
+                category =>
+                  `
+
+                  <option value="${escapeHTML(category)}">
+                    ${escapeHTML(category)}
+                  </option>
+
+                  `
+              )
+              .join("")
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label class="form-label">
+            New Type
+          </label>
+
+
+          <div class="inline">
+
+            <input
+              class="form-input"
+              id="newType"
+              placeholder="e.g. Skin Tint"
+            >
+
+
+            <button
+              class="btn btn-primary"
+              onclick="
+                addTypeFromSettings()
+              "
+            >
+              ＋ Add
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    ${
+      Object.entries(
+        data.types
+      )
+      .map(
+        (
+          [
+            category,
+            types
+          ]
+        ) =>
+          `
+
+          <div class="card">
+
+            <div class="card-title">
+              ${escapeHTML(category)}
+            </div>
+
+
+            <div
+              style="
+                margin-top:15px;
+              "
+            >
+
+              ${
+                types
+                  .map(
+                    (
+                      type,
+                      index
+                    ) =>
+                      libraryRow(
+                        type,
+                        `removeType(
+                          '${escapeHTML(category)}',
+                          ${index}
+                        )`
+                      )
+                  )
+                  .join("")
+              }
+
+            </div>
+
+          </div>
+
+          `
+      )
+      .join("")
+    }
+
+  `;
+
+}
+
+
+function addTypeFromSettings(){
+
+  const category =
+    document.getElementById(
+      "newTypeCategory"
+    ).value;
+
+
+  const input =
+    document.getElementById(
+      "newType"
+    );
+
+
+  const value =
+    input.value.trim();
+
+
+  if(!value)
+    return;
+
+
+  if(
+    data.types[
+      category
+    ].some(
+      x =>
+        x.toLowerCase() ===
+        value.toLowerCase()
+    )
+  ){
+
+    alert(
+      "Product type already exists ♡"
+    );
+
+    return;
+
+  }
+
+
+  data.types[
+    category
+  ].push(
+    value
+  );
+
+  data.types[
+    category
+  ].sort();
+
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+function removeType(
+  category,
+  index
+){
+
+  data.types[
+    category
+  ].splice(
+    index,
+    1
+  );
+
+
+  saveData();
+
+  renderSettingsTab();
+
+}
+
+
+/* =====================================================
+   SETTINGS — APP
+===================================================== */
+
+function settingsApp(){
+
+  return `
+
+    <div class="card">
+
+      <div class="card-title">
+        App Preferences
+      </div>
+
+      <div class="card-description">
+        A few little things you can
+        customise.
+      </div>
+
+
+      <div
+        class="form-group"
+        style="
+          margin-top:20px;
+        "
+      >
+
+        <label class="form-label">
+          Language
+        </label>
+
+
+        <select
+          class="form-select"
+          id="languageSelect"
+          onchange="
+            changeLanguage(this.value)
+          "
+        >
+
+          <option
+            value="en"
+            ${
+              data.language ===
+              "en"
+              ? "selected"
+              : ""
+            }
+          >
+            English
+          </option>
+
+
+          <option
+            value="id"
+            ${
+              data.language ===
+              "id"
+              ? "selected"
+              : ""
+            }
+          >
+            Bahasa Indonesia
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-title">
+        Reset Lunelle
+      </div>
+
+      <div class="card-description">
+        This permanently clears your
+        products, profile and custom lists
+        from this browser.
+      </div>
+
+
+      <button
+        class="btn btn-danger"
+        style="
+          margin-top:17px;
+        "
+        onclick="
+          resetEverything()
+        "
+      >
+        Reset All Data
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+function changeLanguage(
+  language
+){
+
+  data.language =
+    language;
+
+  saveData();
+
+
+  alert(
+    language === "id"
+    ? "Bahasa diubah ke Indonesia ♡"
+    : "Language changed to English ♡"
+  );
+
+}
+
+
+/* =====================================================
+   LIBRARY ROW
+===================================================== */
+
+function libraryRow(
+  text,
+  action
+){
+
+  return `
+
+    <div class="library-row">
+
+      <span>
+        ${escapeHTML(text)}
+      </span>
+
+
+      <button
+        class="delete-small"
+        onclick="${action}"
+      >
+        ×
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetEverything(){
+
+  const answer =
+    prompt(
+      "Type RESET to delete all Lunelle data."
+    );
+
+
+  if(
+    answer !==
+    "RESET"
+  )
+    return;
+
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  data =
+    structuredClone(
+      defaultData
+    );
+
+
+  alert(
+    "Lunelle has been reset ♡"
+  );
+
+
+  navigate(
+    "dashboard",
+    document.querySelector(
+      '[data-page="dashboard"]'
+    )
+  );
+
+}
+
+
+/* =====================================================
+   START APP
+===================================================== */
+
+renderDashboard();
+
+</script>
+
+</body>
+</html>
