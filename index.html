@@ -2,42 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Lunelle — My Beauty Diary</title>
+<title>My Beauty Diary</title>
 
 <style>
 
-/* =====================================================
+/* =========================================================
    ROOT
-===================================================== */
+========================================================= */
 
 :root{
 
   --pink:#f6b8d2;
-  --pink2:#fde5ef;
+  --pink-light:#fff0f6;
+  --pink-soft:#fde5ef;
 
   --purple:#b9a4ed;
-  --purple2:#eee8ff;
+  --purple-light:#f0ebff;
 
   --blue:#a9d8f5;
-  --blue2:#e7f5ff;
+  --blue-light:#eaf7ff;
 
   --text:#675875;
-  --muted:#9a8fa2;
+  --text-dark:#5d4e67;
+  --muted:#a095a5;
 
   --white:#fffafd;
 
   --border:#eadde9;
 
-  --yes:#8dbfa8;
-  --maybe:#a99adf;
-  --no:#d79aaa;
+  --green:#8dbfa8;
+  --green-light:#e8f6ee;
 
-  --warning:#e5ad78;
+  --red:#d79aaa;
+  --red-light:#fff0f3;
 
   --shadow:
     0 15px 45px
@@ -45,22 +48,23 @@
 }
 
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
-html,
-body{
-  margin:0;
-  padding:0;
-  min-height:100%;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
+
+  margin:0;
+
+  min-height:100vh;
 
   font-family:
     Inter,
@@ -81,7 +85,7 @@ body{
 
     radial-gradient(
       circle at 90% 20%,
-      rgba(169,216,245,.22),
+      rgba(169,216,245,.20),
       transparent 30%
     ),
 
@@ -93,10 +97,21 @@ body{
     );
 }
 
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
 
-/* =====================================================
-   MOBILE MENU BUTTON
-===================================================== */
+button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
 .mobile-menu-btn{
 
@@ -109,17 +124,18 @@ body{
 
   z-index:250;
 
-  width:43px;
-  height:43px;
+  width:44px;
+  height:44px;
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius:14px;
 
   background:
-    rgba(255,255,255,.92);
+    rgba(255,255,255,.94);
 
-  color:#8b7094;
+  color:#876d90;
 
   font-size:20px;
 
@@ -133,9 +149,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    SIDEBAR OVERLAY
-===================================================== */
+========================================================= */
 
 .sidebar-overlay{
 
@@ -151,12 +167,26 @@ body{
     rgba(70,50,75,.20);
 
   backdrop-filter:blur(3px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity .28s ease;
+}
+
+.sidebar-overlay.show{
+
+  opacity:1;
+
+  pointer-events:auto;
 }
 
 
-/* =====================================================
+/* =========================================================
    SIDEBAR
-===================================================== */
+========================================================= */
 
 .sidebar{
 
@@ -167,6 +197,7 @@ body{
   bottom:0;
 
   width:260px;
+
   height:100vh;
 
   padding:
@@ -175,10 +206,11 @@ body{
     18px;
 
   overflow-y:auto;
+
   overflow-x:hidden;
 
   background:
-    rgba(255,255,255,.86);
+    rgba(255,255,255,.88);
 
   backdrop-filter:blur(25px);
 
@@ -194,7 +226,6 @@ body{
   transition:
     transform .28s ease;
 }
-
 
 .sidebar::-webkit-scrollbar{
   width:5px;
@@ -212,7 +243,9 @@ body{
 }
 
 
-/* mobile close */
+/* =========================================================
+   SIDEBAR CLOSE
+========================================================= */
 
 .sidebar-close{
 
@@ -220,11 +253,11 @@ body{
 
   position:absolute;
 
-  right:15px;
   top:15px;
+  right:15px;
 
-  width:33px;
-  height:33px;
+  width:34px;
+  height:34px;
 
   border:0;
 
@@ -240,9 +273,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    LOGO
-===================================================== */
+========================================================= */
 
 .logo{
 
@@ -254,7 +287,9 @@ body{
 
 .logo-name{
 
-  font-family:Georgia,serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size:31px;
 
@@ -277,9 +312,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    NAVIGATION
-===================================================== */
+========================================================= */
 
 .nav-section{
 
@@ -373,16 +408,13 @@ body{
 }
 
 .sidebar-spacer{
-
   flex:1;
-
-  min-height:15px;
 }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* =========================================================
+   FOOTER / TRADEMARK
+========================================================= */
 
 .footer{
 
@@ -401,9 +433,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    MAIN
-===================================================== */
+========================================================= */
 
 .main{
 
@@ -425,9 +457,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    PAGE HEADER
-===================================================== */
+========================================================= */
 
 .page-header{
 
@@ -436,7 +468,9 @@ body{
 
 .page-title{
 
-  font-family:Georgia,serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size:38px;
 
@@ -457,9 +491,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    CARDS
-===================================================== */
+========================================================= */
 
 .card{
 
@@ -499,9 +533,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    DASHBOARD
-===================================================== */
+========================================================= */
 
 .welcome{
 
@@ -537,7 +571,9 @@ body{
 
   margin-top:5px;
 
-  font-family:Georgia,serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size:31px;
 
@@ -568,7 +604,9 @@ body{
 
 .stat-number{
 
-  font-family:Georgia,serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size:28px;
 
@@ -585,9 +623,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    BUTTONS
-===================================================== */
+========================================================= */
 
 .btn{
 
@@ -653,9 +691,9 @@ body{
 }
 
 
-/* =====================================================
+/* =========================================================
    FORMS
-===================================================== */
+========================================================= */
 
 .form-grid{
 
@@ -670,6 +708,8 @@ body{
 .form-group{
 
   margin-bottom:16px;
+
+  position:relative;
 }
 
 .form-label{
@@ -744,7 +784,19 @@ body{
     1 / -1;
 }
 
-.inline{
+
+/* =========================================================
+   SEARCHABLE FIELD
+========================================================= */
+
+.search-field{
+
+  position:relative;
+
+  width:100%;
+}
+
+.search-field-row{
 
   display:flex;
 
@@ -753,16 +805,201 @@ body{
   align-items:stretch;
 }
 
-.inline .form-input,
-.inline .form-select{
+.search-field-row .search-field{
 
   flex:1;
 }
 
+.search-input{
 
-/* =====================================================
-   DATE INPUT
-===================================================== */
+  width:100%;
+
+  height:48px;
+
+  border:
+    1px solid #eadde9;
+
+  outline:none;
+
+  background:#fffafd;
+
+  color:#6d6072;
+
+  border-radius:16px;
+
+  padding:
+    0
+    15px;
+
+  font-size:12px;
+
+  transition:.2s;
+}
+
+.search-input:focus{
+
+  border-color:#e5a8c4;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(246,184,210,.12);
+}
+
+.search-input::placeholder{
+  color:#b1a6b3;
+}
+
+
+/* =========================================================
+   AUTOCOMPLETE DROPDOWN
+========================================================= */
+
+.suggestions{
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:53px;
+
+  z-index:80;
+
+  display:none;
+
+  max-height:230px;
+
+  overflow-y:auto;
+
+  padding:5px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:15px;
+
+  background:
+    rgba(255,255,255,.98);
+
+  box-shadow:
+    0 15px 35px
+    rgba(100,70,110,.15);
+
+  backdrop-filter:blur(15px);
+}
+
+.suggestions.show{
+  display:block;
+}
+
+.suggestion-item{
+
+  width:100%;
+
+  border:0;
+
+  background:transparent;
+
+  text-align:left;
+
+  padding:
+    11px
+    12px;
+
+  border-radius:11px;
+
+  color:#75647b;
+
+  font-size:11px;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted{
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff0f6,
+      #f0ebff
+    );
+
+  color:#9b7193;
+}
+
+.suggestion-item strong{
+  color:#8c6e8e;
+}
+
+.suggestion-empty{
+
+  padding:
+    13px;
+
+  font-size:10px;
+
+  color:#a99da9;
+}
+
+
+/* =========================================================
+   SHADE INPUT
+========================================================= */
+
+.shade-input-wrap{
+
+  position:relative;
+}
+
+.shade-input-wrap::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:14px;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:13px;
+  height:13px;
+
+  border-radius:50%;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #d5a37e,
+      #9a664d
+    );
+
+  opacity:.65;
+
+  pointer-events:none;
+}
+
+.shade-input{
+
+  padding-left:39px !important;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
 
 input[type="date"]{
 
@@ -779,9 +1016,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
-   EMPTY DATE AREA
-===================================================== */
+/* =========================================================
+   EMPTY DATE
+========================================================= */
 
 .empty-date-box{
 
@@ -810,9 +1047,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    RESULT BUTTONS
-===================================================== */
+========================================================= */
 
 .result-buttons{
 
@@ -846,9 +1083,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 .result-btn:hover{
-
-  transform:
-    translateY(-1px);
+  transform:translateY(-1px);
 }
 
 .result-btn.selected.yes{
@@ -873,9 +1108,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    CHIPS
-===================================================== */
+========================================================= */
 
 .chips{
 
@@ -929,9 +1164,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    WARNING
-===================================================== */
+========================================================= */
 
 .warning-box{
 
@@ -960,7 +1195,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 .warning-box.show{
-
   display:block;
 }
 
@@ -981,9 +1215,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCT GRID
-===================================================== */
+========================================================= */
 
 .product-grid{
 
@@ -1111,11 +1345,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   color:#ad8996;
 }
 
-
-/* =====================================================
-   EMPTY DURATION
-===================================================== */
-
 .duration-badge{
 
   display:inline-block;
@@ -1138,9 +1367,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    EMPTY STATE
-===================================================== */
+========================================================= */
 
 .empty{
 
@@ -1173,9 +1402,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    PROFILE
-===================================================== */
+========================================================= */
 
 .profile-info-grid{
 
@@ -1260,9 +1489,12 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   width:38px;
   height:38px;
 
+  flex:none;
+
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   border-radius:50%;
@@ -1277,7 +1509,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 .shade-info{
-
   flex:1;
 }
 
@@ -1306,6 +1537,17 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   color:#b3a9b4;
 }
 
+.shade-number{
+
+  margin-top:3px;
+
+  font-size:9px;
+
+  color:#8d718e;
+
+  font-weight:700;
+}
+
 .read-only-note{
 
   font-size:8px;
@@ -1316,9 +1558,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
-   SETTINGS TABS
-===================================================== */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
 .settings-tabs{
 
@@ -1341,7 +1583,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 .settings-tabs::-webkit-scrollbar{
-
   height:4px;
 }
 
@@ -1434,9 +1675,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    MODAL
-===================================================== */
+========================================================= */
 
 .modal-backdrop{
 
@@ -1461,7 +1702,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 .modal-backdrop.show{
-
   display:flex;
 }
 
@@ -1501,7 +1741,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 
 .modal-title{
 
-  font-family:Georgia,serif;
+  font-family:
+    Georgia,
+    serif;
 
   font-size:25px;
 
@@ -1536,14 +1778,13 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* =========================================================
+   MOBILE / TABLET
+========================================================= */
 
 @media(max-width:900px){
 
   .sidebar{
-
     width:235px;
   }
 
@@ -1577,19 +1818,16 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* =====================================================
+/* =========================================================
    PHONE
-===================================================== */
+========================================================= */
 
 @media(max-width:680px){
 
   body{
-
     overflow-x:hidden;
   }
 
-
-  /* hamburger */
 
   .mobile-menu-btn{
 
@@ -1601,36 +1839,16 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   }
 
 
-  /* overlay */
-
   .sidebar-overlay{
-
     display:block;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:
-      opacity .28s ease;
   }
 
-  .sidebar-overlay.show{
-
-    opacity:1;
-
-    pointer-events:auto;
-  }
-
-
-  /* sidebar */
 
   .sidebar{
 
     width:285px;
 
-    max-width:
-      85vw;
+    max-width:85vw;
 
     height:100vh;
 
@@ -1649,12 +1867,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   }
 
   .sidebar-close{
-
     display:block;
   }
 
-
-  /* main */
 
   .main{
 
@@ -1668,24 +1883,20 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 
 
   .page-title{
-
     font-size:30px;
   }
 
 
   .form-grid{
-
     grid-template-columns:1fr;
   }
 
   .full{
-
     grid-column:auto;
   }
 
 
   .product-grid{
-
     grid-template-columns:1fr;
   }
 
@@ -1698,25 +1909,21 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 
 
   .profile-info-grid{
-
     grid-template-columns:1fr;
   }
 
 
   .result-buttons{
-
     grid-template-columns:1fr;
   }
 
 
   .welcome{
-
     padding:23px;
   }
 
 
   .welcome-name{
-
     font-size:26px;
   }
 
@@ -1729,52 +1936,38 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   }
 
 
-  .inline{
+  .search-field-row{
 
     flex-direction:column;
   }
 
-
-  .inline .btn{
-
+  .search-field-row .btn{
     width:100%;
   }
 
 
-  .settings-tabs{
-
-    padding:4px;
-  }
-
-
-  .settings-tab{
-
-    padding:
-      9px
-      13px;
+  .modal{
+    padding:21px;
   }
 
 }
 
 
-/* =====================================================
-   EXTRA SMALL PHONE
-===================================================== */
+/* =========================================================
+   SMALL PHONE
+========================================================= */
 
 @media(max-width:380px){
 
   .sidebar{
-
     width:270px;
   }
 
   .stats{
-
     grid-template-columns:1fr;
   }
 
   .page-title{
-
     font-size:27px;
   }
 
@@ -1787,9 +1980,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 <body>
 
 
-<!-- =====================================================
-     MOBILE MENU BUTTON
-===================================================== -->
+<!-- =======================================================
+     MOBILE MENU
+======================================================= -->
 
 <button
   class="mobile-menu-btn"
@@ -1801,10 +1994,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 </button>
 
 
-<!-- =====================================================
-     SIDEBAR OVERLAY
-===================================================== -->
-
 <div
   class="sidebar-overlay"
   id="sidebarOverlay"
@@ -1812,17 +2001,15 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 ></div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      SIDEBAR
-===================================================== -->
+======================================================= -->
 
 <aside
   class="sidebar"
   id="sidebar"
 >
 
-
-  <!-- CLOSE BUTTON FOR MOBILE -->
 
   <button
     class="sidebar-close"
@@ -1832,8 +2019,6 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     ×
   </button>
 
-
-  <!-- LOGO -->
 
   <div class="logo">
 
@@ -1848,9 +2033,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   </div>
 
 
-  <!-- ===================================================
-       MY SPACE
-  ==================================================== -->
+  <!-- MY SPACE -->
 
   <div class="nav-section">
 
@@ -1862,17 +2045,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item active"
       data-page="dashboard"
-      onclick="
-        navigate(
-          'dashboard',
-          this
-        )
-      "
+      onclick="navigate('dashboard',this)"
     >
 
-      <span class="nav-icon">
-        ⌂
-      </span>
+      <span class="nav-icon">⌂</span>
 
       Dashboard
 
@@ -1882,17 +2058,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="all"
-      onclick="
-        navigate(
-          'all',
-          this
-        )
-      "
+      onclick="navigate('all',this)"
     >
 
-      <span class="nav-icon">
-        ♡
-      </span>
+      <span class="nav-icon">♡</span>
 
       All Products
 
@@ -1902,17 +2071,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="add"
-      onclick="
-        navigate(
-          'add',
-          this
-        )
-      "
+      onclick="navigate('add',this)"
     >
 
-      <span class="nav-icon">
-        ＋
-      </span>
+      <span class="nav-icon">＋</span>
 
       Add Product
 
@@ -1921,9 +2083,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   </div>
 
 
-  <!-- ===================================================
-       MY LISTS
-  ==================================================== -->
+  <!-- MY LISTS -->
 
   <div class="nav-section">
 
@@ -1935,17 +2095,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="yes"
-      onclick="
-        navigate(
-          'yes',
-          this
-        )
-      "
+      onclick="navigate('yes',this)"
     >
 
-      <span class="nav-icon">
-        ♡
-      </span>
+      <span class="nav-icon">♡</span>
 
       YES List
 
@@ -1955,17 +2108,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="maybe"
-      onclick="
-        navigate(
-          'maybe',
-          this
-        )
-      "
+      onclick="navigate('maybe',this)"
     >
 
-      <span class="nav-icon">
-        ✧
-      </span>
+      <span class="nav-icon">✧</span>
 
       MAYBE List
 
@@ -1975,17 +2121,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="no"
-      onclick="
-        navigate(
-          'no',
-          this
-        )
-      "
+      onclick="navigate('no',this)"
     >
 
-      <span class="nav-icon">
-        ♡
-      </span>
+      <span class="nav-icon">♡</span>
 
       NO List
 
@@ -1995,17 +2134,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="empties"
-      onclick="
-        navigate(
-          'empties',
-          this
-        )
-      "
+      onclick="navigate('empties',this)"
     >
 
-      <span class="nav-icon">
-        ♧
-      </span>
+      <span class="nav-icon">♧</span>
 
       EMPTIES
 
@@ -2014,9 +2146,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   </div>
 
 
-  <!-- ===================================================
-       MY DETAILS
-  ==================================================== -->
+  <!-- MY DETAILS -->
 
   <div class="nav-section">
 
@@ -2028,17 +2158,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="profile"
-      onclick="
-        navigate(
-          'profile',
-          this
-        )
-      "
+      onclick="navigate('profile',this)"
     >
 
-      <span class="nav-icon">
-        ♙
-      </span>
+      <span class="nav-icon">♙</span>
 
       My Profile
 
@@ -2048,17 +2171,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="avoid"
-      onclick="
-        navigate(
-          'avoid',
-          this
-        )
-      "
+      onclick="navigate('avoid',this)"
     >
 
-      <span class="nav-icon">
-        ⚠
-      </span>
+      <span class="nav-icon">⚠</span>
 
       What Should I Avoid?
 
@@ -2068,17 +2184,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="ingredients"
-      onclick="
-        navigate(
-          'ingredients',
-          this
-        )
-      "
+      onclick="navigate('ingredients',this)"
     >
 
-      <span class="nav-icon">
-        ✦
-      </span>
+      <span class="nav-icon">✦</span>
 
       My Ingredients
 
@@ -2087,9 +2196,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   </div>
 
 
-  <!-- ===================================================
-       MORE
-  ==================================================== -->
+  <!-- MORE -->
 
   <div class="nav-section">
 
@@ -2101,17 +2208,10 @@ input[type="date"]::-webkit-calendar-picker-indicator{
     <button
       class="nav-item"
       data-page="settings"
-      onclick="
-        navigate(
-          'settings',
-          this
-        )
-      "
+      onclick="navigate('settings',this)"
     >
 
-      <span class="nav-icon">
-        ⚙
-      </span>
+      <span class="nav-icon">⚙</span>
 
       Settings
 
@@ -2123,7 +2223,7 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   <div class="sidebar-spacer"></div>
 
 
-  <!-- TRADEMARK ONLY -->
+  <!-- TRADEMARK -->
 
   <div class="footer">
     © 2026 Cytara™
@@ -2132,10 +2232,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 </aside>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      MAIN
-===================================================== -->
+======================================================= -->
 
 <main class="main">
 
@@ -2147,10 +2246,9 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 </main>
 
 
-
-<!-- =====================================================
+<!-- =======================================================
      MODAL
-===================================================== -->
+======================================================= -->
 
 <div
   class="modal-backdrop"
@@ -2166,20 +2264,19 @@ input[type="date"]::-webkit-calendar-picker-indicator{
 </div>
 
 
-
 <script>
 
-/* =====================================================
+/* =========================================================
    STORAGE
-===================================================== */
+========================================================= */
 
 const STORAGE_KEY =
-  "lunelle_beauty_diary_v2";
+  "lunelle_beauty_diary_v3";
 
 
-/* =====================================================
+/* =========================================================
    DEFAULT DATA
-===================================================== */
+========================================================= */
 
 const defaultData = {
 
@@ -2223,6 +2320,16 @@ const defaultData = {
   avoidIngredients:[],
 
 
+  categories:[
+
+    "Skincare",
+    "Makeup",
+    "Haircare",
+    "Bodycare"
+
+  ],
+
+
   types:{
 
     Skincare:[
@@ -2245,6 +2352,7 @@ const defaultData = {
 
       "Foundation",
       "Cushion",
+      "Skin Tint",
       "Concealer",
       "Powder",
       "Blush",
@@ -2297,17 +2405,17 @@ let data =
   loadData();
 
 
-let currentSettingsTab =
-  "personal";
-
-
 let editingProductId =
   null;
 
 
-/* =====================================================
-   LOAD DATA
-===================================================== */
+let currentSettingsTab =
+  "personal";
+
+
+/* =========================================================
+   LOAD
+========================================================= */
 
 function loadData(){
 
@@ -2332,7 +2440,7 @@ function loadData(){
       JSON.parse(saved);
 
 
-    return {
+    const merged = {
 
       ...structuredClone(
         defaultData
@@ -2358,6 +2466,27 @@ function loadData(){
 
     };
 
+
+    /*
+      Backward compatibility:
+      kalau data versi sebelumnya
+      belum punya categories.
+    */
+
+    if(
+      !merged.categories
+    ){
+
+      merged.categories =
+        Object.keys(
+          merged.types
+        );
+
+    }
+
+
+    return merged;
+
   }catch(error){
 
     console.error(error);
@@ -2371,9 +2500,9 @@ function loadData(){
 }
 
 
-/* =====================================================
-   SAVE DATA
-===================================================== */
+/* =========================================================
+   SAVE
+========================================================= */
 
 function saveData(){
 
@@ -2385,11 +2514,13 @@ function saveData(){
 }
 
 
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
-function escapeHTML(value){
+function escapeHTML(
+  value
+){
 
   return String(
     value ?? ""
@@ -2423,11 +2554,11 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
-   INGREDIENT HELPERS
-===================================================== */
+/* =========================================================
+   NORMALIZE
+========================================================= */
 
-function normalizeIngredient(
+function normalize(
   value
 ){
 
@@ -2439,6 +2570,10 @@ function normalizeIngredient(
 
 }
 
+
+/* =========================================================
+   INGREDIENT
+========================================================= */
 
 function parseIngredients(
   text
@@ -2474,18 +2609,21 @@ function ingredientMatches(
 
 
   return ingredients.filter(
+
     ingredient =>
 
       avoided.some(
+
         bad =>
 
-          normalizeIngredient(
+          normalize(
             ingredient
           )
           ===
-          normalizeIngredient(
+          normalize(
             bad
           )
+
       )
 
   );
@@ -2493,110 +2631,9 @@ function ingredientMatches(
 }
 
 
-/* =====================================================
-   SHADE ELIGIBILITY
-===================================================== */
-
-function isShadeEligible(
-  type
-){
-
-  const eligible = [
-
-    "Foundation",
-    "Cushion",
-    "Concealer",
-    "Powder",
-    "Blush",
-    "Bronzer",
-    "Contour",
-    "Highlighter",
-    "Lipstick",
-    "Lip Tint",
-    "Lip Gloss",
-    "Lip Liner",
-    "Eyeshadow"
-
-  ];
-
-
-  return eligible.includes(
-    type
-  );
-
-}
-
-
-/* =====================================================
-   STATUS LABEL
-===================================================== */
-
-function statusLabel(
-  status
-){
-
-  const map = {
-
-    not_open:
-      "Not Open",
-
-    opened:
-      "Opened",
-
-    finished:
-      "Finished",
-
-    decluttered:
-      "Decluttered"
-
-  };
-
-
-  return (
-
-    map[status]
-    ||
-    "Not Open"
-
-  );
-
-}
-
-
-/* =====================================================
-   RESULT LABEL
-===================================================== */
-
-function getResultLabel(
-  result
-){
-
-  if(
-    result === "yes"
-  )
-    return "YES";
-
-
-  if(
-    result === "maybe"
-  )
-    return "MAYBE";
-
-
-  if(
-    result === "no"
-  )
-    return "NO";
-
-
-  return "—";
-
-}
-
-
-/* =====================================================
-   DATE HELPERS
-===================================================== */
+/* =========================================================
+   DATE
+========================================================= */
 
 function parseLocalDate(
   value
@@ -2616,20 +2653,14 @@ function parseLocalDate(
     return null;
 
 
-  const year =
-    Number(parts[0]);
-
-  const month =
-    Number(parts[1]);
-
-  const day =
-    Number(parts[2]);
-
-
   return new Date(
-    year,
-    month - 1,
-    day
+
+    Number(parts[0]),
+
+    Number(parts[1]) - 1,
+
+    Number(parts[2])
+
   );
 
 }
@@ -2689,27 +2720,28 @@ function daysBetween(
     return null;
 
 
-  const diff =
+  const difference =
     endDate.getTime()
     -
     startDate.getTime();
 
 
-  const days =
+  return Math.max(
+
+    0,
+
     Math.round(
-      diff /
+
+      difference /
       (
         1000 *
         60 *
         60 *
         24
       )
-    );
 
+    )
 
-  return Math.max(
-    0,
-    days
   );
 
 }
@@ -2747,8 +2779,11 @@ function durationLabel(
 
   if(
     days < 30
-  )
+  ){
+
     return `Used for ${days} days`;
+
+  }
 
 
   const months =
@@ -2803,9 +2838,95 @@ function durationLabel(
 }
 
 
-/* =====================================================
-   SIDEBAR MOBILE
-===================================================== */
+/* =========================================================
+   STATUS
+========================================================= */
+
+function statusLabel(
+  status
+){
+
+  const labels = {
+
+    not_open:"Not Open",
+
+    opened:"Opened",
+
+    finished:"Finished / Empty",
+
+    decluttered:"Decluttered"
+
+  };
+
+
+  return (
+    labels[status]
+    ||
+    "Not Open"
+  );
+
+}
+
+
+function resultLabel(
+  result
+){
+
+  const labels = {
+
+    yes:"YES",
+
+    maybe:"MAYBE",
+
+    no:"NO"
+
+  };
+
+
+  return (
+    labels[result]
+    ||
+    "—"
+  );
+
+}
+
+
+/* =========================================================
+   SHADE ELIGIBLE
+========================================================= */
+
+function isShadeEligible(
+  type
+){
+
+  return [
+
+    "Foundation",
+    "Cushion",
+    "Skin Tint",
+    "Concealer",
+    "Powder",
+    "Blush",
+    "Contour",
+    "Bronzer",
+    "Highlighter",
+    "Lipstick",
+    "Lip Tint",
+    "Lip Gloss",
+    "Lip Liner",
+    "Eyeshadow"
+
+  ].includes(
+    type
+  );
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 function openSidebar(){
 
@@ -2851,9 +2972,9 @@ function closeSidebar(){
 }
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================================
+   NAVIGATE
+========================================================= */
 
 function navigate(
   page,
@@ -2891,9 +3012,9 @@ function navigate(
 }
 
 
-/* =====================================================
-   RENDER PAGE
-===================================================== */
+/* =========================================================
+   PAGE ROUTER
+========================================================= */
 
 function renderPage(
   page
@@ -2934,12 +3055,15 @@ function renderPage(
     case "yes":
 
       renderProductList(
+
         "YES List ♡",
+
         data.products.filter(
           p =>
             p.result ===
             "yes"
         )
+
       );
 
       break;
@@ -2948,12 +3072,15 @@ function renderPage(
     case "maybe":
 
       renderProductList(
+
         "MAYBE List ✧",
+
         data.products.filter(
           p =>
             p.result ===
             "maybe"
         )
+
       );
 
       break;
@@ -2962,12 +3089,15 @@ function renderPage(
     case "no":
 
       renderProductList(
+
         "NO List ♡",
+
         data.products.filter(
           p =>
             p.result ===
             "no"
         )
+
       );
 
       break;
@@ -2976,12 +3106,15 @@ function renderPage(
     case "empties":
 
       renderProductList(
+
         "EMPTIES ♧",
+
         data.products.filter(
           p =>
             p.status ===
             "finished"
         )
+
       );
 
       break;
@@ -3019,18 +3152,14 @@ function renderPage(
 }
 
 
-/* =====================================================
+/* =========================================================
    DASHBOARD
-===================================================== */
+========================================================= */
 
 function renderDashboard(){
 
-  const personal =
-    data.personal;
-
-
   const name =
-    personal.name ||
+    data.personal.name ||
     "Beautiful";
 
 
@@ -3104,7 +3233,9 @@ function renderDashboard(){
 
 
       <div class="welcome-name">
+
         Your beauty, your rules.
+
       </div>
 
 
@@ -3273,9 +3404,9 @@ function renderDashboard(){
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCT LIST
-===================================================== */
+========================================================= */
 
 function renderProductList(
   title,
@@ -3289,7 +3420,9 @@ function renderProductList(
     <div class="page-header">
 
       <div class="page-title">
+
         ${escapeHTML(title)}
+
       </div>
 
 
@@ -3336,7 +3469,9 @@ function renderProductList(
 
 
             <div class="empty-title">
+
               Nothing here yet.
+
             </div>
 
 
@@ -3360,20 +3495,24 @@ function renderProductList(
 }
 
 
-/* =====================================================
+/* =========================================================
    PRODUCT CARD
-===================================================== */
+========================================================= */
 
 function productCard(
   p
 ){
 
   const duration =
-    p.status === "finished"
+
+    p.status ===
+    "finished"
+
     ? durationLabel(
         p.openedDate,
         p.emptyDate
       )
+
     : "";
 
 
@@ -3381,9 +3520,7 @@ function productCard(
 
     <div
       class="product-card"
-      onclick="
-        viewProduct(${p.id})
-      "
+      onclick="viewProduct(${p.id})"
     >
 
 
@@ -3484,21 +3621,35 @@ function productCard(
 
 
         ${
-          p.shadeMatch
+          p.shade
 
           ? `
 
             <span class="meta-chip">
 
-              ${
-                p.shadeMatch ===
-                "match"
+              Shade:
+              ${escapeHTML(
+                p.shade
+              )}
 
-                ? "Shade ♡"
+            </span>
 
-                : "Shade —"
+          `
 
-              }
+          : ""
+
+        }
+
+
+        ${
+          p.shadeMatch ===
+          "match"
+
+          ? `
+
+            <span class="meta-chip">
+
+              ♡ Match
 
             </span>
 
@@ -3566,7 +3717,6 @@ function productCard(
 
       }
 
-
     </div>
 
   `;
@@ -3574,12 +3724,12 @@ function productCard(
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD / EDIT PRODUCT
-===================================================== */
+========================================================= */
 
 function renderAddProduct(
-  product=null
+  product = null
 ){
 
   editingProductId =
@@ -3593,15 +3743,27 @@ function renderAddProduct(
     {
 
       name:"",
+
       brand:"",
+
       category:"Makeup",
+
       type:"",
+
+      shade:"",
+
       ingredients:"",
+
       result:"",
+
       status:"not_open",
+
       openedDate:"",
+
       emptyDate:"",
+
       shadeMatch:"",
+
       notes:""
 
     };
@@ -3618,7 +3780,7 @@ function renderAddProduct(
         ${
           product
           ? "Edit your little something ♡"
-          : "Tambah sedikit sesuatu ♡"
+          : "Add a little something ♡"
         }
 
       </div>
@@ -3642,6 +3804,7 @@ function renderAddProduct(
 
     <div class="card">
 
+
       <div class="form-grid">
 
 
@@ -3657,7 +3820,9 @@ function renderAddProduct(
           <input
             class="form-input"
             id="productName"
-            value="${escapeHTML(p.name)}"
+            value="${escapeHTML(
+              p.name
+            )}"
             placeholder="e.g. Glow Serum"
           >
 
@@ -3666,7 +3831,7 @@ function renderAddProduct(
 
         <!-- BRAND -->
 
-        <div class="form-group full">
+        <div class="form-group">
 
           <label class="form-label">
 
@@ -3679,25 +3844,46 @@ function renderAddProduct(
           </label>
 
 
-          <div class="inline">
+          <div class="search-field-row">
 
-            <input
-              class="form-input"
-              id="brandInput"
-              list="brandList"
-              value="${escapeHTML(
-                p.brand || ""
-              )}"
-              placeholder="e.g. Laneige"
+            <div
+              class="search-field"
+              id="brandSearchField"
             >
+
+              <input
+                class="search-input"
+                id="brandInput"
+                value="${escapeHTML(
+                  p.brand || ""
+                )}"
+                placeholder="Type a brand..."
+                autocomplete="off"
+                oninput="
+                  handleSearch(
+                    'brand'
+                  )
+                "
+                onfocus="
+                  handleSearch(
+                    'brand'
+                  )
+                "
+              >
+
+
+              <div
+                class="suggestions"
+                id="brandSuggestions"
+              ></div>
+
+            </div>
 
 
             <button
               type="button"
               class="btn btn-soft"
-              onclick="
-                quickAddBrand()
-              "
+              onclick="quickAddBrand()"
             >
 
               ＋ New
@@ -3705,22 +3891,6 @@ function renderAddProduct(
             </button>
 
           </div>
-
-
-          <datalist
-            id="brandList"
-          >
-
-            ${
-              data.brands
-                .map(
-                  b =>
-                    `<option value="${escapeHTML(b)}">`
-                )
-                .join("")
-            }
-
-          </datalist>
 
         </div>
 
@@ -3734,45 +3904,38 @@ function renderAddProduct(
           </label>
 
 
-          <select
-            class="form-select"
-            id="categorySelect"
-            onchange="
-              updateTypeOptions()
-            "
+          <div
+            class="search-field"
+            id="categorySearchField"
           >
 
-            ${
-              Object.keys(
-                data.types
-              )
-              .map(
-                category => `
+            <input
+              class="search-input"
+              id="categoryInput"
+              value="${escapeHTML(
+                p.category || ""
+              )}"
+              placeholder="Type category..."
+              autocomplete="off"
+              oninput="
+                handleSearch(
+                  'category'
+                )
+              "
+              onfocus="
+                handleSearch(
+                  'category'
+                )
+              "
+            >
 
-                  <option
-                    value="${escapeHTML(
-                      category
-                    )}"
-                    ${
-                      p.category ===
-                      category
-                      ? "selected"
-                      : ""
-                    }
-                  >
 
-                    ${escapeHTML(
-                      category
-                    )}
+            <div
+              class="suggestions"
+              id="categorySuggestions"
+            ></div>
 
-                  </option>
-
-                `
-              )
-              .join("")
-            }
-
-          </select>
+          </div>
 
         </div>
 
@@ -3792,15 +3955,40 @@ function renderAddProduct(
           </label>
 
 
-          <div class="inline">
+          <div class="search-field-row">
 
-            <select
-              class="form-select"
-              id="typeSelect"
-              onchange="
-                updateShadeSection()
-              "
-            ></select>
+            <div
+              class="search-field"
+              id="typeSearchField"
+            >
+
+              <input
+                class="search-input"
+                id="typeInput"
+                value="${escapeHTML(
+                  p.type || ""
+                )}"
+                placeholder="Type product type..."
+                autocomplete="off"
+                oninput="
+                  handleSearch(
+                    'type'
+                  )
+                "
+                onfocus="
+                  handleSearch(
+                    'type'
+                  )
+                "
+              >
+
+
+              <div
+                class="suggestions"
+                id="typeSuggestions"
+              ></div>
+
+            </div>
 
 
             <button
@@ -3814,6 +4002,39 @@ function renderAddProduct(
               ＋ New
 
             </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- SHADE -->
+
+        <div class="form-group">
+
+          <label class="form-label">
+
+            Shade
+
+            <span class="optional">
+              · optional
+            </span>
+
+          </label>
+
+
+          <div class="shade-input-wrap">
+
+            <input
+              class="form-input shade-input"
+              id="shadeInput"
+              value="${escapeHTML(
+                p.shade || ""
+              )}"
+              placeholder="
+                e.g. 23 Sand, N25, 04 Ginger
+              "
+            >
 
           </div>
 
@@ -3835,9 +4056,7 @@ function renderAddProduct(
             placeholder="
               Water, Glycerin, Niacinamide...
             "
-            oninput="
-              checkIngredientWarning()
-            "
+            oninput="checkIngredientWarning()"
           >${escapeHTML(
             p.ingredients || ""
           )}</textarea>
@@ -3845,11 +4064,11 @@ function renderAddProduct(
         </div>
 
 
-        <!-- SHADE -->
+        <!-- SHADE MATCH -->
 
         <div
           class="form-group full"
-          id="shadeSection"
+          id="shadeMatchSection"
         ></div>
 
 
@@ -3875,6 +4094,9 @@ function renderAddProduct(
             value="${escapeHTML(
               p.openedDate || ""
             )}"
+            onchange="
+              previewEmptyDuration()
+            "
           >
 
         </div>
@@ -3977,18 +4199,18 @@ function renderAddProduct(
 
             <button
               type="button"
-              class="result-btn
+              class="
+                result-btn
                 ${
-                  p.result ===
-                  "yes"
+                  p.result === "yes"
                   ? "selected yes"
                   : ""
                 }
               "
+              id="resultYes"
               onclick="
                 selectResult('yes')
               "
-              id="resultYes"
             >
 
               ♡ YES
@@ -3998,18 +4220,18 @@ function renderAddProduct(
 
             <button
               type="button"
-              class="result-btn
+              class="
+                result-btn
                 ${
-                  p.result ===
-                  "maybe"
+                  p.result === "maybe"
                   ? "selected maybe"
                   : ""
                 }
               "
+              id="resultMaybe"
               onclick="
                 selectResult('maybe')
               "
-              id="resultMaybe"
             >
 
               ✧ MAYBE
@@ -4019,18 +4241,18 @@ function renderAddProduct(
 
             <button
               type="button"
-              class="result-btn
+              class="
+                result-btn
                 ${
-                  p.result ===
-                  "no"
+                  p.result === "no"
                   ? "selected no"
                   : ""
                 }
               "
+              id="resultNo"
               onclick="
                 selectResult('no')
               "
-              id="resultNo"
             >
 
               ♡ NO
@@ -4113,9 +4335,7 @@ function renderAddProduct(
 
         <button
           class="btn btn-primary"
-          onclick="
-            saveProduct()
-          "
+          onclick="saveProduct()"
         >
 
           ${
@@ -4134,12 +4354,7 @@ function renderAddProduct(
   `;
 
 
-  updateTypeOptions(
-    p.type
-  );
-
-
-  updateShadeSection(
+  updateShadeMatchSection(
     p.shadeMatch
   );
 
@@ -4154,91 +4369,881 @@ function renderAddProduct(
 }
 
 
-/* =====================================================
-   TYPE OPTIONS
-===================================================== */
+/* =========================================================
+   SEARCH DATA
+========================================================= */
 
-function updateTypeOptions(
-  selected=""
+function getSearchItems(
+  kind
 ){
 
-  const category =
-    document.getElementById(
-      "categorySelect"
-    )?.value;
+  if(
+    kind ===
+    "brand"
+  ){
 
+    return [
+      ...data.brands
+    ];
 
-  const select =
-    document.getElementById(
-      "typeSelect"
-    );
+  }
 
 
   if(
-    !select ||
-    !category
-  )
-    return;
+    kind ===
+    "category"
+  ){
+
+    return [
+      ...data.categories
+    ];
+
+  }
 
 
-  const types =
-    data.types[
-      category
-    ] || [];
+  if(
+    kind ===
+    "type"
+  ){
+
+    const categoryInput =
+      document.getElementById(
+        "categoryInput"
+      );
 
 
-  select.innerHTML = `
+    const category =
+      categoryInput
+      ?.value
+      ?.trim();
 
-    <option value="">
-      Select type
-    </option>
 
+    /*
+      Kalau category sudah dipilih,
+      type hanya menampilkan type
+      dari category tersebut.
+    */
 
-    ${
-      types
-        .map(
-          type => `
+    if(
+      category &&
+      data.types[
+        category
+      ]
+    ){
 
-            <option
-              value="${escapeHTML(type)}"
-              ${
-                selected ===
-                type
-                ? "selected"
-                : ""
-              }
-            >
+      return [
+        ...data.types[
+          category
+        ]
+      ];
 
-              ${escapeHTML(
-                type
-              )}
-
-            </option>
-
-          `
-        )
-        .join("")
     }
 
-  `;
+
+    /*
+      Kalau belum pilih category,
+      tampilkan semua type.
+    */
+
+    return [
+      ...new Set(
+
+        Object.values(
+          data.types
+        )
+        .flat()
+
+      )
+    ];
+
+  }
 
 
-  updateShadeSection();
+  return [];
 
 }
 
 
-/* =====================================================
-   SHADE SECTION
-===================================================== */
+/* =========================================================
+   SEARCH SORT
+========================================================= */
 
-function updateShadeSection(
+function sortSuggestions(
+  items,
+  query
+){
+
+  const q =
+    normalize(
+      query
+    );
+
+
+  if(!q){
+
+    return [
+      ...items
+    ];
+
+  }
+
+
+  return [...items]
+    .sort(
+      (
+        a,
+        b
+      ) => {
+
+        const aa =
+          normalize(a);
+
+        const bb =
+          normalize(b);
+
+
+        const aStarts =
+          aa.startsWith(q);
+
+
+        const bStarts =
+          bb.startsWith(q);
+
+
+        if(
+          aStarts &&
+          !bStarts
+        )
+          return -1;
+
+
+        if(
+          !aStarts &&
+          bStarts
+        )
+          return 1;
+
+
+        const aIndex =
+          aa.indexOf(q);
+
+
+        const bIndex =
+          bb.indexOf(q);
+
+
+        if(
+          aIndex !==
+          bIndex
+        ){
+
+          return (
+            aIndex -
+            bIndex
+          );
+
+        }
+
+
+        return aa.localeCompare(
+          bb
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   HANDLE SEARCH
+========================================================= */
+
+function handleSearch(
+  kind
+){
+
+  const input =
+    document.getElementById(
+      kind === "brand"
+      ? "brandInput"
+      : kind === "category"
+      ? "categoryInput"
+      : "typeInput"
+    );
+
+
+  const box =
+    document.getElementById(
+      kind === "brand"
+      ? "brandSuggestions"
+      : kind === "category"
+      ? "categorySuggestions"
+      : "typeSuggestions"
+    );
+
+
+  if(
+    !input ||
+    !box
+  )
+    return;
+
+
+  const query =
+    input.value;
+
+
+  let items =
+    getSearchItems(
+      kind
+    );
+
+
+  items =
+    sortSuggestions(
+      items,
+      query
+    );
+
+
+  /*
+    Untuk search:
+    item yang tidak mengandung
+    query tidak perlu ditampilkan
+    kalau user sudah mulai mengetik.
+  */
+
+  if(
+    normalize(query)
+  ){
+
+    items =
+      items.filter(
+        item =>
+          normalize(item)
+          .includes(
+            normalize(query)
+          )
+      );
+
+  }
+
+
+  items =
+    items.slice(
+      0,
+      8
+    );
+
+
+  if(
+    !items.length
+  ){
+
+    box.innerHTML = `
+
+      <div class="suggestion-empty">
+
+        ${
+          query.trim()
+
+          ? `Press Enter to use
+             “${escapeHTML(query)}”
+             as a new value.`
+
+          : "No saved options yet."
+
+        }
+
+      </div>
+
+    `;
+
+
+    box.classList.add(
+      "show"
+    );
+
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    items
+      .map(
+        item => `
+
+          <button
+            type="button"
+            class="suggestion-item"
+            onclick="
+              selectSearchValue(
+                '${escapeHTML(kind)}',
+                '${escapeHTML(item)}'
+              )
+            "
+          >
+
+            <strong>
+
+              ${highlightMatch(
+                item,
+                query
+              )}
+
+            </strong>
+
+
+            <span>
+
+              ${
+                normalize(
+                  item
+                ) ===
+                normalize(
+                  query
+                )
+
+                ? "✓"
+
+                : ""
+
+              }
+
+            </span>
+
+          </button>
+
+        `
+      )
+      .join("");
+
+
+  box.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   HIGHLIGHT
+========================================================= */
+
+function highlightMatch(
+  text,
+  query
+){
+
+  const safeText =
+    escapeHTML(
+      text
+    );
+
+
+  if(
+    !query.trim()
+  ){
+
+    return safeText;
+
+  }
+
+
+  const index =
+    normalize(
+      text
+    )
+    .indexOf(
+      normalize(
+        query
+      )
+    );
+
+
+  if(
+    index < 0
+  ){
+
+    return safeText;
+
+  }
+
+
+  return (
+
+    escapeHTML(
+      text.slice(
+        0,
+        index
+      )
+    )
+
+    +
+
+    "<strong>"
+
+    +
+
+    escapeHTML(
+      text.slice(
+        index,
+        index +
+        query.length
+      )
+    )
+
+    +
+
+    "</strong>"
+
+    +
+
+    escapeHTML(
+      text.slice(
+        index +
+        query.length
+      )
+    )
+
+  );
+
+}
+
+
+/* =========================================================
+   SELECT SEARCH VALUE
+========================================================= */
+
+function selectSearchValue(
+  kind,
+  value
+){
+
+  const input =
+    document.getElementById(
+      kind === "brand"
+      ? "brandInput"
+      : kind === "category"
+      ? "categoryInput"
+      : "typeInput"
+    );
+
+
+  const box =
+    document.getElementById(
+      kind === "brand"
+      ? "brandSuggestions"
+      : kind === "category"
+      ? "categorySuggestions"
+      : "typeSuggestions"
+    );
+
+
+  if(input){
+
+    input.value =
+      value;
+
+  }
+
+
+  if(box){
+
+    box.classList.remove(
+      "show"
+    );
+
+  }
+
+
+  /*
+    Kalau category berubah,
+    type suggestions ikut berubah.
+  */
+
+  if(
+    kind ===
+    "category"
+  ){
+
+    const typeInput =
+      document.getElementById(
+        "typeInput"
+      );
+
+
+    if(typeInput){
+
+      typeInput.value =
+        "";
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   ENTER = USE TYPED VALUE
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key !==
+      "Enter"
+    )
+      return;
+
+
+    const active =
+      document.activeElement;
+
+
+    if(
+      !active
+    )
+      return;
+
+
+    if(
+      active.id ===
+      "brandInput"
+      ||
+      active.id ===
+      "categoryInput"
+      ||
+      active.id ===
+      "typeInput"
+    ){
+
+      event.preventDefault();
+
+
+      const value =
+        active.value.trim();
+
+
+      if(!value)
+        return;
+
+
+      const kind =
+        active.id ===
+        "brandInput"
+
+        ? "brand"
+
+        : active.id ===
+          "categoryInput"
+
+        ? "category"
+
+        : "type";
+
+
+      selectSearchValue(
+        kind,
+        value
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CLOSE SUGGESTIONS WHEN CLICK OUTSIDE
+========================================================= */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    const fields = [
+
+      "brandSearchField",
+
+      "categorySearchField",
+
+      "typeSearchField"
+
+    ];
+
+
+    fields.forEach(
+      id => {
+
+        const field =
+          document.getElementById(
+            id
+          );
+
+
+        if(
+          field &&
+          !field.contains(
+            event.target
+          )
+        ){
+
+          field
+            .querySelector(
+              ".suggestions"
+            )
+            ?.classList
+            .remove(
+              "show"
+            );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================================================
+   QUICK ADD BRAND
+========================================================= */
+
+function quickAddBrand(){
+
+  const value =
+    prompt(
+      "Add a new brand ♡"
+    );
+
+
+  if(
+    value ===
+    null
+  )
+    return;
+
+
+  const clean =
+    value.trim();
+
+
+  if(!clean)
+    return;
+
+
+  const exists =
+    data.brands.some(
+      brand =>
+        normalize(
+          brand
+        ) ===
+        normalize(
+          clean
+        )
+    );
+
+
+  if(exists){
+
+    const input =
+      document.getElementById(
+        "brandInput"
+      );
+
+
+    if(input)
+      input.value =
+        data.brands.find(
+          brand =>
+            normalize(
+              brand
+            ) ===
+            normalize(
+              clean
+            )
+        );
+
+
+    return;
+
+  }
+
+
+  data.brands.push(
+    clean
+  );
+
+
+  data.brands.sort(
+    (a,b) =>
+      a.localeCompare(b)
+  );
+
+
+  saveData();
+
+
+  const input =
+    document.getElementById(
+      "brandInput"
+    );
+
+
+  if(input){
+
+    input.value =
+      clean;
+
+  }
+
+}
+
+
+/* =========================================================
+   QUICK ADD PRODUCT TYPE
+========================================================= */
+
+function quickAddProductType(){
+
+  const category =
+    document.getElementById(
+      "categoryInput"
+    )?.value
+    ?.trim();
+
+
+  if(!category){
+
+    alert(
+      "Please choose or type a category first ♡"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !data.types[
+      category
+    ]
+  ){
+
+    /*
+      Kalau user mengetik category
+      baru, otomatis bikin category.
+    */
+
+    data.types[
+      category
+    ] = [];
+
+
+    if(
+      !data.categories.some(
+        x =>
+          normalize(x) ===
+          normalize(category)
+      )
+    ){
+
+      data.categories.push(
+        category
+      );
+
+    }
+
+  }
+
+
+  const value =
+    prompt(
+      `Add a new ${category} product type ♡`
+    );
+
+
+  if(
+    value ===
+    null
+  )
+    return;
+
+
+  const clean =
+    value.trim();
+
+
+  if(!clean)
+    return;
+
+
+  const exists =
+    data.types[
+      category
+    ]
+    .some(
+      type =>
+        normalize(type)
+        ===
+        normalize(clean)
+    );
+
+
+  if(!exists){
+
+    data.types[
+      category
+    ].push(
+      clean
+    );
+
+
+    data.types[
+      category
+    ].sort();
+
+  }
+
+
+  saveData();
+
+
+  const input =
+    document.getElementById(
+      "typeInput"
+    );
+
+
+  if(input){
+
+    input.value =
+      clean;
+
+  }
+
+}
+
+
+/* =========================================================
+   SHADE MATCH SECTION
+========================================================= */
+
+function updateShadeMatchSection(
   selected=""
 ){
 
   const section =
     document.getElementById(
-      "shadeSection"
+      "shadeMatchSection"
     );
 
 
@@ -4248,9 +5253,17 @@ function updateShadeSection(
 
   const type =
     document.getElementById(
-      "typeSelect"
-    )?.value;
+      "typeInput"
+    )?.value
+    ?.trim();
 
+
+  /*
+    Shade match hanya relevan
+    untuk makeup tertentu,
+    tapi kotak SHADE tetap selalu
+    tersedia di atas.
+  */
 
   if(
     !isShadeEligible(
@@ -4266,20 +5279,16 @@ function updateShadeSection(
   }
 
 
-  const current =
-    selected ||
-
-    document.getElementById(
-      "shadeMatchInput"
-    )?.value ||
-
-    "";
-
-
   section.innerHTML = `
 
     <label class="form-label">
-      Shade Match Me
+
+      Shade Match
+
+      <span class="optional">
+        · optional
+      </span>
+
     </label>
 
 
@@ -4288,16 +5297,19 @@ function updateShadeSection(
 
       <button
         type="button"
-        class="chip
+        class="
+          chip
           ${
-            current ===
+            selected ===
             "match"
             ? "selected"
             : ""
           }
         "
         onclick="
-          selectShade('match')
+          selectShadeMatch(
+            'match'
+          )
         "
       >
 
@@ -4308,23 +5320,25 @@ function updateShadeSection(
 
       <button
         type="button"
-        class="chip
+        class="
+          chip
           ${
-            current ===
+            selected ===
             "not_match"
             ? "selected"
             : ""
           }
         "
         onclick="
-          selectShade('not_match')
+          selectShadeMatch(
+            'not_match'
+          )
         "
       >
 
         Shade Not For Me
 
       </button>
-
 
     </div>
 
@@ -4333,7 +5347,7 @@ function updateShadeSection(
       type="hidden"
       id="shadeMatchInput"
       value="${escapeHTML(
-        current
+        selected
       )}"
     >
 
@@ -4342,11 +5356,11 @@ function updateShadeSection(
 }
 
 
-/* =====================================================
-   SHADE SELECT
-===================================================== */
+/* =========================================================
+   SHADE MATCH SELECT
+========================================================= */
 
-function selectShade(
+function selectShadeMatch(
   value
 ){
 
@@ -4364,16 +5378,16 @@ function selectShade(
   }
 
 
-  updateShadeSection(
+  updateShadeMatchSection(
     value
   );
 
 }
 
 
-/* =====================================================
-   RESULT SELECT
-===================================================== */
+/* =========================================================
+   RESULT
+========================================================= */
 
 function selectResult(
   result
@@ -4397,17 +5411,17 @@ function selectResult(
     );
 
 
-  const id =
-    "result" +
-    result
-      .charAt(0)
-      .toUpperCase() +
-    result.slice(1);
-
-
   const button =
     document.getElementById(
-      id
+
+      "result" +
+
+      result
+        .charAt(0)
+        .toUpperCase() +
+
+      result.slice(1)
+
     );
 
 
@@ -4437,9 +5451,9 @@ function selectResult(
 }
 
 
-/* =====================================================
-   EMPTY DATE SECTION
-===================================================== */
+/* =========================================================
+   EMPTY DATE
+========================================================= */
 
 function updateEmptyDateSection(
   existingDate=""
@@ -4491,7 +5505,9 @@ function updateEmptyDateSection(
       Empty On
 
       <span class="optional">
+
         · when did you finish it?
+
       </span>
 
     </label>
@@ -4512,9 +5528,7 @@ function updateEmptyDateSection(
 
     <div
       id="emptyDurationPreview"
-      style="
-        margin-top:8px;
-      "
+      style="margin-top:8px"
     ></div>
 
   `;
@@ -4525,9 +5539,9 @@ function updateEmptyDateSection(
 }
 
 
-/* =====================================================
+/* =========================================================
    EMPTY DURATION PREVIEW
-===================================================== */
+========================================================= */
 
 function previewEmptyDuration(){
 
@@ -4584,16 +5598,6 @@ function previewEmptyDuration(){
     );
 
 
-  if(!duration){
-
-    preview.innerHTML =
-      "";
-
-    return;
-
-  }
-
-
   preview.innerHTML = `
 
     <div class="empty-date-box">
@@ -4610,9 +5614,9 @@ function previewEmptyDuration(){
 }
 
 
-/* =====================================================
+/* =========================================================
    INGREDIENT WARNING
-===================================================== */
+========================================================= */
 
 function checkIngredientWarning(){
 
@@ -4709,9 +5713,9 @@ function checkIngredientWarning(){
 }
 
 
-/* =====================================================
+/* =========================================================
    SAVE PRODUCT
-===================================================== */
+========================================================= */
 
 function saveProduct(){
 
@@ -4736,14 +5740,47 @@ function saveProduct(){
 
   const category =
     document.getElementById(
-      "categorySelect"
+      "categoryInput"
     )
-    .value;
+    .value
+    .trim();
+
+
+  const brand =
+    document.getElementById(
+      "brandInput"
+    )
+    .value
+    .trim();
 
 
   const type =
     document.getElementById(
-      "typeSelect"
+      "typeInput"
+    )
+    .value
+    .trim();
+
+
+  const shade =
+    document.getElementById(
+      "shadeInput"
+    )
+    .value
+    .trim();
+
+
+  const ingredients =
+    document.getElementById(
+      "ingredientsInput"
+    )
+    .value
+    .trim();
+
+
+  const result =
+    document.getElementById(
+      "resultInput"
     )
     .value;
 
@@ -4755,17 +5792,41 @@ function saveProduct(){
     .value;
 
 
+  const openedDate =
+    document.getElementById(
+      "openedDate"
+    )
+    .value;
+
+
   const emptyDate =
+
     status ===
     "finished"
 
     ? (
         document.getElementById(
           "emptyDateInput"
-        )?.value || ""
+        )?.value ||
+        ""
       )
 
     : "";
+
+
+  const shadeMatch =
+    document.getElementById(
+      "shadeMatchInput"
+    )?.value ||
+    "";
+
+
+  const notes =
+    document.getElementById(
+      "notesInput"
+    )
+    .value
+    .trim();
 
 
   if(
@@ -4781,12 +5842,6 @@ function saveProduct(){
     return;
 
   }
-
-
-  const openedDate =
-    document.getElementById(
-      "openedDate"
-    ).value;
 
 
   if(
@@ -4824,6 +5879,113 @@ function saveProduct(){
   }
 
 
+  /*
+    Kalau user mengetik category
+    baru, simpan otomatis.
+  */
+
+  if(
+    category &&
+    !data.categories.some(
+      x =>
+        normalize(x) ===
+        normalize(category)
+    )
+  ){
+
+    data.categories.push(
+      category
+    );
+
+
+    if(
+      !data.types[
+        category
+      ]
+    ){
+
+      data.types[
+        category
+      ] = [];
+
+    }
+
+  }
+
+
+  /*
+    Kalau user mengetik brand baru,
+    simpan otomatis ke library.
+  */
+
+  if(
+    brand &&
+    !data.brands.some(
+      x =>
+        normalize(x) ===
+        normalize(brand)
+    )
+  ){
+
+    data.brands.push(
+      brand
+    );
+
+
+    data.brands.sort();
+
+  }
+
+
+  /*
+    Kalau type baru dalam category,
+    simpan otomatis.
+  */
+
+  if(
+    category &&
+    type
+  ){
+
+    if(
+      !data.types[
+        category
+      ]
+    ){
+
+      data.types[
+        category
+      ] = [];
+
+    }
+
+
+    if(
+      !data.types[
+        category
+      ].some(
+        x =>
+          normalize(x) ===
+          normalize(type)
+      )
+    ){
+
+      data.types[
+        category
+      ].push(
+        type
+      );
+
+
+      data.types[
+        category
+      ].sort();
+
+    }
+
+  }
+
+
   const product = {
 
     id:
@@ -4831,19 +5993,10 @@ function saveProduct(){
       Date.now(),
 
 
-    name:
+    name,
 
 
-      name,
-
-
-    brand:
-
-      document.getElementById(
-        "brandInput"
-      )
-      .value
-      .trim(),
+    brand,
 
 
     category,
@@ -4852,21 +6005,13 @@ function saveProduct(){
     type,
 
 
-    ingredients:
-
-      document.getElementById(
-        "ingredientsInput"
-      )
-      .value
-      .trim(),
+    shade,
 
 
-    result:
+    ingredients,
 
-      document.getElementById(
-        "resultInput"
-      )
-      .value,
+
+    result,
 
 
     status,
@@ -4878,32 +6023,20 @@ function saveProduct(){
     emptyDate,
 
 
-    shadeMatch:
-
-      document.getElementById(
-        "shadeMatchInput"
-      )?.value ||
-      "",
+    shadeMatch,
 
 
-    notes:
-
-      document.getElementById(
-        "notesInput"
-      )
-      .value
-      .trim(),
+    notes,
 
 
     updatedAt:
-
       new Date()
         .toISOString()
 
   };
 
 
-  const existingIndex =
+  const index =
     data.products.findIndex(
       p =>
         p.id ===
@@ -4912,11 +6045,11 @@ function saveProduct(){
 
 
   if(
-    existingIndex >= 0
+    index >= 0
   ){
 
     data.products[
-      existingIndex
+      index
     ] =
       product;
 
@@ -4951,188 +6084,9 @@ function saveProduct(){
 }
 
 
-/* =====================================================
-   QUICK ADD BRAND
-===================================================== */
-
-function quickAddBrand(){
-
-  const brand =
-    prompt(
-      "Add a new brand ♡"
-    );
-
-
-  if(!brand)
-    return;
-
-
-  const clean =
-    brand.trim();
-
-
-  if(!clean)
-    return;
-
-
-  const exists =
-    data.brands.some(
-      x =>
-        x.toLowerCase()
-        ===
-        clean.toLowerCase()
-    );
-
-
-  if(exists){
-
-    alert(
-      "This brand is already in your library ♡"
-    );
-
-    return;
-
-  }
-
-
-  data.brands.push(
-    clean
-  );
-
-
-  data.brands.sort();
-
-
-  saveData();
-
-
-  const input =
-    document.getElementById(
-      "brandInput"
-    );
-
-
-  if(input)
-    input.value =
-      clean;
-
-
-  const list =
-    document.getElementById(
-      "brandList"
-    );
-
-
-  if(list){
-
-    list.innerHTML =
-      data.brands
-        .map(
-          b =>
-            `<option value="${escapeHTML(b)}">`
-        )
-        .join("");
-
-  }
-
-}
-
-
-/* =====================================================
-   QUICK ADD PRODUCT TYPE
-===================================================== */
-
-function quickAddProductType(){
-
-  const category =
-    document.getElementById(
-      "categorySelect"
-    )?.value;
-
-
-  if(!category)
-    return;
-
-
-  const type =
-    prompt(
-      `Add a new ${category} type ♡`
-    );
-
-
-  if(!type)
-    return;
-
-
-  const clean =
-    type.trim();
-
-
-  if(!clean)
-    return;
-
-
-  if(
-    !data.types[
-      category
-    ]
-  ){
-
-    data.types[
-      category
-    ] = [];
-
-  }
-
-
-  const exists =
-    data.types[
-      category
-    ]
-    .some(
-      x =>
-        x.toLowerCase()
-        ===
-        clean.toLowerCase()
-    );
-
-
-  if(exists){
-
-    alert(
-      "This product type already exists ♡"
-    );
-
-    return;
-
-  }
-
-
-  data.types[
-    category
-  ].push(
-    clean
-  );
-
-
-  data.types[
-    category
-  ].sort();
-
-
-  saveData();
-
-
-  updateTypeOptions(
-    clean
-  );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    VIEW PRODUCT
-===================================================== */
+========================================================= */
 
 function viewProduct(
   id
@@ -5141,7 +6095,8 @@ function viewProduct(
   const p =
     data.products.find(
       x =>
-        x.id === id
+        x.id ===
+        id
     );
 
 
@@ -5150,6 +6105,7 @@ function viewProduct(
 
 
   const duration =
+
     p.status ===
     "finished"
 
@@ -5178,9 +6134,7 @@ function viewProduct(
 
       <button
         class="close"
-        onclick="
-          closeModal()
-        "
+        onclick="closeModal()"
       >
         ×
       </button>
@@ -5226,7 +6180,8 @@ function viewProduct(
         <div class="profile-info-value">
 
           ${escapeHTML(
-            p.category
+            p.category ||
+            "—"
           )}
 
         </div>
@@ -5264,6 +6219,24 @@ function viewProduct(
             statusLabel(
               p.status
             )
+          )}
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-info">
+
+        <div class="profile-info-label">
+          Shade
+        </div>
+
+        <div class="profile-info-value">
+
+          ${escapeHTML(
+            p.shade ||
+            "No shade added"
           )}
 
         </div>
@@ -5358,7 +6331,7 @@ function viewProduct(
         <div class="profile-info-value">
 
           ${escapeHTML(
-            getResultLabel(
+            resultLabel(
               p.result
             )
           )}
@@ -5371,7 +6344,7 @@ function viewProduct(
       <div class="profile-info">
 
         <div class="profile-info-label">
-          Shade
+          Shade Match
         </div>
 
         <div class="profile-info-value">
@@ -5515,7 +6488,9 @@ function viewProduct(
 
           <div
             class="card-description"
-            style="margin-top:10px"
+            style="
+              margin-top:10px;
+            "
           >
 
             ${escapeHTML(
@@ -5576,9 +6551,9 @@ function viewProduct(
 }
 
 
-/* =====================================================
+/* =========================================================
    EDIT PRODUCT
-===================================================== */
+========================================================= */
 
 function editProduct(
   id
@@ -5587,7 +6562,8 @@ function editProduct(
   const p =
     data.products.find(
       x =>
-        x.id === id
+        x.id ===
+        id
     );
 
 
@@ -5596,11 +6572,6 @@ function editProduct(
 
 
   closeModal();
-
-
-  renderAddProduct(
-    p
-  );
 
 
   document
@@ -5623,12 +6594,17 @@ function editProduct(
       "active"
     );
 
+
+  renderAddProduct(
+    p
+  );
+
 }
 
 
-/* =====================================================
-   DELETE PRODUCT
-===================================================== */
+/* =========================================================
+   DELETE
+========================================================= */
 
 function deleteProduct(
   id
@@ -5645,7 +6621,8 @@ function deleteProduct(
   data.products =
     data.products.filter(
       p =>
-        p.id !== id
+        p.id !==
+        id
     );
 
 
@@ -5663,9 +6640,9 @@ function deleteProduct(
 }
 
 
-/* =====================================================
+/* =========================================================
    MODAL
-===================================================== */
+========================================================= */
 
 function closeModal(){
 
@@ -5696,9 +6673,9 @@ function closeModalOutside(
 }
 
 
-/* =====================================================
-   MY PROFILE
-===================================================== */
+/* =========================================================
+   PROFILE
+========================================================= */
 
 function renderProfile(){
 
@@ -5864,6 +6841,27 @@ function renderProfile(){
 
                     </div>
 
+
+                    ${
+                      product.shade
+
+                      ? `
+
+                        <div class="shade-number">
+
+                          Shade:
+                          ${escapeHTML(
+                            product.shade
+                          )}
+
+                        </div>
+
+                      `
+
+                      : ""
+
+                    }
+
                   </div>
 
 
@@ -5899,7 +6897,7 @@ function renderProfile(){
 
             <div class="empty-text">
 
-              Mark makeup as
+              Add a shade and mark
               "Shade Match Me"
               while adding a product.
 
@@ -5917,9 +6915,9 @@ function renderProfile(){
 }
 
 
-/* =====================================================
+/* =========================================================
    PROFILE FIELD
-===================================================== */
+========================================================= */
 
 function profileField(
   label,
@@ -5957,9 +6955,9 @@ function profileField(
 }
 
 
-/* =====================================================
-   AVOID LIST
-===================================================== */
+/* =========================================================
+   AVOID
+========================================================= */
 
 function renderAvoid(){
 
@@ -6004,11 +7002,7 @@ function renderAvoid(){
       </div>
 
 
-      <div
-        style="
-          margin-top:17px;
-        "
-      >
+      <div style="margin-top:17px">
 
         ${
           avoided.length
@@ -6078,9 +7072,9 @@ function renderAvoid(){
 }
 
 
-/* =====================================================
+/* =========================================================
    REMOVE AVOID
-===================================================== */
+========================================================= */
 
 function removeAvoid(
   ingredient
@@ -6089,9 +7083,9 @@ function removeAvoid(
   data.avoidIngredients =
     data.avoidIngredients.filter(
       x =>
-        normalizeIngredient(x)
+        normalize(x)
         !==
-        normalizeIngredient(
+        normalize(
           ingredient
         )
     );
@@ -6105,9 +7099,9 @@ function removeAvoid(
 }
 
 
-/* =====================================================
-   MY INGREDIENTS
-===================================================== */
+/* =========================================================
+   INGREDIENTS
+========================================================= */
 
 function renderMyIngredients(){
 
@@ -6148,11 +7142,7 @@ function renderMyIngredients(){
       </div>
 
 
-      <div
-        style="
-          margin-top:18px;
-        "
-      >
+      <div style="margin-top:18px">
 
         ${
           all.length
@@ -6198,9 +7188,9 @@ function renderMyIngredients(){
 }
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS
-===================================================== */
+========================================================= */
 
 function renderSettings(){
 
@@ -6217,7 +7207,8 @@ function renderSettings(){
 
       <div class="page-description">
 
-        Make Lunelle feel like yours.
+        Make your beauty diary feel
+        like yours.
 
       </div>
 
@@ -6228,7 +7219,8 @@ function renderSettings(){
 
 
       <button
-        class="settings-tab
+        class="
+          settings-tab
           ${
             currentSettingsTab ===
             "personal"
@@ -6249,7 +7241,8 @@ function renderSettings(){
 
 
       <button
-        class="settings-tab
+        class="
+          settings-tab
           ${
             currentSettingsTab ===
             "brands"
@@ -6270,7 +7263,8 @@ function renderSettings(){
 
 
       <button
-        class="settings-tab
+        class="
+          settings-tab
           ${
             currentSettingsTab ===
             "ingredients"
@@ -6291,7 +7285,8 @@ function renderSettings(){
 
 
       <button
-        class="settings-tab
+        class="
+          settings-tab
           ${
             currentSettingsTab ===
             "types"
@@ -6312,7 +7307,8 @@ function renderSettings(){
 
 
       <button
-        class="settings-tab
+        class="
+          settings-tab
           ${
             currentSettingsTab ===
             "app"
@@ -6347,9 +7343,9 @@ function renderSettings(){
 }
 
 
-/* =====================================================
-   SWITCH SETTINGS TAB
-===================================================== */
+/* =========================================================
+   SETTINGS TAB
+========================================================= */
 
 function switchSettingsTab(
   tab
@@ -6364,10 +7360,6 @@ function switchSettingsTab(
 }
 
 
-/* =====================================================
-   RENDER SETTINGS TAB
-===================================================== */
-
 function renderSettingsTab(){
 
   const el =
@@ -6380,76 +7372,57 @@ function renderSettingsTab(){
     return;
 
 
-  if(
-    currentSettingsTab ===
-    "personal"
+  switch(
+    currentSettingsTab
   ){
 
-    el.innerHTML =
-      settingsPersonal();
+    case "personal":
 
-    return;
+      el.innerHTML =
+        settingsPersonal();
 
-  }
-
-
-  if(
-    currentSettingsTab ===
-    "brands"
-  ){
-
-    el.innerHTML =
-      settingsBrands();
-
-    return;
-
-  }
+      break;
 
 
-  if(
-    currentSettingsTab ===
-    "ingredients"
-  ){
+    case "brands":
 
-    el.innerHTML =
-      settingsIngredients();
+      el.innerHTML =
+        settingsBrands();
 
-    return;
-
-  }
+      break;
 
 
-  if(
-    currentSettingsTab ===
-    "types"
-  ){
+    case "ingredients":
 
-    el.innerHTML =
-      settingsTypes();
+      el.innerHTML =
+        settingsIngredients();
 
-    return;
-
-  }
+      break;
 
 
-  if(
-    currentSettingsTab ===
-    "app"
-  ){
+    case "types":
 
-    el.innerHTML =
-      settingsApp();
+      el.innerHTML =
+        settingsTypes();
 
-    return;
+      break;
+
+
+    case "app":
+
+      el.innerHTML =
+        settingsApp();
+
+      break;
 
   }
 
 }
 
 
-/* =====================================================
-   SETTINGS PERSONAL
-===================================================== */
+/* =========================================================
+   PERSONAL SETTINGS
+========================================================= */
 
 function settingsPersonal(){
 
@@ -6476,9 +7449,7 @@ function settingsPersonal(){
 
       <div
         class="form-grid"
-        style="
-          margin-top:20px;
-        "
+        style="margin-top:20px"
       >
 
 
@@ -6650,9 +7621,9 @@ function settingsPersonal(){
 }
 
 
-/* =====================================================
+/* =========================================================
    SELECT OPTIONS
-===================================================== */
+========================================================= */
 
 function selectOptions(
   options,
@@ -6699,16 +7670,15 @@ function selectOptions(
 }
 
 
-/* =====================================================
+/* =========================================================
    SAVE PERSONAL
-===================================================== */
+========================================================= */
 
 function savePersonalSettings(){
 
   data.personal = {
 
     name:
-
       document.getElementById(
         "setName"
       )
@@ -6717,7 +7687,6 @@ function savePersonalSettings(){
 
 
     age:
-
       document.getElementById(
         "setAge"
       )
@@ -6726,7 +7695,6 @@ function savePersonalSettings(){
 
 
     skinType:
-
       document.getElementById(
         "setSkinType"
       )
@@ -6734,7 +7702,6 @@ function savePersonalSettings(){
 
 
     skinCondition:
-
       document.getElementById(
         "setSkinCondition"
       )
@@ -6743,7 +7710,6 @@ function savePersonalSettings(){
 
 
     skinTone:
-
       document.getElementById(
         "setSkinTone"
       )
@@ -6751,7 +7717,6 @@ function savePersonalSettings(){
 
 
     personalColor:
-
       document.getElementById(
         "setPersonalColor"
       )
@@ -6770,9 +7735,9 @@ function savePersonalSettings(){
 }
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS BRANDS
-===================================================== */
+========================================================= */
 
 function settingsBrands(){
 
@@ -6795,9 +7760,7 @@ function settingsBrands(){
 
       <div
         class="inline"
-        style="
-          margin-top:18px;
-        "
+        style="margin-top:18px"
       >
 
         <input
@@ -6823,11 +7786,7 @@ function settingsBrands(){
       </div>
 
 
-      <div
-        style="
-          margin-top:18px;
-        "
-      >
+      <div style="margin-top:18px">
 
         ${
           data.brands
@@ -6855,9 +7814,9 @@ function settingsBrands(){
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD BRAND SETTINGS
-===================================================== */
+========================================================= */
 
 function addBrandFromSettings(){
 
@@ -6878,9 +7837,8 @@ function addBrandFromSettings(){
   if(
     data.brands.some(
       x =>
-        x.toLowerCase()
-        ===
-        value.toLowerCase()
+        normalize(x) ===
+        normalize(value)
     )
   ){
 
@@ -6909,9 +7867,9 @@ function addBrandFromSettings(){
 }
 
 
-/* =====================================================
+/* =========================================================
    REMOVE BRAND
-===================================================== */
+========================================================= */
 
 function removeBrand(
   index
@@ -6931,9 +7889,9 @@ function removeBrand(
 }
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS INGREDIENTS
-===================================================== */
+========================================================= */
 
 function settingsIngredients(){
 
@@ -6948,17 +7906,15 @@ function settingsIngredients(){
 
       <div class="card-description">
 
-        Add ingredients you want Lunelle
-        to recognise.
+        Add ingredients you want your
+        beauty diary to recognise.
 
       </div>
 
 
       <div
         class="inline"
-        style="
-          margin-top:18px;
-        "
+        style="margin-top:18px"
       >
 
         <input
@@ -6984,11 +7940,7 @@ function settingsIngredients(){
       </div>
 
 
-      <div
-        style="
-          margin-top:18px;
-        "
-      >
+      <div style="margin-top:18px">
 
         ${
           data.ingredients
@@ -7027,11 +7979,7 @@ function settingsIngredients(){
       </div>
 
 
-      <div
-        style="
-          margin-top:18px;
-        "
-      >
+      <div style="margin-top:18px">
 
         ${
           data.ingredients
@@ -7039,13 +7987,13 @@ function settingsIngredients(){
               ingredient => `
 
                 <button
-                  class="chip
+                  class="
+                    chip
                     ${
                       data.avoidIngredients.some(
                         x =>
-                          normalizeIngredient(x)
-                          ===
-                          normalizeIngredient(
+                          normalize(x) ===
+                          normalize(
                             ingredient
                           )
                       )
@@ -7065,9 +8013,8 @@ function settingsIngredients(){
                   ${
                     data.avoidIngredients.some(
                       x =>
-                        normalizeIngredient(x)
-                        ===
-                        normalizeIngredient(
+                        normalize(x) ===
+                        normalize(
                           ingredient
                         )
                     )
@@ -7095,9 +8042,9 @@ function settingsIngredients(){
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD INGREDIENT
-===================================================== */
+========================================================= */
 
 function addIngredientFromSettings(){
 
@@ -7118,9 +8065,8 @@ function addIngredientFromSettings(){
   if(
     data.ingredients.some(
       x =>
-        x.toLowerCase()
-        ===
-        value.toLowerCase()
+        normalize(x) ===
+        normalize(value)
     )
   ){
 
@@ -7149,9 +8095,9 @@ function addIngredientFromSettings(){
 }
 
 
-/* =====================================================
+/* =========================================================
    REMOVE INGREDIENT
-===================================================== */
+========================================================= */
 
 function removeIngredient(
   index
@@ -7172,9 +8118,9 @@ function removeIngredient(
   data.avoidIngredients =
     data.avoidIngredients.filter(
       x =>
-        normalizeIngredient(x)
+        normalize(x)
         !==
-        normalizeIngredient(
+        normalize(
           ingredient
         )
     );
@@ -7188,9 +8134,9 @@ function removeIngredient(
 }
 
 
-/* =====================================================
+/* =========================================================
    TOGGLE AVOID
-===================================================== */
+========================================================= */
 
 function toggleAvoid(
   ingredient
@@ -7199,9 +8145,8 @@ function toggleAvoid(
   const exists =
     data.avoidIngredients.some(
       x =>
-        normalizeIngredient(x)
-        ===
-        normalizeIngredient(
+        normalize(x) ===
+        normalize(
           ingredient
         )
     );
@@ -7212,9 +8157,9 @@ function toggleAvoid(
     data.avoidIngredients =
       data.avoidIngredients.filter(
         x =>
-          normalizeIngredient(x)
+          normalize(x)
           !==
-          normalizeIngredient(
+          normalize(
             ingredient
           )
       );
@@ -7236,9 +8181,9 @@ function toggleAvoid(
 }
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS TYPES
-===================================================== */
+========================================================= */
 
 function settingsTypes(){
 
@@ -7253,17 +8198,15 @@ function settingsTypes(){
 
       <div class="card-description">
 
-        Product types are organised
-        by category.
+        Add new categories and product
+        types here if you want.
 
       </div>
 
 
       <div
         class="form-grid"
-        style="
-          margin-top:20px;
-        "
+        style="margin-top:20px"
       >
 
 
@@ -7274,36 +8217,28 @@ function settingsTypes(){
           </label>
 
 
-          <select
-            class="form-select"
+          <input
+            class="form-input"
             id="newTypeCategory"
+            list="settingsCategoryList"
+            placeholder="e.g. Makeup"
+          >
+
+
+          <datalist
+            id="settingsCategoryList"
           >
 
             ${
-              Object.keys(
-                data.types
-              )
-              .map(
-                category => `
-
-                  <option
-                    value="${escapeHTML(
-                      category
-                    )}"
-                  >
-
-                    ${escapeHTML(
-                      category
-                    )}
-
-                  </option>
-
-                `
-              )
-              .join("")
+              data.categories
+                .map(
+                  category =>
+                    `<option value="${escapeHTML(category)}">`
+                )
+                .join("")
             }
 
-          </select>
+          </datalist>
 
         </div>
 
@@ -7370,32 +8305,46 @@ function settingsTypes(){
             </div>
 
 
-            <div
-              style="
-                margin-top:15px;
-              "
-            >
+            <div style="margin-top:15px">
 
               ${
-                types
-                  .map(
-                    (
-                      type,
-                      index
-                    ) =>
+                types.length
 
-                      libraryRow(
+                ? types
+                    .map(
+                      (
                         type,
-                        `removeType(
-                          '${escapeHTML(
-                            category
-                          )}',
-                          ${index}
-                        )`
-                      )
+                        index
+                      ) =>
 
-                  )
-                  .join("")
+                        libraryRow(
+                          type,
+                          `removeType(
+                            '${escapeHTML(
+                              category
+                            )}',
+                            ${index}
+                          )`
+                        )
+
+                    )
+                    .join("")
+
+                : `
+
+                  <div
+                    style="
+                      font-size:10px;
+                      color:#aaa0ad;
+                    "
+                  >
+
+                    No product types yet.
+
+                  </div>
+
+                `
+
               }
 
             </div>
@@ -7412,42 +8361,81 @@ function settingsTypes(){
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD TYPE SETTINGS
-===================================================== */
+========================================================= */
 
 function addTypeFromSettings(){
 
-  const category =
+  const categoryInput =
     document.getElementById(
       "newTypeCategory"
-    )
-    .value;
+    );
 
 
-  const input =
+  const typeInput =
     document.getElementById(
       "newType"
     );
 
 
-  const value =
-    input.value.trim();
+  const category =
+    categoryInput.value.trim();
 
 
-  if(!value)
+  const type =
+    typeInput.value.trim();
+
+
+  if(
+    !category ||
+    !type
+  ){
+
+    alert(
+      "Please add both category and type ♡"
+    );
+
     return;
+
+  }
+
+
+  if(
+    !data.categories.some(
+      x =>
+        normalize(x) ===
+        normalize(category)
+    )
+  ){
+
+    data.categories.push(
+      category
+    );
+
+  }
+
+
+  if(
+    !data.types[
+      category
+    ]
+  ){
+
+    data.types[
+      category
+    ] = [];
+
+  }
 
 
   if(
     data.types[
       category
-    ]
-    .some(
+    ].some(
       x =>
-        x.toLowerCase()
-        ===
-        value.toLowerCase()
+        normalize(x) ===
+        normalize(type)
     )
   ){
 
@@ -7463,7 +8451,7 @@ function addTypeFromSettings(){
   data.types[
     category
   ].push(
-    value
+    type
   );
 
 
@@ -7480,9 +8468,9 @@ function addTypeFromSettings(){
 }
 
 
-/* =====================================================
+/* =========================================================
    REMOVE TYPE
-===================================================== */
+========================================================= */
 
 function removeType(
   category,
@@ -7505,9 +8493,9 @@ function removeType(
 }
 
 
-/* =====================================================
+/* =========================================================
    SETTINGS APP
-===================================================== */
+========================================================= */
 
 function settingsApp(){
 
@@ -7530,9 +8518,7 @@ function settingsApp(){
 
       <div
         class="form-group"
-        style="
-          margin-top:20px;
-        "
+        style="margin-top:20px"
       >
 
         <label class="form-label">
@@ -7585,7 +8571,7 @@ function settingsApp(){
     <div class="card">
 
       <div class="card-title">
-        Reset Lunelle
+        Reset Beauty Diary
       </div>
 
 
@@ -7600,9 +8586,7 @@ function settingsApp(){
 
       <button
         class="btn btn-danger"
-        style="
-          margin-top:17px;
-        "
+        style="margin-top:17px"
         onclick="
           resetEverything()
         "
@@ -7619,9 +8603,9 @@ function settingsApp(){
 }
 
 
-/* =====================================================
+/* =========================================================
    LANGUAGE
-===================================================== */
+========================================================= */
 
 function changeLanguage(
   language
@@ -7648,9 +8632,9 @@ function changeLanguage(
 }
 
 
-/* =====================================================
+/* =========================================================
    LIBRARY ROW
-===================================================== */
+========================================================= */
 
 function libraryRow(
   text,
@@ -7686,15 +8670,15 @@ function libraryRow(
 }
 
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 function resetEverything(){
 
   const answer =
     prompt(
-      "Type RESET to delete all Lunelle data."
+      "Type RESET to delete all Beauty Diary data."
     );
 
 
@@ -7717,7 +8701,7 @@ function resetEverything(){
 
 
   alert(
-    "Lunelle has been reset ♡"
+    "Your Beauty Diary has been reset ♡"
   );
 
 
@@ -7731,9 +8715,9 @@ function resetEverything(){
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
 
 renderDashboard();
 
